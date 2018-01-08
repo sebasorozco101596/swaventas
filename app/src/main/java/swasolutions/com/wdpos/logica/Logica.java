@@ -135,8 +135,8 @@ public class Logica {
 
                  if(txtContrasenia.getText().length() <=0){
                     txtContrasenia.setError("Campo vacio");
-                }else if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                        ConfiguracionActivity.getPreferenciaPing(context))){
+                }else if(Integer.parseInt(txtContrasenia.getText().toString()) !=
+                        ConfiguracionActivity.getPreferenciaPing(context)){
                     txtContrasenia.setError("Ping incorrecto");
                 } else{
 
@@ -219,9 +219,6 @@ public class Logica {
 
     public static boolean soloNumeros(String name) {
         Pattern patron = Pattern.compile("^[0-9]+$");
-        if (!patron.matcher(name).matches() || name.length() > 25) {
-            return false;
-        }
-        return true;
+        return !patron.matcher(name).matches() || name.length() > 25;
     }
 }
