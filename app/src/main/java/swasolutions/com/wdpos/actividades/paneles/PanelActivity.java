@@ -23,35 +23,24 @@ import swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.actividades.ventas.VentasActivity;
-import swasolutions.com.wdpos.base_de_datos.AbonosBD;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.DeudasBD;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosBD;
-import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
-import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.server.Clientes;
 import swasolutions.com.wdpos.vo.server.Deudas;
 import swasolutions.com.wdpos.vo.server.Productos;
 
-public class PanelActivity extends AppCompatActivity {
-
-    private Button btnVender,btnBuscarCLiente,btnGastos,btnCierreCaja,btnConfiguracion,
-            btnAgregarCliente;
-    private Button btnVistaVentas,btnVistaAbonos,btnVistaGastos,btnDevolucion,btnEditarCliente;
-    private Button btnPedidos,btnSubirProducto,btnAgregarCredito,btnClientesNuevos;
-    private TextView txtVersion;
+public class PanelActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Logica logica;
 
-    public static ProductosBD bdProductos;
-    public static ClientesBD bdClientes;
-    public static DeudasBD bdDeudas;
-    public static GastosBD bdGastos;
-    public static AbonosBD bdAbonos;
-    public static ProductosVentaBD bdProductosVenta;
-    public static VentasBD bdVentas;
+    private ProductosBD bdProductos;
+    private ClientesBD bdClientes;
+    private DeudasBD bdDeudas;
+    private GastosBD bdGastos;
+
 
 
     private String link;
@@ -66,7 +55,7 @@ public class PanelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel);
 
-        txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
+        TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
         txtVersion.setText("89");
 
         logica= new Logica();
@@ -75,26 +64,37 @@ public class PanelActivity extends AppCompatActivity {
         /**
          * Inicilizacion de los botonoes iniciales
          */
-        btnVender= (Button) findViewById(R.id.btnVender_panel);
-        btnBuscarCLiente= (Button) findViewById(R.id.btnBuscarCLiente_panel);
-        btnGastos= (Button) findViewById(R.id.btnGastos_panel);
-        btnCierreCaja= (Button) findViewById(R.id.btnCierreCaja_panel);
-        btnAgregarCliente= (Button) findViewById(R.id.btnRegistrarCliente_panel);
-        btnPedidos= (Button) findViewById(R.id.btnPedido_panel);
-        btnConfiguracion = (Button) findViewById(R.id.btnConfiguracion_panel);
-        btnSubirProducto= (Button) findViewById(R.id.btnSubirProducto_Panel);
-        btnAgregarCredito= (Button) findViewById(R.id.btnAgregarCredito_Panel);
-        btnDevolucion= (Button) findViewById(R.id.btnDevolucion_panel);
-        btnClientesNuevos= (Button) findViewById(R.id.btnVistaClientes_panel);
-        btnEditarCliente= (Button) findViewById(R.id.btnEditarCliente_panel);
+        Button btnVender= (Button) findViewById(R.id.btnVender_panel);
+        Button btnBuscarCLiente= (Button) findViewById(R.id.btnBuscarCLiente_panel);
+        Button btnGastos= (Button) findViewById(R.id.btnGastos_panel);
+        Button btnCierreCaja= (Button) findViewById(R.id.btnCierreCaja_panel);
+        Button btnAgregarCliente= (Button) findViewById(R.id.btnRegistrarCliente_panel);
+        Button btnPedidos= (Button) findViewById(R.id.btnPedido_panel);
+        Button btnConfiguracion = (Button) findViewById(R.id.btnConfiguracion_panel);
+        Button btnSubirProducto= (Button) findViewById(R.id.btnSubirProducto_Panel);
+        Button  btnAgregarCredito= (Button) findViewById(R.id.btnAgregarCredito_Panel);
+        Button btnDevolucion= (Button) findViewById(R.id.btnDevolucion_panel);
+        Button btnClientesNuevos= (Button) findViewById(R.id.btnVistaClientes_panel);
+        Button btnEditarCliente= (Button) findViewById(R.id.btnEditarCliente_panel);
+        Button btnVistaVentas = (Button) findViewById(R.id.btnVistaVentas_panel);
+        Button btnVistaAbonos= (Button) findViewById(R.id.btnVistaAbonos_panel);
+        Button btnVistaGastos= (Button) findViewById(R.id.btnVistaGastos_panel);
 
-        /**
-         * Inicializacion de los botones referentes a los productos, ventas, abonos y gastos
-         * agregados en el momento de usar la aplicacion.
-         */
-        btnVistaVentas = (Button) findViewById(R.id.btnVistaVentas_panel);
-        btnVistaAbonos= (Button) findViewById(R.id.btnVistaAbonos_panel);
-        btnVistaGastos= (Button) findViewById(R.id.btnVistaGastos_panel);
+        btnVender.setOnClickListener(this);
+        btnBuscarCLiente.setOnClickListener(this);
+        btnGastos.setOnClickListener(this);
+        btnCierreCaja.setOnClickListener(this);
+        btnAgregarCliente.setOnClickListener(this);
+        btnPedidos.setOnClickListener(this);
+        btnConfiguracion.setOnClickListener(this);
+        btnSubirProducto.setOnClickListener(this);
+        btnAgregarCredito.setOnClickListener(this);
+        btnDevolucion.setOnClickListener(this);
+        btnClientesNuevos.setOnClickListener(this);
+        btnEditarCliente.setOnClickListener(this);
+        btnVistaAbonos.setOnClickListener(this);
+        btnVistaVentas.setOnClickListener(this);
+        btnVistaGastos.setOnClickListener(this);
 
 
         link= ConfiguracionActivity.getLinkHosting(PanelActivity.this);
@@ -121,10 +121,6 @@ public class PanelActivity extends AppCompatActivity {
          */
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
-        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
-        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
-
 
         //------------
 
@@ -134,197 +130,6 @@ public class PanelActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-        btnEditarCliente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"editarCliente",null);
-
-            }
-        });
-
-        btnClientesNuevos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logica.verificarContrasenia(PanelActivity.this,ID,"vistaClientes",null);
-            }
-        });
-
-        btnDevolucion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"devolucion",null);
-            }
-        });
-
-        btnSubirProducto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"crearProducto",null);
-            }
-        });
-
-        btnAgregarCredito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"agregarCredito",null);
-
-
-            }
-        });
-
-        btnConfiguracion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"configuracion",null);
-
-            }
-        });
-
-        btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(),RegistroClienteActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        btnCierreCaja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"cierreCaja",NICKNAME);
-
-            }
-        });
-
-        btnGastos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_gastos,null);
-                final EditText txtDinero= (EditText) mView.findViewById(R.id.txtPrecio_DialogoGasto);
-                final EditText txtDescripcion= (EditText) mView.findViewById(R.id.txtDescripcion_DialogoGasto);
-                Button btnPago= (Button) mView.findViewById(R.id.btnGuardarGasto_dialogo);
-
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnPago.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int gasto=0;
-
-                        if(logica.soloNumeros(txtDinero.getText().toString())){
-                            gasto= Integer.parseInt(txtDinero.getText().toString());
-                        }else if(!logica.soloNumeros(txtDinero.getText().toString())){
-                            txtDinero.setError("Solo se admiten numeros");
-                            return;
-                        }
-
-                        if (txtDinero.getText().toString().length() <= 0) {
-                            txtDinero.setError("Digite el valor del gasto !");
-                        }else  if (txtDescripcion.getText().toString().length() <= 0) {
-                            txtDinero.setError("Digite la descripcion del gasto!");
-                        }else if(gasto<0){
-                            txtDinero.setError("Valor negativo");
-                        } else {
-                            String descripcion= txtDescripcion.getText().toString();
-                            String date = (DateFormat.format("yyyy/MM/dd HH:mm:ss", new java.util.Date()).toString());
-                            String referencia= date+"/gasto/"+ LoginActivity.getId(PanelActivity.this);
-                            int dinero= Integer.parseInt(txtDinero.getText().toString());
-                            bdGastos.agregarGasto(date,referencia,dinero,
-                                    LoginActivity.getUserName(PanelActivity.this),descripcion);
-                            Toast.makeText(getApplicationContext(),"Gasto Guardado",Toast.LENGTH_SHORT).show();
-
-                            alertDialog.dismiss();
-
-
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
-
-
-            }
-        });
-
-        btnVender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent= new Intent(getApplicationContext(),VentasActivity.class);
-                intent.putExtra("key_nickname",NICKNAME);
-                intent.putExtra("key_id",ID);
-                intent.putExtra("key_tipo","venta");
-                startActivity(intent);
-
-            }
-        });
-
-        btnBuscarCLiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
-                intent.putExtra("key_tipo","pago");
-                intent.putExtra("key_id",ID);
-                startActivity(intent);
-            }
-        });
-
-        btnPedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),PanelPedidoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        btnVistaVentas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"vistaVentas",null);
-
-            }
-        });
-
-
-        btnVistaAbonos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"vistaAbonos",null);
-            }
-        });
-
-
-        btnVistaGastos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                logica.verificarContrasenia(PanelActivity.this,ID,"vistaGastos",null);
-            }
-        });
-
-
-
-
 
 
     }
@@ -434,4 +239,142 @@ public class PanelActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.btnVender_panel:
+
+                Intent intent= new Intent(getApplicationContext(),VentasActivity.class);
+                intent.putExtra("key_nickname",NICKNAME);
+                intent.putExtra("key_id",ID);
+                intent.putExtra("key_tipo","venta");
+                startActivity(intent);
+
+                break;
+
+            case R.id.btnBuscarCLiente_panel:
+
+                Intent intentAbonos= new Intent(getApplicationContext(),ClientesActivity.class);
+                intentAbonos.putExtra("key_tipo","pago");
+                intentAbonos.putExtra("key_id",ID);
+                startActivity(intentAbonos);
+
+                break;
+
+            case R.id.btnGastos_panel:
+                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_gastos,null);
+                final EditText txtDinero= (EditText) mView.findViewById(R.id.txtPrecio_DialogoGasto);
+                final EditText txtDescripcion= (EditText) mView.findViewById(R.id.txtDescripcion_DialogoGasto);
+                Button btnPago= (Button) mView.findViewById(R.id.btnGuardarGasto_dialogo);
+
+                builder.setView(mView);
+                final AlertDialog alertDialog= builder.create();
+
+
+                btnPago.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int gasto=0;
+
+                        if(logica.soloNumeros(txtDinero.getText().toString())){
+                            gasto= Integer.parseInt(txtDinero.getText().toString());
+                        }else if(!logica.soloNumeros(txtDinero.getText().toString())){
+                            txtDinero.setError("Solo se admiten numeros");
+                            return;
+                        }
+
+                        if (txtDinero.getText().toString().length() <= 0) {
+                            txtDinero.setError("Digite el valor del gasto !");
+                        }else  if (txtDescripcion.getText().toString().length() <= 0) {
+                            txtDinero.setError("Digite la descripcion del gasto!");
+                        }else if(gasto<0){
+                            txtDinero.setError("Valor negativo");
+                        } else {
+                            String descripcion= txtDescripcion.getText().toString();
+                            String date = (DateFormat.format("yyyy/MM/dd HH:mm:ss", new java.util.Date()).toString());
+                            String referencia= date+"/gasto/"+ LoginActivity.getId(PanelActivity.this);
+                            int dinero= Integer.parseInt(txtDinero.getText().toString());
+                            bdGastos.agregarGasto(date,referencia,dinero,
+                                    LoginActivity.getUserName(PanelActivity.this),descripcion);
+                            Toast.makeText(getApplicationContext(),"Gasto Guardado",Toast.LENGTH_SHORT).show();
+
+                            alertDialog.dismiss();
+
+
+
+                        }
+                    }
+                });
+
+
+                alertDialog.show();
+
+                break;
+
+            case R.id.btnCierreCaja_panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"cierreCaja",NICKNAME);
+
+                break;
+
+            case R.id.btnPedido_panel:
+
+                Intent intentPedidos= new Intent(getApplicationContext(),PanelPedidoActivity.class);
+                startActivity(intentPedidos);
+
+                break;
+
+            case R.id.btnRegistrarCliente_panel:
+
+                Intent intentAddCliente = new Intent(getApplicationContext(),RegistroClienteActivity.class);
+                startActivity(intentAddCliente);
+
+                break;
+            case R.id.btnDevolucion_panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"devolucion",null);
+
+                break;
+
+            case R.id.btnConfiguracion_panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"configuracion",null);
+
+                break;
+            case R.id.btnSubirProducto_Panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"crearProducto",null);
+
+                break;
+            case R.id.btnAgregarCredito_Panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"agregarCredito",null);
+
+                break;
+            case R.id.btnEditarCliente_panel:
+
+                logica.verificarContrasenia(PanelActivity.this,ID,"editarCliente",null);
+
+                break;
+
+            case R.id.btnVistaVentas_panel:
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaVentas",null);
+                break;
+
+            case R.id.btnVistaAbonos_panel:
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaAbonos",null);
+                break;
+
+            case R.id.btnVistaGastos_panel:
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaGastos",null);
+                break;
+
+            case R.id.btnVistaClientes_panel:
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaClientes",null);
+                break;
+        }
+
+    }
 }
