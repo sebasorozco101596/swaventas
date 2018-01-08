@@ -66,10 +66,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
 
     private int CREDITO;
 
-    private static final int MI_PERMISO_NETWORK = 1 ;
-    private static final int MI_PERMISO_LEER = 2;
-    private static final int MI_PERMISO_ESCRIBIR = 3;
-
     public static AbonosBD bdAbonos;
     public static DeudasBD bdDeudas;
     public static VentasBD bdVentas;
@@ -190,7 +186,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         btnSend.setEnabled(false);
 
 
-        bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
+        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdDeudas=new DeudasBD(getApplicationContext(),"DeudasBD",null,1);
         bdVentas=new VentasBD(getApplicationContext(),"VentasBD",null,1);
         bdCredito= new CreditoBD(context,null,null,1);

@@ -127,7 +127,7 @@ public class PanelActivity extends AppCompatActivity {
          */
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
+        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
 
@@ -201,8 +201,6 @@ public class PanelActivity extends AppCompatActivity {
                         } else {
 
                             Intent intent= new Intent(getApplicationContext(),ClientesNuevosVistaActivity.class);
-                            intent.putExtra("key_nickname",NICKNAME);
-                            intent.putExtra("key_id",ID);
                             startActivity(intent);
 
                             alertDialog.dismiss();

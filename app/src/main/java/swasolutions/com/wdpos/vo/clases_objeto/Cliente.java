@@ -51,9 +51,6 @@ public class Cliente {
         return compania;
     }
 
-    public void setCompania(String compania) {
-        this.compania = compania;
-    }
 
     public String getDireccion() {
         return direccion;
@@ -82,7 +79,4 @@ public class Cliente {
         return group_id;
     }
 
-    public void setGroup_id(int group_id) {
-        this.group_id = group_id;
-    }
 }

@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                                         String campos[] = cadena.split(",");
 
                                         String id= campos[0];
-                                        String email= campos[1];
+                                        //String email= campos[1];
                                         tipoUsuario= campos [2];
 
                                         idVendedor=id;

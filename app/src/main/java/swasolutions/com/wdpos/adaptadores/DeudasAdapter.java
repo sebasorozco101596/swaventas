@@ -234,7 +234,6 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
         Pattern patron = Pattern.compile("^[0-9]+$");
         if (!patron.matcher(name).matches() || name.length() > 25) {
             return false;
-        } else {
         }
 
         return true;

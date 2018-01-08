@@ -35,7 +35,7 @@ public class AbonosVistaActivity extends AppCompatActivity {
 
         toolbarAbonos = (Toolbar) findViewById(R.id.toolbarVistaAbonos);
 
-        bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
+        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
 
         abonos= bdAbonos.abonosVista();
 

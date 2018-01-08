@@ -101,7 +101,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                         case BluetoothService.STATE_CONNECTED:
                             Toast.makeText(context, "Conectarse correctamente",
                                     Toast.LENGTH_SHORT).show();
-                            btnSend.setEnabled(true);;
+                            btnSend.setEnabled(true);
                             break;
                         case BluetoothService.STATE_CONNECTING:
                             Log.d(TAG, "Bluetooth está conectando");

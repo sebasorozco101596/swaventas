@@ -20,11 +20,9 @@ public class GastosVistaAdapter extends RecyclerView.Adapter<GastosVistaAdapter.
 
 
     private List<Gasto> gastos;
-    private Context context;
 
     public GastosVistaAdapter(List<Gasto> gastos, Context context) {
         this.gastos = gastos;
-        this.context = context;
     }
 
     @Override

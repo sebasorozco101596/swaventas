@@ -130,7 +130,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     private int DINERO_ABONOS;
     private int TOTAL_GASTOS;
     private int DINERO_ENTREGAR;
-    private int CANTIDAD_PRODUCTOS;
 
     /**
      * Listas que se llenaran con datos de la base de datos local
@@ -232,7 +231,6 @@ public class CierreCajaActivity extends AppCompatActivity {
             DINERO_ABONOS= bundle.getInt("key_dineroRecibidoAbonos");
             TOTAL_GASTOS= bundle.getInt("key_totalGastos");
             DINERO_ENTREGAR= bundle.getInt("key_dineroEntregar");
-            CANTIDAD_PRODUCTOS= bundle.getInt("key_cantidadProductos");
             CICLO= bundle.getString("key_ciclo");
         }
 
@@ -411,7 +409,7 @@ public class CierreCajaActivity extends AppCompatActivity {
          */
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
+        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
         bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
@@ -1205,13 +1203,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            int contador =10;
-
-            //bdVentas.eliminarVentas();
-
-            int numeroVentas= bdVentas.ventas().size();
-
-            contador = 15;
+            int contador = 15;
 
             for (int i = 1; i <= contador; i++) {
                 segundo();

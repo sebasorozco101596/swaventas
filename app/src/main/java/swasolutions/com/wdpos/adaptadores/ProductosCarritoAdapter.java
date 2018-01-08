@@ -27,7 +27,6 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
     private List<ProductoCarrito> productos;
     private Context context;
-    private int total;
     public String tipo;
 
     /**
@@ -38,7 +37,6 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
         this.productos=productos;
         this.context=context;
-        this.total=total;
         this.tipo=tipo;
 
     }

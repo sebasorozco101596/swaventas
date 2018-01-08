@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.actividades.vistas;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,25 +25,12 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
 
     private ClientesCompletoBD bdCliente;
 
-    private String NICKNAME;
-    private String ID;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes_nuevos_vista);
 
         clientes= new ArrayList<>();
-
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-
-        if(bundle!=null) {
-            NICKNAME = bundle.getString("key_nickname");
-            ID= bundle.getString("key_id");
-        }
 
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaClientes);
         setSupportActionBar(toolbarFiltrado);
@@ -70,7 +56,7 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ClientesNuevosVistaAdapter(clientes,this,ID,NICKNAME);
+        adapter = new ClientesNuevosVistaAdapter(clientes,this);
         recyclerView.setAdapter(adapter);
 
 

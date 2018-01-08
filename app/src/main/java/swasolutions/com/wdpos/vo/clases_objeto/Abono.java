@@ -17,8 +17,6 @@ public class Abono {
     private String cedCliente;
     private int credito;
 
-    public Abono() {
-    }
 
     public Abono(int id, String estadoVenta, int pagado, int idVendedor, String fecha,
                  String referencia,int pago_payment,String cedCliente) {
@@ -57,10 +55,6 @@ public class Abono {
         return estadoVenta;
     }
 
-    public void setEstadoVenta(String estadoVenta) {
-        this.estadoVenta = estadoVenta;
-    }
-
     public int getPagado() {
         return pagado;
     }
@@ -89,10 +83,6 @@ public class Abono {
         return pago_payment;
     }
 
-    public void setPago_payment(int pago_payment) {
-        this.pago_payment = pago_payment;
-    }
-
     public String getReferencia() {
         return referencia;
     }
@@ -105,7 +95,4 @@ public class Abono {
         return cedCliente;
     }
 
-    public void setCedCliente(String cedCliente) {
-        this.cedCliente = cedCliente;
-    }
 }

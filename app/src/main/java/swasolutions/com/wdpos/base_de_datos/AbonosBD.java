@@ -21,7 +21,7 @@ public class AbonosBD extends SQLiteOpenHelper {
             " `pago` INTEGER NOT NULL, `idVendedor` INTEGER NOT NULL, `fecha` TEXT NOT NULL,`referencia` TEXT NOT NULL," +
             " `pagoCierre` INTEGER NOT NULL, cedulaCliente TEXT NOT NULL,`credito` INTEGER NOT NULL, PRIMARY KEY(`id`))";
 
-    public AbonosBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public AbonosBD(Context context,SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "AbonosBD", factory, version);
     }
 

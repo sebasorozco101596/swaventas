@@ -20,11 +20,9 @@ import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 public class ProductosDevolucionAdapter extends  RecyclerView.Adapter<ProductosDevolucionAdapter.ProductosDevolucionViewHolder>{
 
     private List<Devolucion> devoluciones;
-    private Context context;
 
     public ProductosDevolucionAdapter(List<Devolucion> devoluciones, Context context) {
         this.devoluciones = devoluciones;
-        this.context = context;
     }
 
     @Override

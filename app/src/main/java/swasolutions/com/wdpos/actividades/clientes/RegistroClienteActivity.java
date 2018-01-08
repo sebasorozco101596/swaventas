@@ -160,6 +160,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
         return false;
     }
 
+    /*
     private void showOptions() {
         final CharSequence[] option = {"Tomar foto frontal","Tomar foto ", "Elegir de galeria", "Cancelar"};
         final AlertDialog.Builder builder = new AlertDialog.Builder(RegistroClienteActivity.this);
@@ -181,6 +182,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
 
         builder.show();
     }
+    */
 
     private void openCamera(String lado) {
         File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);

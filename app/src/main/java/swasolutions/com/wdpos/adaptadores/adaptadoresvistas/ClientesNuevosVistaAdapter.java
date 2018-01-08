@@ -23,24 +23,15 @@ public class ClientesNuevosVistaAdapter extends  RecyclerView.Adapter<ClientesNu
 
     private List<ClienteCompleto> clientes;
     private Context context;
-    private String TIPO;
-    private String NICKNAME;
-    private String ID;
+
 
     /**
      * Builder class
      * @param clientes
      */
-    public ClientesNuevosVistaAdapter(List<ClienteCompleto> clientes, Context context,String nickname,
-                           String id){
-
+    public ClientesNuevosVistaAdapter(List<ClienteCompleto> clientes, Context context){
         this.clientes=clientes;
         this.context=context;
-        this.NICKNAME=nickname;
-        this.ID=id;
-
-
-
     }
 
 

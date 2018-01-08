@@ -72,7 +72,7 @@ public class PanelEliminacionActivity extends AppCompatActivity {
                             txtContrasenia.setError("Ping incorrecto");
                         } else {
 
-                            bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
+                            bdAbonos= new AbonosBD(getApplicationContext(),null,1);
                             bdCarrito= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
                             bdClientes= new ClientesBD(getApplicationContext(),"BDMessages",null,1);
                             bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);

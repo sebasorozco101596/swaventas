@@ -2,6 +2,7 @@ package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -101,7 +102,7 @@ public class SubirServidor implements Runnable {
          */
 
         bdGastos= new GastosBD(context,"GastosBD",null,1);
-        bdAbonos= new AbonosBD(context,"AbonosBD",null,1);
+        bdAbonos= new AbonosBD(context,null,1);
         bdVentas= new VentasBD(context,"VentasBD",null,1);
         bdProductos= new ProductosBD(context,null,null,1);
         bdDevoluciones= new DevolucionesBD(context,null,null,1);
@@ -153,7 +154,7 @@ public class SubirServidor implements Runnable {
                                 Log.d("agregoAbono","Se agrego el abono");
                                 bdAbonos.eliminarAbono(abonos.get(finalI).getId());
                             } else {
-                                //Toast.makeText(context, "Error" + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Error" + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
