@@ -20,20 +20,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
-
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity;
-import swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity;
-import swasolutions.com.wdpos.actividades.productos.CrearProductoActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.actividades.ventas.VentasActivity;
-import swasolutions.com.wdpos.actividades.vistas.AbonosVistaActivity;
-import swasolutions.com.wdpos.actividades.vistas.ClientesNuevosVistaActivity;
-import swasolutions.com.wdpos.actividades.vistas.GastosVistaActivity;
-import swasolutions.com.wdpos.actividades.vistas.VistaVentasActivity;
 import swasolutions.com.wdpos.base_de_datos.AbonosBD;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.DeudasBD;
@@ -41,6 +33,7 @@ import swasolutions.com.wdpos.base_de_datos.GastosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.server.Clientes;
 import swasolutions.com.wdpos.vo.server.Deudas;
 import swasolutions.com.wdpos.vo.server.Productos;
@@ -52,6 +45,8 @@ public class PanelActivity extends AppCompatActivity {
     private Button btnVistaVentas,btnVistaAbonos,btnVistaGastos,btnDevolucion,btnEditarCliente;
     private Button btnPedidos,btnSubirProducto,btnAgregarCredito,btnClientesNuevos;
     private TextView txtVersion;
+
+    private Logica logica;
 
     public static ProductosBD bdProductos;
     public static ClientesBD bdClientes;
@@ -76,6 +71,8 @@ public class PanelActivity extends AppCompatActivity {
 
         txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
         txtVersion.setText("89");
+
+        logica= new Logica();
 
         view = findViewById(android.R.id.content);
         /**
@@ -146,35 +143,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
-                            intent.putExtra("key_tipo","edicion");
-                            intent.putExtra("key_id",ID);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"editarCliente",null);
 
             }
         });
@@ -182,37 +151,7 @@ public class PanelActivity extends AppCompatActivity {
         btnClientesNuevos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent= new Intent(getApplicationContext(),ClientesNuevosVistaActivity.class);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-                alertDialog.show();
-
-
-
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaClientes",null);
             }
         });
 
@@ -220,39 +159,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
-                            intent.putExtra("key_tipo","devolucion");
-                            intent.putExtra("key_id",ID);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-                alertDialog.show();
-
-
-
+                logica.verificarContrasenia(PanelActivity.this,ID,"devolucion",null);
             }
         });
 
@@ -260,33 +167,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intentProductos= new Intent(getApplicationContext(), CrearProductoActivity.class);
-                            startActivity(intentProductos);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"crearProducto",null);
             }
         });
 
@@ -294,35 +175,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
-                            intent.putExtra("key_tipo","credito");
-                            intent.putExtra("key_id",ID);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"agregarCredito",null);
 
 
             }
@@ -332,35 +185,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intentPanelConfiguracion = new Intent(getApplicationContext(),PanelConfiguracionActivity.class);
-                            startActivity(intentPanelConfiguracion);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
-
+                logica.verificarContrasenia(PanelActivity.this,ID,"configuracion",null);
 
             }
         });
@@ -375,66 +200,11 @@ public class PanelActivity extends AppCompatActivity {
             }
         });
 
-
-
         btnCierreCaja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-
-                            int cantidadProductos= bdVentas.cantidadProductos();
-                            int totalVentas= bdVentas.totalVentas();
-                            int dineroRecibidoVentas=bdVentas.totalVentasRecibido();
-                            int dineroRecibidoAbonos= bdAbonos.totalAbonos();
-                            int totalGastos=bdGastos.totalGastos();
-                            int dineroEntregar= (dineroRecibidoVentas+dineroRecibidoAbonos)-totalGastos;
-
-
-                            Intent intent = new Intent(getApplicationContext(), CierreCajaActivity.class);
-
-
-
-
-                            intent.putExtra("key_vendedor",NICKNAME);
-                            intent.putExtra("key_id",ID);
-                            intent.putExtra("key_cantidadProductos",cantidadProductos);
-                            intent.putExtra("key_totalVentas",totalVentas);
-                            intent.putExtra("key_dineroRecibidoVentas",dineroRecibidoVentas);
-                            intent.putExtra("key_dineroRecibidoAbonos",dineroRecibidoAbonos);
-                            intent.putExtra("key_totalGastos",totalGastos);
-                            intent.putExtra("key_dineroEntregar",dineroEntregar);
-                            intent.putExtra("key_ciclo","0");
-
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
-
-
-
+                logica.verificarContrasenia(PanelActivity.this,ID,"cierreCaja",NICKNAME);
 
             }
         });
@@ -458,23 +228,18 @@ public class PanelActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         int gasto=0;
 
-                        if(soloNumeros(txtDinero.getText().toString())){
+                        if(logica.soloNumeros(txtDinero.getText().toString())){
                             gasto= Integer.parseInt(txtDinero.getText().toString());
-                        }else if(!soloNumeros(txtDinero.getText().toString())){
+                        }else if(!logica.soloNumeros(txtDinero.getText().toString())){
                             txtDinero.setError("Solo se admiten numeros");
                             return;
-                        }
-
-
-                        if (txtDinero.getText().toString().length() <= 0) {
+                        }else if (txtDinero.getText().toString().length() <= 0) {
                             txtDinero.setError("Digite el valor del gasto !");
                         }else  if (txtDescripcion.getText().toString().length() <= 0) {
                             txtDinero.setError("Digite la descripcion del gasto!");
                         }else if(gasto<0){
                             txtDinero.setError("Valor negativo");
                         } else {
-
-
                             String descripcion= txtDescripcion.getText().toString();
                             String date = (DateFormat.format("yyyy/MM/dd HH:mm:ss", new java.util.Date()).toString());
                             String referencia= date+"/gasto/"+ LoginActivity.getId(PanelActivity.this);
@@ -535,34 +300,7 @@ public class PanelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
-
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent = new Intent(getApplicationContext(), VistaVentasActivity.class);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaVentas",null);
 
             }
         });
@@ -571,34 +309,8 @@ public class PanelActivity extends AppCompatActivity {
         btnVistaAbonos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
 
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent = new Intent(getApplicationContext(), AbonosVistaActivity.class);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaAbonos",null);
             }
         });
 
@@ -606,34 +318,8 @@ public class PanelActivity extends AppCompatActivity {
         btnVistaGastos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder= new AlertDialog.Builder(PanelActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
-                final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
-                Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
-                builder.setView(mView);
-                final AlertDialog alertDialog= builder.create();
 
-
-                btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(PanelActivity.this))){
-                            txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
-                            Intent intent = new Intent(getApplicationContext(), GastosVistaActivity.class);
-                            startActivity(intent);
-
-                            alertDialog.dismiss();
-
-                        }
-                    }
-                });
-
-
-                alertDialog.show();
+                logica.verificarContrasenia(PanelActivity.this,ID,"vistaGastos",null);
             }
         });
 
@@ -642,14 +328,6 @@ public class PanelActivity extends AppCompatActivity {
 
 
 
-    }
-
-    private boolean soloNumeros(String name) {
-        Pattern patron = Pattern.compile("^[0-9]+$");
-        if (!patron.matcher(name).matches() || name.length() > 25) {
-            return false;
-        }
-        return true;
     }
 
     /**
