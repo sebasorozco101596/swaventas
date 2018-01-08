@@ -2,6 +2,8 @@ package swasolutions.com.wdpos.logica;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -217,8 +219,43 @@ public class Logica {
         return bandera[0];
     }
 
+    /**
+     * Metodo que verifica si la cadena que esta entrando solo admite numeros
+     * @param name
+     * @return
+     */
     public static boolean soloNumeros(String name) {
         Pattern patron = Pattern.compile("^[0-9]+$");
-        return !patron.matcher(name).matches() || name.length() > 25;
+        return patron.matcher(name).matches() && name.length() < 25;
+    }
+
+    private static boolean isNetDisponible(Context context) {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
+
+        return (actNetInfo != null && actNetInfo.isConnected());
+    }
+
+    private static Boolean isOnlineNet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+
+            int val           = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean verificarConexion(Context context) {
+        return isNetDisponible(context) && isOnlineNet();
     }
 }

@@ -1,9 +1,6 @@
 package swasolutions.com.wdpos.actividades.paneles;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -233,7 +230,9 @@ public class PanelActivity extends AppCompatActivity {
                         }else if(!logica.soloNumeros(txtDinero.getText().toString())){
                             txtDinero.setError("Solo se admiten numeros");
                             return;
-                        }else if (txtDinero.getText().toString().length() <= 0) {
+                        }
+
+                        if (txtDinero.getText().toString().length() <= 0) {
                             txtDinero.setError("Digite el valor del gasto !");
                         }else  if (txtDescripcion.getText().toString().length() <= 0) {
                             txtDinero.setError("Digite la descripcion del gasto!");
@@ -353,7 +352,7 @@ public class PanelActivity extends AppCompatActivity {
             case R.id.accion_actualizarProductos:
 
 
-                if(isNetDisponible() && isOnlineNet()) {
+                if(logica.verificarConexion(PanelActivity.this)) {
 
 
                     bdProductos = new ProductosBD(getApplicationContext(), "BDMessages", null, 1);
@@ -378,7 +377,7 @@ public class PanelActivity extends AppCompatActivity {
 
             case R.id.accion_actualizarClientes:
 
-                if(isNetDisponible() && isOnlineNet()) {
+                if(logica.verificarConexion(PanelActivity.this)) {
                     bdClientes = new ClientesBD(getApplicationContext(), "BDClientes", null, 1);
                     bdClientes.eliminarTodosClientes();
 
@@ -397,10 +396,9 @@ public class PanelActivity extends AppCompatActivity {
 
             case R.id.accion_actualizarDeudasCliente:
 
-                if(isNetDisponible() && isOnlineNet()) {
+                if(logica.verificarConexion(PanelActivity.this)) {
                     bdDeudas = new DeudasBD(getApplicationContext(), "BDDeudas", null, 1);
                     bdDeudas.eliminarTodasLasDeudas();
-
 
                     Deudas deudas = new Deudas(getApplicationContext(), link);
                     deudas.obtenerDeudas();
@@ -426,32 +424,6 @@ public class PanelActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private boolean isNetDisponible() {
-
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
-
-        return (actNetInfo != null && actNetInfo.isConnected());
-    }
-
-    public Boolean isOnlineNet() {
-
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-
-            int val           = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
     }
 
     public static void mostrarSnockBar(String mensaje,int duracion){
