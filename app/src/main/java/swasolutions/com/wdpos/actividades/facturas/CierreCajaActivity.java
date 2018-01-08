@@ -377,8 +377,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //Estoy mirando github
-
         if (!mService.isBTopen()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
