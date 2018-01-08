@@ -233,7 +233,6 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
     public static void mostrarSnockBar(String mensaje,int duracion){
 
-
         Snackbar.make(view.findViewById(android.R.id.content),mensaje,duracion)
                 .setAction("Action", null).show();
 
@@ -250,7 +249,6 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("key_id",ID);
                 intent.putExtra("key_tipo","venta");
                 startActivity(intent);
-
                 break;
 
             case R.id.btnBuscarCLiente_panel:
@@ -268,7 +266,6 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                 final EditText txtDinero= (EditText) mView.findViewById(R.id.txtPrecio_DialogoGasto);
                 final EditText txtDescripcion= (EditText) mView.findViewById(R.id.txtDescripcion_DialogoGasto);
                 Button btnPago= (Button) mView.findViewById(R.id.btnGuardarGasto_dialogo);
-
                 builder.setView(mView);
                 final AlertDialog alertDialog= builder.create();
 
@@ -301,62 +298,40 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(getApplicationContext(),"Gasto Guardado",Toast.LENGTH_SHORT).show();
 
                             alertDialog.dismiss();
-
-
-
                         }
                     }
                 });
-
-
                 alertDialog.show();
-
                 break;
 
             case R.id.btnCierreCaja_panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"cierreCaja",NICKNAME);
-
                 break;
 
             case R.id.btnPedido_panel:
-
                 Intent intentPedidos= new Intent(getApplicationContext(),PanelPedidoActivity.class);
                 startActivity(intentPedidos);
-
                 break;
 
             case R.id.btnRegistrarCliente_panel:
-
                 Intent intentAddCliente = new Intent(getApplicationContext(),RegistroClienteActivity.class);
                 startActivity(intentAddCliente);
-
                 break;
             case R.id.btnDevolucion_panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"devolucion",null);
-
                 break;
 
             case R.id.btnConfiguracion_panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"configuracion",null);
-
                 break;
             case R.id.btnSubirProducto_Panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"crearProducto",null);
-
                 break;
             case R.id.btnAgregarCredito_Panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"agregarCredito",null);
-
                 break;
             case R.id.btnEditarCliente_panel:
-
                 logica.verificarContrasenia(PanelActivity.this,ID,"editarCliente",null);
-
                 break;
 
             case R.id.btnVistaVentas_panel:
@@ -373,6 +348,9 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.btnVistaClientes_panel:
                 logica.verificarContrasenia(PanelActivity.this,ID,"vistaClientes",null);
+                break;
+            default:
+                Toast.makeText(getApplicationContext(),"No presiono nada",Toast.LENGTH_SHORT).show();
                 break;
         }
 
