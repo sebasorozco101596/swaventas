@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/degradade"
+    tools:context="actividades.devoluciones.DevolucionActivity">
+
+    <TextView
+        android:id="@+id/txtDevolucion_devolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Devoluciones"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/verdeclaro"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/linearFecha_Devolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/txtDevolucion_devolucion"
+        android:background="@drawable/edittext"
+        android:padding="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Fecha: "
+            android:textStyle="bold"
+            android:textColor="@color/negro"
+            />
+
+        <TextView
+            android:id="@+id/txtFecha_devolucion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="10/15/96 12:30:54"
+            android:textStyle="bold"
+            android:textColor="@color/rojo_oscuro"
+            android:layout_marginStart="20dp"
+            />
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearFecha_Devolucion"
+        android:layout_above="@+id/linearCarrito"
+        android:layout_alignParentStart="true"
+        android:id="@+id/recyclerViewDevoluciones"
+        tools:listitem="@layout/cardview_devolucion"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/linearCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="4dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/negro"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="total devolucion:"
+                android:textColor="@color/blanco"
+                android:textSize="20dp"
+                android:layout_marginEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/txtPrecioTotal_devolucion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1500000"
+                android:textColor="@color/bluenice"
+                android:textSize="20dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnProductos_devolucion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/productos"
+                android:text="Productos"
+                android:background="@color/amarillo"
+                android:textColor="@color/negro"
+                />
+
+            <Button
+                android:id="@+id/btnCancelarDevo_devolucion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="cancelar devolucion"
+                android:background="@color/rojo_oscuro"
+                android:drawableTop="@drawable/cancel"
+                android:textColor="@color/negro"
+                />
+
+            <Button
+                android:id="@+id/btnCompletarDevo_devolucion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ok"
+                android:text="completar devolucion"
+                android:background="@color/verde"
+                android:textColor="@color/negro"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

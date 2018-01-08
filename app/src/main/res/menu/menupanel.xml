@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="solutions.swa.com.ssgotauser.activitys.ChatsActivity"
+    >
+    <!-- MENU -->
+
+    <item
+        android:id="@+id/accion_actualizarProductos"
+        android:title="Actualizar productos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/accion_actualizarClientes"
+        android:title="Actualizar clientes"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/accion_actualizarDeudasCliente"
+        android:title="Actualizar Deudas cliente"
+        app:showAsAction="never" />
+
+
+
+
+</menu>

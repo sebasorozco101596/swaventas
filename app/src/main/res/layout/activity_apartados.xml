@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.notas.NotaFacturaActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarPedidos_pedidos"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarPedidos_pedidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonspanelbluedark"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            tools:ignore="UnusedAttribute"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="2dp"
+            >
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/txtDevolucion_devolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Apartado"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/verdeclaro"
+        android:gravity="center"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/edittext"
+        android:padding="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/edittext"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:id="@+id/linearCardViewGroupInfo"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="cantidad"
+                android:maxWidth="280dp"
+                android:textSize="@dimen/textFacturas"
+                android:gravity="center"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/textFacturas"
+                android:text="Producto"
+                android:maxWidth="280dp"
+                android:gravity="center"
+                android:paddingRight="15dp"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="Total"
+                android:textSize="@dimen/textFacturas"
+                android:maxWidth="280dp"
+                android:gravity="center"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/recyclerViewApartado"
+            tools:listitem="@layout/cardview_productos_factura"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/txtNotaApartado_apartado"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="top|left"
+        android:hint="digite sus notas aca."
+        android:padding="10dp"
+        android:textColor="@color/negro"
+        android:background="@drawable/edittext"/>
+
+    <Button
+        android:id="@+id/btnSearch_apartados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/selector_btn"
+        android:textSize="@dimen/textFacturas"
+        android:text="@string/btnSearch"
+        android:textColor="@color/text_white"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSend_apartados"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="3dp"
+            android:textSize="@dimen/textFacturas"
+            android:drawableTop="@drawable/imprimir"
+            android:background="@drawable/buttonspanelbluedark"
+            android:text="@string/btnSend"
+            android:textColor="@color/text_white"/>
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btnVolver_apartados"
+            android:textSize="@dimen/textFacturas"
+            android:drawableTop="@drawable/compartir"
+            android:background="@drawable/selector_btn"
+            android:textColor="@color/blanco"
+            android:text="Volver al panel"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

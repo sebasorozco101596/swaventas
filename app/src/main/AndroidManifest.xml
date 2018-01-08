@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="swasolutions.com.wdpos">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <activity android:name=".actividades.vendedores.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".actividades.paneles.PanelActivity" />
+        <activity android:name=".actividades.ventas.VentasActivity" />
+        <activity
+            android:name=".impresion.DeviceListActivity"
+            android:label="@string/select_device"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
+        <activity
+            android:name=".actividades.ventas.CarritoActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".actividades.clientes.ClientesActivity" />
+        <activity android:name=".actividades.clientes.DeudasClienteActivity" />
+        <activity android:name=".actividades.facturas.FacturaVentaActivity" />
+        <activity android:name=".actividades.facturas.FacturaAbonoActivity" />
+        <activity android:name=".actividades.clientes.RegistroClienteActivity" />
+        <activity android:name=".actividades.facturas.CierreCajaActivity" />
+        <activity android:name=".actividades.sharedpreferences.ConfiguracionActivity" />
+        <activity android:name=".actividades.vistas.VistaVentasActivity" />
+        <activity android:name=".actividades.vistas.ProductosVistaActivity" />
+        <activity android:name=".actividades.vistas.AbonosVistaActivity" />
+        <activity android:name=".actividades.vistas.GastosVistaActivity" />
+        <activity android:name=".actividades.pedidos.PedidosActivity" />
+        <activity android:name=".actividades.paneles.PanelPedidoActivity" />
+        <activity android:name=".actividades.paneles.PanelNotasActivity" />
+        <activity android:name=".actividades.notas.NotaFacturaActivity" />
+        <activity android:name=".actividades.notas.NotaAbonoActivity" />
+        <activity android:name=".actividades.terminales.TerminalesActivity" />
+        <activity android:name=".actividades.paneles.PanelConfiguracionActivity" />
+        <activity android:name=".actividades.clientes.ConfiguracionGruposClienteActivity" />
+        <activity android:name=".actividades.productos.CrearProductoActivity" />
+        <activity android:name=".actividades.devoluciones.DevolucionActivity" />
+        <activity android:name=".actividades.apartados.ApartadosActivity" />
+        <activity android:name=".actividades.paneles.PanelEliminacionActivity" />
+        <activity android:name=".actividades.vistas.ClientesNuevosVistaActivity" />
+        <activity android:name=".actividades.clientes.EditarClienteActivity"></activity>
+    </application>
+
+</manifest>

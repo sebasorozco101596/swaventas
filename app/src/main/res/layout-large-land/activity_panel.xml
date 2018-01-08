@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.paneles.PanelActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayoutChats"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarChats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonspanelbluedark"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            tools:ignore="UnusedAttribute"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="2dp"
+            >
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="version:"
+            android:textColor="@color/negro"
+            android:textSize="@dimen/textNormalTablet"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="55"
+            android:textColor="@color/blanco"
+            android:id="@+id/txtVersion_panel"
+            android:textSize="@dimen/textNormalTablet"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bluebackground"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="20dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/titulosTablet"
+                android:text="PANEL"
+                android:textColor="@color/negro"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bluebackground" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btnVender_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginTop="4dp"
+                    android:drawableTop="@drawable/dinero"
+                    android:background="@drawable/buttonpanel"
+                    android:text="vender"
+                    android:textStyle="bold|italic"
+                    android:textSize="@dimen/textNormalTablet"/>
+
+                <Button
+                    android:id="@+id/btnBuscarCLiente_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:text="Abonar deuda"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/dinero"
+                    />
+
+                <Button
+                    android:id="@+id/btnGastos_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="6dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/dinero"
+                    android:text="gastos"
+                    android:textSize="@dimen/textNormalTablet"/>
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:paddingRight="5dp">
+
+
+                <Button
+                    android:id="@+id/btnCierreCaja_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/dinero"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="5dp"
+                    android:text="cierre de caja"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonpanel"
+                    android:text="perfil"
+                    android:drawableTop="@drawable/person"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/btnPerfil_panel"
+                    android:textSize="@dimen/textNormalTablet"
+                    />
+
+                <Button
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonpanel"
+                    android:text="Registro cliente"
+                    android:drawableTop="@drawable/addfriend"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:id="@+id/btnRegistrarCliente_panel"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:paddingRight="5dp">
+
+
+                <Button
+                    android:id="@+id/btnPedido_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/productos"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="5dp"
+                    android:text="pedidos"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/btnNotas_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/notas"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="5dp"
+                    android:text="Notas"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/btnTerminales_panel"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonpanel"
+                    android:text="terminales"
+                    android:drawableTop="@drawable/carro"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:enabled="false"
+                    android:textSize="@dimen/textNormalTablet"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@drawable/bluebackground"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/titulosTablet"
+                android:text="INFORMACION"
+                android:textColor="@color/negro"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bluebackground"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btnVistaVentas_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/find"
+                    android:textStyle="bold|italic"
+                    android:text="Ventas"
+                    />
+
+                <Button
+                    android:id="@+id/btnVistaAbonos_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/find"
+                    android:textStyle="bold|italic"
+                    android:text="Abonos"
+                    />
+
+                <Button
+                    android:id="@+id/btnVistaGastos_panel"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/textNormalTablet"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:background="@drawable/buttonpanel"
+                    android:drawableTop="@drawable/find"
+                    android:textStyle="bold|italic"
+                    android:text="Gastos"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

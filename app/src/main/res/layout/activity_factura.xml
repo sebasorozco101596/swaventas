@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:orientation="vertical"
+    android:background="@drawable/edittextblanco"
+    tools:context="swasolutions.com.wdpos.actividades.facturas.FacturaVentaActivity"
+    android:id="@+id/activity_factura_venta"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNombreTienda_factura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="10dp"
+            android:text="JS PLASTIMAS"
+            android:gravity="center"
+            android:textSize="@dimen/textFacturasTitulo"
+            android:textColor="@color/negro"/>
+
+        <TextView
+            android:id="@+id/txtDireccion_factura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Calle duarte 12a Tenares"
+            android:gravity="center"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Servicio Republica \nDominicana"
+            android:gravity="center"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tel: "
+                android:gravity="center"
+                android:textSize="@dimen/textFacturas"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtTelefono_factura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8296471722"
+                android:gravity="center"
+                android:textSize="@dimen/textFacturas"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/negro"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Fecha: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtFecha_factura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Id ventaa: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtIdVenta_factura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Vendedor: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtVendedor_factura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Cliente: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtNombreCliente_Factura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Estado: "
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+                <TextView
+                    android:id="@+id/txtEstado_Factura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+            </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/edittext"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="center"
+            android:id="@+id/linearCardViewGroupInfo"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="cantidad"
+                android:maxWidth="280dp"
+                android:textSize="@dimen/textFacturas"
+                android:gravity="center"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/textFacturas"
+                android:text="Producto"
+                android:maxWidth="280dp"
+                android:gravity="center"
+                android:paddingRight="15dp"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:text="Total"
+                android:textSize="@dimen/textFacturas"
+                android:maxWidth="280dp"
+                android:gravity="center"
+                android:textColor="@color/negro"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/recyclerViewFactura"
+            tools:listitem="@layout/cardview_productos_factura"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:textStyle="bold"
+                    android:text="Total: "
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+                <TextView
+                    android:id="@+id/txtTotal_factura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Total pagado: "
+                    android:gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+                <TextView
+                    android:id="@+id/txtTotalPagado_Factura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:textStyle="bold"
+                    android:text="Total a deber: "
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+
+                <TextView
+                    android:id="@+id/txtTotalDebido_Factura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:gravity="left"
+                    android:textSize="@dimen/textFacturas"
+                    android:textColor="@color/negro"/>
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_btn"
+                android:text="@string/btnSearch"
+                android:textColor="@color/text_white"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="3dp"
+                    android:drawableTop="@drawable/imprimir"
+                    android:background="@drawable/buttonspanelbluedark"
+                    android:text="@string/btnSend"
+                    android:textColor="@color/text_white"/>
+
+                <Button
+                    android:id="@+id/btnSendCopia_factura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="3dp"
+                    android:drawableTop="@drawable/imprimir"
+                    android:background="@drawable/buttonspanelbluedark"
+                    android:text="Copia"
+                    android:textColor="@color/text_white"/>
+
+                <Button
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnVolver_factura"
+                    android:drawableTop="@drawable/compartir"
+                    android:background="@drawable/selector_btn"
+                    android:textColor="@color/blanco"
+                    android:text="Volver al panel"/>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

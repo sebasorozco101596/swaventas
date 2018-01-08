@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">WDPOS</string>
+    <string name="info_ingresar">Por favor, ingrese a su cuenta.</string>
+    <string name="tittle_warning_drop_account">Desea cancelar la venta?</string>
+    <string name="tittle_warning_drop_devolucion">Desea cancelar la devolucion?</string>
+    <string name="detail_drop_account">tener en cuenta que si acepta, se eliminaran todos los productos
+    del carrito de ventas</string>
+    <string name="detail_devoluciones">tener en cuenta que si acepta, se eliminaran todas las devoluciones
+    de este usuario</string>
+    <string name="tituloVender">desea vender los productos del carrito?</string>
+    <string name="mensajeVender">al seleccionar aceptar saldra del carrito de venta</string>
+    <string name="none_paired">No se han emparejado dispositivos</string>
+    <string name="scanning">Escaneando dispositivos ...</string>
+    <string name="select_device">Seleccione un dispositivo para conectarse</string>
+    <string name="none_found">No se encontraron dispositivos</string>
+    <string name="btnSearch">Conectar impresora Bluetooth</string>
+    <string name="btnSend">Imprimir</string>
+    <string name="btn_test">Print  Test  Page</string>
+    <string name="btnClose">Close</string>
+    <string name="txt_content">&quot;&quot;</string>
+    <string name="menu_settings">set</string>
+    <string name="strLang">en</string>
+    <string name="button_scan">Buscar dispositivos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

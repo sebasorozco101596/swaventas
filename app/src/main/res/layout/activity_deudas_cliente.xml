@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.ventas.CarritoActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayoutChats"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarDeudas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonspanelbluedark"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            tools:ignore="UnusedAttribute"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="2dp"
+            >
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/txtDeudas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deudas"
+        android:layout_below="@+id/appBarLayoutChats"
+        android:textColor="@color/verdeclaro"
+        android:fontFamily="serif"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtDeudas"
+        android:layout_above="@+id/linearCarrito"
+        android:layout_alignParentStart="true"
+        android:id="@+id/recyclerViewDeudas"
+        tools:listitem="@layout/cardview_deudas"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/linearCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="4dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/negro"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deuda total:"
+                android:textColor="@color/blanco"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/txtTotalDeudas_DeudasCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1500000"
+                android:textColor="@color/bluenice"
+                android:textSize="20dp"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

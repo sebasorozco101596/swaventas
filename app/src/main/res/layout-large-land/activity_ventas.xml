@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.ventas.VentasActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayoutVentas"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarVentas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:background="@drawable/buttonspanelbluedark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayoutVentas"
+        android:layout_above="@+id/linearCarrito"
+        android:layout_alignParentStart="true"
+        android:id="@+id/recyclerViewProductos"
+        tools:listitem="@layout/cardview_producto"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/linearCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="4dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/negro"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCarroVenta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/carro_ventas"
+            android:text="carro de venta"
+            android:background="@color/amarillo"
+            android:textColor="@color/negro"
+            android:textSize="@dimen/textNormalTablet"
+            />
+
+        <Button
+            android:id="@+id/btnCancelarVenta_venta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="cancelar venta"
+            android:textSize="@dimen/textNormalTablet"
+            android:background="@color/rojo_oscuro"
+            android:drawableTop="@drawable/cancel"
+            android:textColor="@color/negro"
+            />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

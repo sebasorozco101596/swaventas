@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingRight="15sp"
+    android:paddingLeft="15sp"
+    android:paddingTop="10sp">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/blanco"
+        android:id="@+id/cardViewClientes"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:orientation="horizontal"
+            android:background="@drawable/edittext"
+            android:id="@+id/linearCardViewGroup">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/edittext"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/linearCardViewGroupInfo"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textStyle="bold|italic"
+                        android:text="Cedula: "
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:maxWidth="280dp"
+                        android:gravity="center"
+                        android:textColor="@color/negro"
+                        android:textStyle="bold"
+                        android:id="@+id/txtId_CardViewClientes"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Nombre: "
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold|italic"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="abanico azul"
+                        android:maxWidth="280dp"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="@color/azul"
+                        android:textStyle="bold"
+                        android:id="@+id/txtNombre_CardViewClientes"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Compañia: "
+                        android:textStyle="bold|italic"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="JS PLASTIMAS"
+                        android:maxWidth="280dp"
+                        android:gravity="center"
+                        android:textColor="@color/negro"
+                        android:textStyle="bold"
+                        android:id="@+id/txtCompania_CardViewClientes"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Direccion: "
+                        android:textStyle="bold|italic"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Carrera 16 # 6-19"
+                        android:maxWidth="280dp"
+                        android:gravity="center"
+                        android:textColor="@color/verde"
+                        android:textStyle="bold"
+                        android:id="@+id/txtDireccion_CardViewClientes"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Telefono: "
+                        android:textStyle="bold|italic"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="315 471 4239"
+                        android:maxWidth="280dp"
+                        android:gravity="center"
+                        android:textColor="@color/negro"
+                        android:textStyle="bold"
+                        android:id="@+id/txtTelefono_CardViewClientes"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtOptionMenuClientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/menu"
+                    android:textColor="@color/rojo_oscuro"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="20dp"
+                    android:textAppearance="?textAppearanceLargePopupMenu"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>

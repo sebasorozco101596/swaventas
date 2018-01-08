@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/textFacturasTitulo"
+        android:textColor="@color/verdeclaro"
+        android:fontFamily="serif"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/txtInfoSignUp"
+        android:textStyle="bold|italic"
+        android:text="EDICIÓN CLIENTE"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:paddingTop="2dp"
+                android:textColorHint="@color/negro"
+                android:background="@drawable/edittext"
+                android:layout_row="2"
+                >
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/spinnerGruposVendedor_edicion"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    />
+
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:paddingTop="2dp"
+                android:textColorHint="@color/negro"
+                android:background="@drawable/edittext"
+                android:layout_row="2"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:drawableRight="@drawable/person"
+                    android:textColorHint="@color/negro"
+                    android:id="@+id/txtNombre_edicion"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:paddingTop="2dp"
+                android:textColorHint="@color/negro"
+                android:background="@drawable/edittext"
+                android:layout_row="2"
+                >
+                <EditText
+                    android:id="@+id/txtDirecion_edicion"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Direccion"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:drawableRight="@drawable/password"
+                    android:textColorHint="@color/negro"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:paddingTop="2dp"
+                android:textColorHint="@color/negro"
+                android:background="@drawable/edittext"
+                android:layout_row="2"
+                >
+                <EditText
+                    android:id="@+id/txtTelefono_edicion"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefono"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:textSize="15dp"
+                    android:drawableRight="@drawable/password"
+                    android:textColorHint="@color/negro"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnRegistrar_edicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Editar"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/blanco"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/buttonspanelbluedark"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

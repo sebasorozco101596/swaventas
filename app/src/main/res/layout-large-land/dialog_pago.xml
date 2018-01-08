@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:background="@drawable/edittext"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Pago"
+        android:textSize="@dimen/titulosTablet"
+        android:textStyle="bold|italic"
+        android:textColor="@color/verde"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:textSize="@dimen/textNormalTablet"
+            android:textColor="@color/negro"
+            android:text="total a pagar: "/>
+
+        <TextView
+            android:id="@+id/txtTotalVenta_dialogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textNormalTablet"
+            android:textColor="@color/verde"
+            android:text="150000"/>
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColorHint="@color/negro"
+        android:paddingTop="10dp"
+        android:layout_row="2"
+
+        >
+
+        <EditText
+            android:id="@+id/txtPago_DialogoPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/negro"
+            android:ems="10"
+            android:textSize="@dimen/textNormalTablet"
+            android:hint="Cantidas a pagar"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/dinero"
+            android:theme="@style/EditText"
+            app:hintAnimationEnabled="true"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnPagar_dialogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="@dimen/textNormalTablet"
+        android:text="Pagar"
+        android:textColor="@color/blanco"
+        android:background="@drawable/buttonspanelbluedark"
+
+        />
+
+
+
+
+</LinearLayout>

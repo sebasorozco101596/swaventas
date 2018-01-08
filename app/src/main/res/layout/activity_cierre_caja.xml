@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical"
+    android:id="@+id/linearCierreCaja"
+    android:background="@color/blanco"
+    tools:context="swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity">
+
+
+
+    <TextView
+        android:id="@+id/txtNombreTienda_cierreCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="10dp"
+        android:text="JS PLASTIMAS"
+        android:gravity="center"
+        android:textSize="@dimen/textFacturasTitulo"
+        android:textColor="@color/negro"/>
+
+    <TextView
+        android:id="@+id/txtDireccion_cierreCaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Calle duarte 12a Tenares"
+        android:gravity="center"
+        android:textSize="@dimen/textFacturas"
+        android:textColor="@color/negro"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Servicio Republica \nDominicana"
+        android:gravity="center"
+        android:textSize="@dimen/textFacturas"
+        android:textColor="@color/negro"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tel: "
+            android:gravity="center"
+            android:textSize="@dimen/textFacturas"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/negro"/>
+
+        <TextView
+            android:id="@+id/txtTelefono_cierreCaja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8296471722"
+            android:gravity="center"
+            android:textSize="@dimen/textFacturas"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/negro"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearPrueba"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="Fecha: "
+            android:gravity="left"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+        <TextView
+            android:id="@+id/txtFecha_cierreCaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="left"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="Vendedor: "
+            android:gravity="left"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+        <TextView
+            android:id="@+id/txtVendedor_cierreCaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="left"
+            android:textSize="@dimen/textFacturas"
+            android:textColor="@color/negro"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                android:text="Cantidad Productos: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtCantidadProductos_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                android:text="Total por ventas: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtTotalVentas_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                android:text="Dinero recibido por ventas: "
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtDineroVentas_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Dinero recibido por abonos: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtDineroAbonos_CierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Total gastos: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtTotalGastos_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="TOTAL EFECTIVO A ENTREGAR: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtEfectivoEntregar_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Clientes nuevos: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtClientesNuevos_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Productos a devolver: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtProductosDevolver_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textFacturas"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSearch_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_btn"
+                android:text="@string/btnSearch"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/textFacturas" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSubirClientes_cierreCaja"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_button_background"
+                    android:drawableTop="@drawable/addfriend"
+                    android:text="Subir clientes"
+                    android:textColor="@color/blanco"
+                    android:textSize="@dimen/textFacturas" />
+
+                <Button
+                    android:id="@+id/btnSend_cierreCaja"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonspanelbluedark"
+                    android:drawableTop="@drawable/imprimir"
+                    android:text="@string/btnSend"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/textFacturas" />
+
+                <Button
+
+                    android:id="@+id/btnVolver_cierreCaja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/selector_btn"
+                    android:drawableTop="@drawable/compartir"
+                    android:text="Volver al panel"
+                    android:textColor="@color/blanco"
+                    android:textSize="@dimen/textFacturas" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnImprimirDetallado_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/red_button_background"
+                android:drawableTop="@drawable/imprimir"
+                android:text="Cierre de caja detallado"
+                android:textColor="@color/blanco" />
+
+            <Button
+                android:id="@+id/btnEliminarCliRepetidos_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/buttonspanelbluedark"
+                android:drawableTop="@drawable/cancel"
+                android:text="Eliminar clientes repetidos"
+                android:textColor="@color/blanco" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>

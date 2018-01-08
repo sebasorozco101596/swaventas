@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="textSizeCardViewsCelular">15dp</dimen>
+    <dimen name="textSizeCardViewsTablet">30dp</dimen>
+    <dimen name="textNormalTablet">23dp</dimen>
+    <dimen name="titulosTablet">35dp</dimen>
+    <dimen name="textFacturas">12dp</dimen>
+    <dimen name="textFacturasTitulo">20dp</dimen>
+
+</resources>

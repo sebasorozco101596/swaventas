@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accion_pagar"
+        android:title="pagar" />
+
+    <item
+        android:id="@+id/accion_deudas"
+        android:title="deudas" />
+
+    <item
+        android:id="@+id/accion_pedidos"
+        android:title="crear pedido" />
+
+    <item
+        android:id="@+id/accion_agregar_credito"
+        android:title="agregar credito" />
+
+    <item
+        android:id="@+id/accion_agregar_devolucion"
+        android:title="devolucion" />
+
+    <item
+        android:id="@+id/accion_editar_cliente"
+        android:title="editar" />
+
+
+
+</menu>
