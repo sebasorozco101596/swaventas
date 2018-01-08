@@ -44,8 +44,6 @@ public class TerminalesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TerminalesAdapter adapter;
 
-    private ProductosBD bdProductos;
-    private WarehouseBD bdWarehouses;
 
     /*
     Datos impresion
@@ -141,8 +139,8 @@ public class TerminalesActivity extends AppCompatActivity {
 
         fecha = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
-        bdProductos= new ProductosBD(getApplicationContext(),"ProductosBD",null,1);
-        bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
+        ProductosBD bdProductos= new ProductosBD(getApplicationContext(),"ProductosBD",null,1);
+        WarehouseBD bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
 
         productos= bdProductos.fillMessages();
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductosTerminales);

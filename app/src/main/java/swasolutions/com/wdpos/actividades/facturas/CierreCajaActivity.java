@@ -26,7 +26,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,7 +110,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     private BluetoothService mService = null;
     private BluetoothDevice con_dev = null;
     private Context context;
-    private LinearLayout linear;
 
     private String msg = "";
     private String msgProductos= "";
@@ -392,8 +390,6 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtTitulo= (TextView) findViewById(R.id.txtNombreTienda_cierreCaja);
         txtDireccion= (TextView) findViewById(R.id.txtDireccion_cierreCaja);
         txtTelefono= (TextView) findViewById(R.id.txtTelefono_cierreCaja);
-
-        linear = (LinearLayout) findViewById(R.id.linearCierreCaja);
 
         txtFecha= (TextView) findViewById(R.id.txtFecha_cierreCaja);
         txtVendedor= (TextView) findViewById(R.id.txtVendedor_cierreCaja);

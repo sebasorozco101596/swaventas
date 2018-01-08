@@ -2,7 +2,6 @@ package swasolutions.com.wdpos.actividades.ventas;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +34,6 @@ public class CarritoActivity extends AppCompatActivity {
     private ProductosCarritoAdapter adapter;
 
     private CarritoBD bdCarrito;
-    private SQLiteDatabase sqLiteDatabase;
 
     private String NICKNAME;
     private String ID;
@@ -62,9 +60,7 @@ public class CarritoActivity extends AppCompatActivity {
             ID = bundle.getString("key_id");
         }
 
-
         bdCarrito= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
-        sqLiteDatabase= bdCarrito.getWritableDatabase();
 
         productosCarrito= bdCarrito.cargarProductosCarrito();
 

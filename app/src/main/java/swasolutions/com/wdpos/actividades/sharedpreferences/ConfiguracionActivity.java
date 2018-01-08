@@ -37,8 +37,6 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
     private ArrayList<Warehouse> warehouses;
 
     private WarehouseBD bdWarehouses;
-    private GruposVendedorBD bdGruposVendedor;
-    private CategoriasBD bdCategorias;
     private UnidadesBD bdUnidades;
 
     private static final String STRING_PREFERENCE= "solutions.swa.com.wdpos";
@@ -132,6 +130,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    /*
     private void obtenerLista() {
 
         Stringwarehouses.add("Seleccione");
@@ -142,16 +141,17 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         }
 
     }
+    */
 
     private void obtenerDatosExternos() {
 
         bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
         bdWarehouses.eliminarWarehouses();
 
-        bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
+        GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
         bdGruposVendedor.eliminarGruposVendedor();
 
-        bdCategorias= new CategoriasBD(getApplicationContext(),"CategoriasBD",null,1);
+        CategoriasBD bdCategorias= new CategoriasBD(getApplicationContext(),"CategoriasBD",null,1);
         bdCategorias.eliminarCategorias();
 
         bdUnidades= new UnidadesBD(getApplicationContext(),"UnidadesBD",null,1);

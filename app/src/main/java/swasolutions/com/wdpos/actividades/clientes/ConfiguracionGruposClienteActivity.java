@@ -35,7 +35,6 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
     private  ArrayList<String> stringGruposVendedor;
     private ArrayList<GrupoVendedor> gruposVendedor;
 
-    private Context context;
     private View view;
 
     @Override
@@ -47,7 +46,7 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
         view = findViewById(android.R.id.content);
 
         gruposVendedor= new ArrayList<>();
-        context= ConfiguracionGruposClienteActivity.this;
+        Context context= ConfiguracionGruposClienteActivity.this;
 
         btnRegistrarGrupo1= (Button) findViewById(R.id.btnGuardarDatosGrupo1_confGrupo);
         btnRegistrarGrupo2= (Button) findViewById(R.id.btnGuardarDatosGrupo2_confGrupo);

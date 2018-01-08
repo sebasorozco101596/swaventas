@@ -44,7 +44,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
     private String ID;
 
     private Context context;
-    private ArrayList<Integer> grupos;
+    public ArrayList<Integer> grupos;
 
 
     @Override

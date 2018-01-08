@@ -72,7 +72,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
     private String referencia;
     private String idCliente;
     private int total;
-    private int deuda;
+    public int deuda;
     private int cantidadProductos;
     private int existe;
     private int id;
@@ -86,7 +86,6 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
     private  String msg = "";
     private String msgDatos= "";
     private String header= "";
-    private String raya="";
     private String msgProductos= "";
     private String DIVIDER = "--------------------------------";
     private String DIVIDER_DOUBLE = "================================";
@@ -493,7 +492,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         mService.write(cmd);
         mService.sendMessage(msgProductos, "GBK");
 
-        raya = DIVIDER_DOUBLE + BREAK;
+        String raya = DIVIDER_DOUBLE + BREAK;
         cmd[2] &= 0xEF;
         mService.write(cmd);
         mService.sendMessage(raya, "GBK");

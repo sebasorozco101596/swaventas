@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private String URLUser;
 
-    private String link;
     private String tipoUsuario;
 
     private String idVendedor;
@@ -77,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 .layout.activity_login);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-        link= ConfiguracionActivity.getLinkHosting(LoginActivity.this);
+        String link= ConfiguracionActivity.getLinkHosting(LoginActivity.this);
         URLUser = link+"/app_movil/vendedor/login_usuario.php";
 
 

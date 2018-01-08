@@ -14,7 +14,6 @@ import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 public class NotaAbonoActivity extends AppCompatActivity {
 
     private EditText txtNota;
-    private Button btnGuardarNota;
     private Context context;
 
     public static View view;
@@ -25,7 +24,7 @@ public class NotaAbonoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nota_abono);
 
         txtNota = (EditText) findViewById(R.id.txtNotasAbono_NotaAbonos);
-        btnGuardarNota = (Button) findViewById(R.id.btnGuardarNotaAbono_NotaAbono);
+        Button btnGuardarNota = (Button) findViewById(R.id.btnGuardarNotaAbono_NotaAbono);
         context= NotaAbonoActivity.this;
 
         txtNota.setText(SharedPreferences.getPreferenciaNotaAbono(context).toString());
