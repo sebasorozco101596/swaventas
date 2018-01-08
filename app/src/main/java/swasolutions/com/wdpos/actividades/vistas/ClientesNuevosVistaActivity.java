@@ -25,13 +25,12 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
 
     private Toolbar toolbarFiltrado;
 
-    public static ClientesCompletoBD bdCliente;
+    private ClientesCompletoBD bdCliente;
 
-    private String TIPO;
     private String NICKNAME;
     private String ID;
 
-    Context context;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

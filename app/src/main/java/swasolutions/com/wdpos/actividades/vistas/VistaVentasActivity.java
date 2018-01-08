@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.actividades.vistas;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,8 +24,7 @@ public class VistaVentasActivity extends AppCompatActivity {
 
     private Toolbar toolbarFiltrado;
 
-    public static VentasBD bdVentas;
-    public static SQLiteDatabase sqLiteDatabase;
+    private VentasBD bdVentas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,7 @@ public class VistaVentasActivity extends AppCompatActivity {
 
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaVentas);
 
-         bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
-        sqLiteDatabase=  bdVentas.getWritableDatabase();
+        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
 
         ventas= bdVentas.ventas();
 

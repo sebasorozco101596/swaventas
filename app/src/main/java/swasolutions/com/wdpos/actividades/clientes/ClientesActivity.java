@@ -43,8 +43,8 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
     private String NICKNAME;
     private String ID;
 
-    Context context;
-    ArrayList<Integer> grupos;
+    private Context context;
+    private ArrayList<Integer> grupos;
 
 
     @Override

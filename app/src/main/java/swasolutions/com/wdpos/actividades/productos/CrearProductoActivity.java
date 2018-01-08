@@ -64,9 +64,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class CrearProductoActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Bitmap bitmap;
-    private int PICK_IMAGE_REQUEST = 1;
-    private String KEY_IMAGE = "image";
-    private String KEY_NAME = "name";
     private String URL_SUBIR;
 
     private static String APP_DIRECTORY = "WDPOS/";
@@ -78,19 +75,19 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
 
     private ArrayList<Categoria> categorias;
     private ArrayList<String> stringCategorias;
-    public static CategoriasBD bdCategorias;
-    public static ProductosBD bdProductos;
+    private CategoriasBD bdCategorias;
+    private ProductosBD bdProductos;
 
     private ArrayList<Unidad> unidades;
     private ArrayList<String> stringUnidades;
-    public static UnidadesBD bdUnidades;
+    private UnidadesBD bdUnidades;
 
     private ArrayList<String> stringTipos;
 
-    String mPath;
+    private  String mPath;
 
-    View view;
-    public String link;
+    private View view;
+    private String link;
 
     private ImageView imgPerfil;
     private EditText txtSlug;
@@ -102,7 +99,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
     private EditText txtPrecio;
     private Button btnCrearProducto;
 
-    Context context;
+    private Context context;
     private StringRequest requestProducto;
 
     @Override

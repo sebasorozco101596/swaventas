@@ -13,9 +13,9 @@ import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 
 public class NotaAbonoActivity extends AppCompatActivity {
 
-    EditText txtNota;
-    Button btnGuardarNota;
-    Context context;
+    private EditText txtNota;
+    private Button btnGuardarNota;
+    private Context context;
 
     public static View view;
 

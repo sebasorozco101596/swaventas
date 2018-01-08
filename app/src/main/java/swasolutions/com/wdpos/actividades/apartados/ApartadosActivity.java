@@ -46,8 +46,8 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
     private Button btnSearch;
     private Button btnSend;
     private Button btnVolver;
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
+    private  BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
 
     private EditText txtNota;
 
@@ -83,16 +83,15 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
     private int contador;
 
 
-    String msg = "";
-    String msgDatos= "";
-    String header= "";
-    String raya="";
-    String msgProductos= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private  String msg = "";
+    private String msgDatos= "";
+    private String header= "";
+    private String raya="";
+    private String msgProductos= "";
+    private String DIVIDER = "--------------------------------";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
+    private String SPACE4 = "     ";
 
     private final Handler mHandler = new Handler() {
         @Override

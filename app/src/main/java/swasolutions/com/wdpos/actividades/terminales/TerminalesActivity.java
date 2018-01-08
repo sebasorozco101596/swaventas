@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -45,9 +44,8 @@ public class TerminalesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TerminalesAdapter adapter;
 
-    public static ProductosBD bdProductos;
-    public static WarehouseBD bdWarehouses;
-    public static SQLiteDatabase sqLiteDatabase;
+    private ProductosBD bdProductos;
+    private WarehouseBD bdWarehouses;
 
     /*
     Datos impresion
@@ -55,30 +53,26 @@ public class TerminalesActivity extends AppCompatActivity {
 
     private Logica logica;
 
-    static final String TAG = "TerminalesActivity";
+    private static final String TAG = "TerminalesActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
 
-    Button btnSearch;
-    Button btnSend;
+    private Button btnSearch;
+    private Button btnSend;
 
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
-    Context context;
+    private BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
+    private Context context;
 
     private String fecha;
 
-    String msg = "";
-    String msgProductos= "";
-    String msgAbonos = "";
-    String msgGastos = "";
-    String msgDatos= "";
-    String header= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private String msg = "";
+    private String msgProductos= "";
+    private String msgDatos= "";
+    private String header= "";
+    private String DIVIDER = "--------------------------------";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -148,8 +142,6 @@ public class TerminalesActivity extends AppCompatActivity {
         fecha = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
         bdProductos= new ProductosBD(getApplicationContext(),"ProductosBD",null,1);
-        sqLiteDatabase= bdProductos.getWritableDatabase();
-
         bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
 
         productos= bdProductos.fillMessages();

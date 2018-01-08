@@ -12,7 +12,7 @@ import swasolutions.com.wdpos.actividades.notas.NotaFacturaActivity;
 
 public class PanelNotasActivity extends AppCompatActivity {
 
-    Button btnNotaFactura,btnNotaAbono;
+    private Button btnNotaFactura,btnNotaAbono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

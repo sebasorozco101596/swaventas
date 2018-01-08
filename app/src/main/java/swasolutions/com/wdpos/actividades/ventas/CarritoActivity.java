@@ -34,8 +34,8 @@ public class CarritoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProductosCarritoAdapter adapter;
 
-    public static CarritoBD bdCarrito;
-    public static SQLiteDatabase sqLiteDatabase;
+    private CarritoBD bdCarrito;
+    private SQLiteDatabase sqLiteDatabase;
 
     private String NICKNAME;
     private String ID;

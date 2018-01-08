@@ -29,8 +29,8 @@ public class EditarClienteActivity extends AppCompatActivity implements View.OnC
     private ClientesBD bdClientes;
     private ClientesCompletoBD bdClientesCompleto;
 
-    ArrayList<GrupoVendedor> gruposVendedor;
-    ArrayList<String> stringGruposVendedor;
+    private ArrayList<GrupoVendedor> gruposVendedor;
+    private  ArrayList<String> stringGruposVendedor;
 
     private String CEDULA;
     private int GROUP_ID;

@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.actividades.vistas;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,8 +23,7 @@ public class GastosVistaActivity extends AppCompatActivity {
 
     private Toolbar toolbarGastos;
 
-    public static GastosBD bdGastos;
-    public static SQLiteDatabase sqLiteDatabase;
+    private GastosBD bdGastos;
 
 
     @Override
@@ -38,7 +36,6 @@ public class GastosVistaActivity extends AppCompatActivity {
         toolbarGastos = (Toolbar) findViewById(R.id.toolbarVistaGastos);
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        sqLiteDatabase=  bdGastos.getWritableDatabase();
 
         gastos= bdGastos.gastos();
 

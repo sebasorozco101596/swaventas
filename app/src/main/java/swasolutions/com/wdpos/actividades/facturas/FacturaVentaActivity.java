@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -60,7 +59,6 @@ public class FacturaVentaActivity extends AppCompatActivity{
     private static final int MI_PERMISO_NETWORK = 1 ;
     private static final int MI_PERMISO_LEER = 2;
     private static final int MI_PERMISO_ESCRIBIR = 3;
-    Button captureScreenShot;
 
     /**
      * Productos de la factura
@@ -87,42 +85,40 @@ public class FacturaVentaActivity extends AppCompatActivity{
     /**
      * Atributos de la base de datos de ventas y productos de venta.
      */
-    public static VentasBD bdVentas;
-    public static CarritoBD bdFactura;
-    public static ProductosVentaBD bdProductosVenta;
-    public static DeudasBD bdDeudas;
-    public static ProductosBD bdProductos;
-    public static ClientesBD bdClientes;
-    public static ClientesCompletoBD bdClientesCompletos;
-    public static CreditoBD bdCredito;
-    public static SQLiteDatabase sqLiteDatabase;
+    private VentasBD bdVentas;
+    private CarritoBD bdFactura;
+    private ProductosVentaBD bdProductosVenta;
+    private DeudasBD bdDeudas;
+    private ProductosBD bdProductos;
+    private ClientesBD bdClientes;
+    private ClientesCompletoBD bdClientesCompletos;
+    private CreditoBD bdCredito;
 
     /**
      * Datos necesarios para la impresion
      */
 
-    static final String TAG = "FacturaVentaActivity";
+    private static final String TAG = "FacturaVentaActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
 
-    Button btnSearch;
-    Button btnSend;
-    Button btnSendCopia;
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
-    Context context;
-    int contador;
+    private Button btnSearch;
+    private Button btnSend;
+    private Button btnSendCopia;
+    private BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
+    private Context context;
+    private int contador;
 
-    String msg = "";
-    String msgDatos= "";
-    String header= "";
-    String raya="";
-    String msgProductos= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private String msg = "";
+    private String msgDatos= "";
+    private String header= "";
+    private String raya="";
+    private String msgProductos= "";
+    private String DIVIDER = "--------------------------------";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
+    private String SPACE4 = "     ";
 
     private final Handler mHandler = new Handler() {
         @Override

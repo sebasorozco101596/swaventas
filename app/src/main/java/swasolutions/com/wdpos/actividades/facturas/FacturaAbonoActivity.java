@@ -80,26 +80,23 @@ public class FacturaAbonoActivity extends AppCompatActivity {
     /**
      * Imprimir factura
      */
-    static final String TAG = "FacturaAbonoActivity";
+    private static final String TAG = "FacturaAbonoActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
 
-    Button btnSearch;
-    Button btnSend;
+    private Button btnSearch;
+    private Button btnSend;
     private Button btnVolver;
-    Button btnSendCopia;
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
-    Context context;
+    private Button btnSendCopia;
+    private BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
+    private Context context;
 
-    String msg = "";
-    String header= "";
-    String msgProductos= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private String msg = "";
+    private String header= "";
+    private String DIVIDER = "--------------------------------";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
 
     private final Handler mHandler = new Handler() {
         @Override

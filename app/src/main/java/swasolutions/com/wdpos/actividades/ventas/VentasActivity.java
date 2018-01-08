@@ -2,7 +2,6 @@ package swasolutions.com.wdpos.actividades.ventas;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
@@ -43,10 +42,9 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
     private String TIPO;
     private String CEDULA;
 
-    public static ProductosBD bdProductos;
-    public static CarritoBD bdCarrito;
-    public static DevolucionesBD bdDevoluciones;
-    public static SQLiteDatabase sqLiteDatabase;
+    private ProductosBD bdProductos;
+    private CarritoBD bdCarrito;
+    private DevolucionesBD bdDevoluciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
         bdProductos = new ProductosBD(getApplicationContext(), "ProductosBD", null, 1);
         bdCarrito = new CarritoBD(getApplicationContext(), "CarritoBD0", null, 1);
         bdDevoluciones = new DevolucionesBD(getApplicationContext(), "DevolucionesBD", null, 1);
-        sqLiteDatabase = bdProductos.getWritableDatabase();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

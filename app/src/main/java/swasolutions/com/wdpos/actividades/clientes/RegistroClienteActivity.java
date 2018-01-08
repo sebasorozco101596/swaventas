@@ -59,8 +59,8 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
     private GruposVendedorBD bdGruposVendedor;
     public static SQLiteDatabase sqLiteDatabase;
 
-    ArrayList<String> stringGruposVendedor;
-    ArrayList<GrupoVendedor> gruposVendedor;
+    private ArrayList<String> stringGruposVendedor;
+    private ArrayList<GrupoVendedor> gruposVendedor;
 
     /*
     Constantes que se usaran para el funcionamiento de la camara

@@ -2,7 +2,6 @@ package swasolutions.com.wdpos.actividades.paneles;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -63,9 +62,7 @@ public class PanelActivity extends AppCompatActivity {
     public static VentasBD bdVentas;
 
 
-    public static SQLiteDatabase sqLiteDatabase;
-
-    public String link;
+    private String link;
 
     private String NICKNAME;
     private String ID;
@@ -130,16 +127,10 @@ public class PanelActivity extends AppCompatActivity {
          */
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        sqLiteDatabase= bdGastos.getWritableDatabase();
-
         bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
-        sqLiteDatabase= bdAbonos.getWritableDatabase();
-
         bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
-        sqLiteDatabase= bdVentas.getWritableDatabase();
-
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
-        sqLiteDatabase=  bdProductosVenta.getWritableDatabase();
+
 
         //------------
 

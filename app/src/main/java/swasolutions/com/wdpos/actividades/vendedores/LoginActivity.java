@@ -39,7 +39,6 @@ import java.util.Map;
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.paneles.PanelActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
-import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,18 +51,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private String URLUser;
 
-    private String TAG= "ConfiguracionActivity";
-    public String link;
-    public String tipoUsuario;
-    public static WarehouseBD bdWarehouses;
+    private String link;
+    private String tipoUsuario;
 
-    public String idVendedor;
+    private String idVendedor;
 
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
 
-    CheckBox rdbNotCloseSesion;
+    private CheckBox rdbNotCloseSesion;
 
-    public boolean isActivatedRadioButton;
+    private boolean isActivatedRadioButton;
 
 
     //Attributes in charge of maintaining the active session

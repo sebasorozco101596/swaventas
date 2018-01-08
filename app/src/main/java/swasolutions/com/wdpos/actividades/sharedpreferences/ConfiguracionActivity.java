@@ -29,17 +29,17 @@ import swasolutions.com.wdpos.vo.server.Warehouses;
 
 public class ConfiguracionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText txtLinkHosting,txtWarehouse_id,txtPing;
+    private EditText txtLinkHosting,txtPing;
     private EditText txtNombreTienda,txtDireccionTienda,txtTelefonoTienda;
     private Button btnAgregarHosting,btnAgregarDatosTienda,btnVolver,btnAgregarHosting2;
     private Spinner spinnerWarehouses;
-    ArrayList<String> Stringwarehouses;
-    ArrayList<Warehouse> warehouses;
+    private ArrayList<String> Stringwarehouses;
+    private ArrayList<Warehouse> warehouses;
 
-    public static WarehouseBD bdWarehouses;
-    public static GruposVendedorBD bdGruposVendedor;
-    public static CategoriasBD bdCategorias;
-    public static UnidadesBD bdUnidades;
+    private WarehouseBD bdWarehouses;
+    private GruposVendedorBD bdGruposVendedor;
+    private CategoriasBD bdCategorias;
+    private UnidadesBD bdUnidades;
 
     private static final String STRING_PREFERENCE= "solutions.swa.com.wdpos";
 

@@ -36,26 +36,22 @@ public class PanelPedidoActivity extends AppCompatActivity {
     /**
      * Imprimir factura
      */
-    static final String TAG = "PanelPedidoActivity";
+    private static final String TAG = "PanelPedidoActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
 
-    Button btnSearch;
-    Button btnSend;
-    Button btnVolver;
-    Button btnAgregarPedido;
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
-    Context context;
+    private Button btnSearch;
+    private Button btnSend;
+    private Button btnVolver;
+    private  Button btnAgregarPedido;
+    private BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
+    private Context context;
 
-    String msg = "";
-    String header= "";
-    String msgProductos= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private  String msg = "";
+    private  String header= "";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
 
     private ArrayList<Pedido> pedidos;
 
@@ -180,7 +176,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 String date = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
                 header += centrarCadena("Pedidos")+ BREAK;
-                header += "Fecha:"+ date.toString()+ BREAK;
+                header += "Fecha:"+ date + BREAK;
                 header += DIVIDER_DOUBLE;
 
                 for (int i = 0; i < pedidos.size(); i++) {

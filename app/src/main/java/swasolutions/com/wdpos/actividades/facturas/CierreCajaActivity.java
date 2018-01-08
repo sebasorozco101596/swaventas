@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
@@ -103,28 +102,26 @@ public class CierreCajaActivity extends AppCompatActivity {
     private JsonObjectRequest requestCliente;
 
 
-    Button btnSearch;
-    Button btnSend;
-    Button btnVolver;
-    Button btnImprimirDetallado;
-    Button btnSubirClientes;
-    Button btnEliminarCliRepetidos;
-    BluetoothService mService = null;
-    BluetoothDevice con_dev = null;
-    Context context;
-    LinearLayout linear;
+    private Button btnSearch;
+    private Button btnSend;
+    private Button btnVolver;
+    private Button btnImprimirDetallado;
+    private Button btnSubirClientes;
+    private Button btnEliminarCliRepetidos;
+    private BluetoothService mService = null;
+    private BluetoothDevice con_dev = null;
+    private Context context;
+    private LinearLayout linear;
 
-    String msg = "";
-    String msgProductos= "";
-    String msgAbonos = "";
-    String msgGastos = "";
-    String msgDatos= "";
-    String header= "";
-    String DIVIDER = "--------------------------------";
-    String DIVIDER_DOUBLE = "================================";
-    String BREAK = "\r\n";
-    String SPACE4 = "     ";
-    String SPACE3= "  ";
+    private String msg = "";
+    private String msgProductos= "";
+    private String msgAbonos = "";
+    private String msgGastos = "";
+    private String msgDatos= "";
+    private String header= "";
+    private String DIVIDER = "--------------------------------";
+    private String DIVIDER_DOUBLE = "================================";
+    private String BREAK = "\r\n";
 
     /**
      * Datos que llegaran desde el panel
@@ -166,7 +163,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     public static VentasBD bdVentas;
     public static ClientesCompletoBD bdClientesCompleto;
     public static GruposVendedorBD bdGruposVendedor;
-    public static SQLiteDatabase sqLiteDatabase;
 
     public static DevolucionesBD bdDevoluciones;
     public static ClientesBD bdClientes;
@@ -419,9 +415,6 @@ public class CierreCajaActivity extends AppCompatActivity {
          */
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
-        sqLiteDatabase= bdGastos.getWritableDatabase();
-
-
         bdAbonos= new AbonosBD(getApplicationContext(),"AbonosBD",null,1);
         bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);

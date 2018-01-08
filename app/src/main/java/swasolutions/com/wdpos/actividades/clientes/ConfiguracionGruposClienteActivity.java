@@ -32,11 +32,11 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
     private Spinner spinnerGrupo1,spinnerGrupo2,spinnerGrupo3,spinnerGrupo4,spinnerGrupo5
             ,spinnerGrupo6;
 
-    ArrayList<String> stringGruposVendedor;
-    ArrayList<GrupoVendedor> gruposVendedor;
+    private  ArrayList<String> stringGruposVendedor;
+    private ArrayList<GrupoVendedor> gruposVendedor;
 
-    Context context;
-    View view;
+    private Context context;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
