@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -51,13 +50,12 @@ public class SubirServidor implements Runnable {
     private ArrayList<ClienteCompleto> clientes;
 
 
-    public static GastosBD bdGastos;
-    public static AbonosBD bdAbonos;
-    public static ProductosVentaBD bdProductosVenta;
-    public static VentasBD bdVentas;
-    public static DevolucionesBD bdDevoluciones;
-    public static ProductosBD bdProductos;
-    public static SQLiteDatabase sqLiteDatabase;
+    private GastosBD bdGastos;
+    private AbonosBD bdAbonos;
+    private ProductosVentaBD bdProductosVenta;
+    private VentasBD bdVentas;
+    private DevolucionesBD bdDevoluciones;
+    private ProductosBD bdProductos;
 
     private Context context;
     private int tipo;

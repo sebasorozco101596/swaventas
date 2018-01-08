@@ -1233,7 +1233,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean booleana) {
             super.onPostExecute(booleana);
 
-            if(booleana==true){
+            if(booleana){
                 finish();
                 int cantidadProductos= bdVentas.cantidadProductos();
                 int totalVentas= bdVentas.totalVentas();

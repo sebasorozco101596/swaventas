@@ -1,8 +1,7 @@
-package swasolutions.com.wdpos.adaptadores.adaptadoresVistas;
+package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -129,22 +128,20 @@ public class VentasVistaAdapter extends  RecyclerView.Adapter<VentasVistaAdapter
 
     static class VentasVistaViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
 
-        TextView idVenta;
-        TextView fecha;
-        TextView cliente;
-        TextView tipo;
-        TextView total;
-        TextView totalPagado;
-        TextView totalDebido;
+        private  TextView idVenta;
+        private  TextView fecha;
+        private TextView cliente;
+        private TextView tipo;
+        private TextView total;
+        private TextView totalPagado;
+        private TextView totalDebido;
 
         TextView txtOptions;
 
         public VentasVistaViewHolder(View itemView) {
             super(itemView);
 
-            cardView= (CardView) itemView.findViewById(R.id.cardViewVistaVentas);
             idVenta= (TextView) itemView.findViewById(R.id.txtIdVenta_CardViewVentas);
             fecha= (TextView) itemView.findViewById(R.id.txtFecha_CardViewVentas);
             cliente= (TextView) itemView.findViewById(R.id.txtCliente_CardViewVentas);

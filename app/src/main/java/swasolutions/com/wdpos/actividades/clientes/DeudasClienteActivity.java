@@ -23,10 +23,6 @@ import swasolutions.com.wdpos.vo.clases_objeto.Deuda;
 public class DeudasClienteActivity extends AppCompatActivity {
 
     private ArrayList<Deuda> deudas;
-
-    private RecyclerView recyclerView;
-    private DeudasAdapter adapter;
-
     private TextView txtTotalDeudas;
 
     public static DeudasBD bdDeudas;
@@ -73,7 +69,7 @@ public class DeudasClienteActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewDeudas);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewDeudas);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -81,7 +77,7 @@ public class DeudasClienteActivity extends AppCompatActivity {
         Collections.reverse(deudas);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new DeudasAdapter(deudas,this, CEDULA_CLIENTE,NICKNAME,IDVENDEDOR);
+        DeudasAdapter adapter = new DeudasAdapter(deudas,this, CEDULA_CLIENTE,NICKNAME,IDVENDEDOR);
         recyclerView.setAdapter(adapter);
 
         txtTotalDeudas.setText(""+bdDeudas.totalDeudas(CEDULA_CLIENTE));

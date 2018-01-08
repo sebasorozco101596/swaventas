@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -26,13 +25,12 @@ public class GruposVendedor {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<GrupoVendedor> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<GrupoVendedor> list= new ArrayList<>();
     private String URLGruposClientes;
     private String link;
 
-    public static GruposVendedorBD bdGruposVendedor;
-    public static SQLiteDatabase sqLiteDatabase;
+    private GruposVendedorBD bdGruposVendedor;
 
     /**
      * Class builder
@@ -45,7 +43,6 @@ public class GruposVendedor {
 
         URLGruposClientes= link+"/app_movil/vendedor/cargarGruposVendedor.php";
         bdGruposVendedor = new GruposVendedorBD(context,"GrupoVendedorBD",null,1);
-        sqLiteDatabase= bdGruposVendedor.getWritableDatabase();
     }
 
     /**

@@ -18,7 +18,7 @@ public class ProductosVentaBD extends SQLiteOpenHelper {
 
 
 
-    String sqlCreacion= "CREATE TABLE `ProductosVenta` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private String sqlCreacion= "CREATE TABLE `ProductosVenta` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
             " `idVenta` INTEGER NOT NULL, `idProducto` INTEGER NOT NULL, " +
             "`codigoProducto` TEXT NOT NULL, `nombreProducto` TEXT NOT NULL," +
             " `precioUnidad` INTEGER NOT NULL, `cantidad` INTEGER NOT NULL, `idVendedor` INTEGER NOT NULL )";

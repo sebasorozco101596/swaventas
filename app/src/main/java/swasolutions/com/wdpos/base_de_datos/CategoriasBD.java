@@ -15,7 +15,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Categoria;
 
 public class CategoriasBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Categorias` " +
+    private String creacionBD="CREATE TABLE `Categorias` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL)";
 

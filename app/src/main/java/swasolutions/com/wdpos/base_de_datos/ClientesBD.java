@@ -16,7 +16,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 public class ClientesBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Clientes` " +
+    private String creacionBD="CREATE TABLE `Clientes` " +
             "( `cedula` TEXT NOT NULL PRIMARY KEY, `nombre` TEXT NOT NULL," +
             " `compania` TEXT NOT NULL, `direccion` TEXT, `telefono` TEXT,`id` TEXT NOT NULL," +
             "`group_id` INTEGER NOT NULL)";

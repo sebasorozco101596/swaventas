@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.actividades.vistas;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.adaptadores.adaptadoresVistas.ClientesNuevosVistaAdapter;
+import swasolutions.com.wdpos.adaptadores.adaptadoresvistas.ClientesNuevosVistaAdapter;
 import swasolutions.com.wdpos.base_de_datos.ClientesCompletoBD;
 import swasolutions.com.wdpos.vo.clases_objeto.ClienteCompleto;
 
@@ -30,7 +29,6 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
     private String NICKNAME;
     private String ID;
 
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,6 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_clientes_nuevos_vista);
 
         clientes= new ArrayList<>();
-        context= ClientesNuevosVistaActivity.this;
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

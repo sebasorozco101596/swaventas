@@ -16,7 +16,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 
 public class ProductosBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Productos` " +
+    private String creacionBD="CREATE TABLE `Productos` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `nombre` TEXT NOT NULL" +
             ", `precio` INTEGER NOT NULL, `codigoProducto` TEXT NOT NULL, `cantidad` INTEGER NOT NULL )";
 

@@ -18,7 +18,7 @@ public class VentasBD extends SQLiteOpenHelper{
 
     //colocar el not null al credito
 
-    String creacionBD="CREATE TABLE `Ventas` ( `id` INTEGER PRIMARY KEY, " +
+    private String creacionBD="CREATE TABLE `Ventas` ( `id` INTEGER PRIMARY KEY, " +
             "`fecha` TEXT NOT NULL, `referencia` TEXT NOT NULL, `idVendedor` INTEGER NOT NULL, " +
             "`cedulaCliente` TEXT NOT NULL, " +
             "`cliente` TEXT NOT NULL, `total` INTEGER NOT NULL, `estadoVenta` TEXT NOT NULL," +

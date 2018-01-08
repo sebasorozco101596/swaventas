@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -28,14 +27,13 @@ public class Productos {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Producto> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Producto> list= new ArrayList<>();
     private String URLProductos;
     private String link;
     int warehouseId;
 
-    public static ProductosBD bdProductos;
-    public static SQLiteDatabase sqLiteDatabase;
+    private ProductosBD bdProductos;
 
     /**
      * Class builder
@@ -49,7 +47,6 @@ public class Productos {
 
         URLProductos= link+"/app_movil/vendedor/productos.php";
         bdProductos= new ProductosBD(context,"BDMessages",null,1);
-        sqLiteDatabase= bdProductos.getWritableDatabase();
     }
 
     /**

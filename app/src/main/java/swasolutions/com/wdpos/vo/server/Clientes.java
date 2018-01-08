@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -28,13 +27,12 @@ public class Clientes {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Cliente> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Cliente> list= new ArrayList<>();
     private String URLClientes;
     private String link;
 
-    public static ClientesBD bdClientes;
-    public static SQLiteDatabase sqLiteDatabase;
+    private ClientesBD bdClientes;
 
     /**
      * Class builder
@@ -47,7 +45,6 @@ public class Clientes {
 
         URLClientes= link+"/app_movil/cliente/clientes.php";
         bdClientes= new ClientesBD(context,"BDMessages",null,1);
-        sqLiteDatabase= bdClientes.getWritableDatabase();
     }
 
     /**

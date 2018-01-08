@@ -10,7 +10,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.adaptadores.adaptadoresVistas.GastosVistaAdapter;
+import swasolutions.com.wdpos.adaptadores.adaptadoresvistas.GastosVistaAdapter;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 

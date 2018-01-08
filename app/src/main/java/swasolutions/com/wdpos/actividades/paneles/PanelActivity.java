@@ -650,9 +650,7 @@ public class PanelActivity extends AppCompatActivity {
         Pattern patron = Pattern.compile("^[0-9]+$");
         if (!patron.matcher(name).matches() || name.length() > 25) {
             return false;
-        } else {
         }
-
         return true;
     }
 

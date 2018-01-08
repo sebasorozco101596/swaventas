@@ -11,7 +11,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.adaptadores.adaptadoresVistas.ProductosVentaVistaAdapter;
+import swasolutions.com.wdpos.adaptadores.adaptadoresvistas.ProductosVentaVistaAdapter;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
 

@@ -65,12 +65,12 @@ public class TerminalesAdapter extends  RecyclerView.Adapter<TerminalesAdapter.T
 
     static class TerminalesVistaViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView nombre;
-        TextView precio;
-        TextView cantidad;
+        private TextView id;
+        private TextView nombre;
+        private TextView precio;
+        private TextView cantidad;
 
         public TerminalesVistaViewHolder(View itemView) {
             super(itemView);

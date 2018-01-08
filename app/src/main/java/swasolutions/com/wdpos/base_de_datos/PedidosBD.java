@@ -16,7 +16,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Pedido;
 
 public class PedidosBD extends SQLiteOpenHelper {
 
-    String queryCreate= "CREATE TABLE Pedidos ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private String queryCreate= "CREATE TABLE Pedidos ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
             " `pedido` TEXT NOT NULL, `cliente` TEXT NOT NULL)";
 
     public PedidosBD(Context context, String name, SQLiteDatabase.CursorFactory factory,

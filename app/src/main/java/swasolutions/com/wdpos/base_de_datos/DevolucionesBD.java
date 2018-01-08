@@ -16,7 +16,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 
 public class DevolucionesBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Devoluciones` " +
+    private String creacionBD="CREATE TABLE `Devoluciones` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `cedula` TEXT NOT NULL" +
             ", `valor` INTEGER NOT NULL,`codigo_producto` TEXT NOT NULL,`nombre_producto` TEXT NOT NULL," +
             "`estado` TEXT NOT NULL,`tipo` TEXT NOT NULL)";

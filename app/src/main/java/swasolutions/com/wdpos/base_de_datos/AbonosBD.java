@@ -17,7 +17,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 
 public class AbonosBD extends SQLiteOpenHelper {
 
-    String creacionBD= "CREATE TABLE `Abonos` ( `id` INTEGER, `estadoVenta` TEXT," +
+    private String creacionBD= "CREATE TABLE `Abonos` ( `id` INTEGER, `estadoVenta` TEXT," +
             " `pago` INTEGER NOT NULL, `idVendedor` INTEGER NOT NULL, `fecha` TEXT NOT NULL,`referencia` TEXT NOT NULL," +
             " `pagoCierre` INTEGER NOT NULL, cedulaCliente TEXT NOT NULL,`credito` INTEGER NOT NULL, PRIMARY KEY(`id`))";
 

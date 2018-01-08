@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class CreditoBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Creditos` " +
+    private String creacionBD="CREATE TABLE `Creditos` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `cedula` TEXT NOT NULL" +
             ", `valor` INTEGER NOT NULL)";
 

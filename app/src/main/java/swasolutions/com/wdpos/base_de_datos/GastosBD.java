@@ -16,7 +16,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 public class GastosBD extends SQLiteOpenHelper{
 
 
-    String creacionBD= "CREATE TABLE `Gastos` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private String creacionBD= "CREATE TABLE `Gastos` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
             " `fecha` TEXT NOT NULL, `referencia` TEXT NOT NULL, `dinero` INTEGER NOT NULL," +
             " `vendedor` TEXT NOT NULL,`descripcion` TEXT NOT NULL )";
 

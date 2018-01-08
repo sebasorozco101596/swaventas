@@ -17,7 +17,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Deuda;
 public class DeudasBD extends SQLiteOpenHelper{
 
 
-    String creacionBD="CREATE TABLE `Deudas` " +
+    private String creacionBD="CREATE TABLE `Deudas` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
             "`fecha` TEXT NOT NULL,`referencia` TEXT NOT NULL,`comprador` TEXT NOT NULL," +
             "`idCliente` TEXT NOT NULL," +

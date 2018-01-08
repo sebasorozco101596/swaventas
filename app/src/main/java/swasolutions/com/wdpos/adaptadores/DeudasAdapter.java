@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.facturas.FacturaAbonoActivity;
-import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.CreditoBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Deuda;
 
@@ -39,9 +38,8 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
     private String IDVENDEDOR;
     private String NICKNAME;
 
-    public static CreditoBD bdCredito;
-    public static ClientesBD bdClientes;
-    public boolean isActivatedRadioButton;
+    private CreditoBD bdCredito;
+    private boolean isActivatedRadioButton;
 
     /**
      * Builder class
@@ -56,7 +54,6 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
         this.IDVENDEDOR=idVendedor;
 
         bdCredito= new CreditoBD(context,null,null,1);
-        bdClientes= new ClientesBD(context,null,null,1);
 
     }
 

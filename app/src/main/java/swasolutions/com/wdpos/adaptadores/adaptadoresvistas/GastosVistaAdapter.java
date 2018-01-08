@@ -1,7 +1,6 @@
-package swasolutions.com.wdpos.adaptadores.adaptadoresVistas;
+package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +19,8 @@ import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 public class GastosVistaAdapter extends RecyclerView.Adapter<GastosVistaAdapter.GastosVistaViewHolder>{
 
 
-    List<Gasto> gastos;
-    Context context;
+    private List<Gasto> gastos;
+    private Context context;
 
     public GastosVistaAdapter(List<Gasto> gastos, Context context) {
         this.gastos = gastos;
@@ -52,17 +51,15 @@ public class GastosVistaAdapter extends RecyclerView.Adapter<GastosVistaAdapter.
     static class GastosVistaViewHolder extends RecyclerView.ViewHolder{
 
 
-        CardView cardView;
 
-        TextView fecha;
-        TextView referencia;
-        TextView dinero;
-        TextView descripcion;
+        private TextView fecha;
+        private TextView referencia;
+        private TextView dinero;
+        private TextView descripcion;
 
         public GastosVistaViewHolder(View itemView) {
             super(itemView);
 
-            cardView= (CardView) itemView.findViewById(R.id.cardViewGastos);
             fecha= (TextView) itemView.findViewById(R.id.txtFecha_CardViewGastos);
             referencia= (TextView) itemView.findViewById(R.id.txtReferencia_CardViewGastos);
             dinero= (TextView) itemView.findViewById(R.id.txtDinero_CardViewGastos);

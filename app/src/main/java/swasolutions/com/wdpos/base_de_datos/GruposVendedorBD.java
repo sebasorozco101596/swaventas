@@ -15,7 +15,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.GrupoVendedor;
 
 public class GruposVendedorBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `GruposVendedor` " +
+    private  String creacionBD="CREATE TABLE `GruposVendedor` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
             ", `name` TEXT NOT NULL, `percent` INTEGER NOT NULL)";
 

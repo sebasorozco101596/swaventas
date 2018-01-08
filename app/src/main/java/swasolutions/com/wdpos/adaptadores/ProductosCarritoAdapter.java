@@ -54,7 +54,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
     @Override
     public void onBindViewHolder(final ProductosCarritoViewHolder holder, final int position) {
 
-        if(tipo.equals("administrator") || tipo.equals("owner")){
+        if("administrator".equals(tipo) || "owner".equals(tipo)){
             holder.precio.setEnabled(true);
             holder.btnCambiarPrecio.setVisibility(View.VISIBLE);
         }

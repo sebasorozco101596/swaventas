@@ -10,7 +10,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.adaptadores.adaptadoresVistas.VentasVistaAdapter;
+import swasolutions.com.wdpos.adaptadores.adaptadoresvistas.VentasVistaAdapter;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Venta;
 

@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -28,13 +27,12 @@ public class Unidades {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Unidad> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Unidad> list= new ArrayList<>();
     private String URLUnidades;
     private String link;
 
-    public static UnidadesBD bdUnidades;
-    public static SQLiteDatabase sqLiteDatabase;
+    private UnidadesBD bdUnidades;
 
     /**
      * Class builder
@@ -47,7 +45,6 @@ public class Unidades {
 
         URLUnidades= link+"/app_movil/vendedor/cargarUnidades.php";
         bdUnidades= new UnidadesBD(context,"UnidadesBD",null,1);
-        sqLiteDatabase= bdUnidades.getWritableDatabase();
     }
 
     /**

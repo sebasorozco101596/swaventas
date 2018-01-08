@@ -59,10 +59,10 @@ public class FacturaAdapter extends  RecyclerView.Adapter<FacturaAdapter.Factura
 
     static class FacturaViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
-        TextView nombre;
-        TextView total;
-        TextView cantidad;
+        private CardView cardView;
+        private TextView nombre;
+        private TextView total;
+        private TextView cantidad;
 
         public FacturaViewHolder(View itemView) {
             super(itemView);

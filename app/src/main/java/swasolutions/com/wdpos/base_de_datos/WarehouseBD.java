@@ -15,7 +15,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Warehouse;
 
 public class WarehouseBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Warehouses` " +
+    private String creacionBD="CREATE TABLE `Warehouses` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL, `phone` TEXT NOT NULL)";
 
@@ -30,8 +30,9 @@ public class WarehouseBD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        //TODO
     }
+
 
     public void agregarWarehouse(int id, String codigo, String name, String phone) {
 

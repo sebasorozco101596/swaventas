@@ -15,7 +15,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Unidad;
 
 public class UnidadesBD extends SQLiteOpenHelper {
 
-    String creacionBD="CREATE TABLE `Unidades` " +
+    private String creacionBD="CREATE TABLE `Unidades` " +
             "( `id` INTEGER NOT NULL PRIMARY KEY, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL)";
 

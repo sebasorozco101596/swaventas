@@ -1,4 +1,4 @@
-package swasolutions.com.wdpos.adaptadores.adaptadoresVistas;
+package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;

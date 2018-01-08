@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -27,13 +26,12 @@ public class Categorias {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Categoria> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Categoria> list= new ArrayList<>();
     private String URLCategorias;
     private String link;
 
-    public static CategoriasBD bdCategorias;
-    public static SQLiteDatabase sqLiteDatabase;
+    private CategoriasBD bdCategorias;
 
     /**
      * Class builder
@@ -46,7 +44,6 @@ public class Categorias {
 
         URLCategorias= link+"/app_movil/vendedor/cargarCategorias.php";
         bdCategorias= new CategoriasBD(context,"CategoriasBD",null,1);
-        sqLiteDatabase= bdCategorias.getWritableDatabase();
     }
 
     /**

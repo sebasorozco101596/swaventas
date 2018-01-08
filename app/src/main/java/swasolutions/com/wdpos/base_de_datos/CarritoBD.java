@@ -18,7 +18,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.ProductoCarrito;
 public class CarritoBD extends SQLiteOpenHelper{
 
 
-    String creacionCarrito= "CREATE TABLE IF NOT EXISTS `Carrito` ( `idProducto` INTEGER NOT NULL," +
+    private  String creacionCarrito= "CREATE TABLE IF NOT EXISTS `Carrito` ( `idProducto` INTEGER NOT NULL," +
             " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL," +
             " `cantidad` INTEGER,`codigoProducto` TEXT NOT NULL, PRIMARY KEY(`idProducto`) )";
 

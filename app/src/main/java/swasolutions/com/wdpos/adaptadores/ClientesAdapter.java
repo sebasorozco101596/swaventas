@@ -172,7 +172,6 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-
                         switch (item.getItemId()){
                             case R.id.accion_pagar:
 

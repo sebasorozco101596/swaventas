@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -27,13 +26,12 @@ public class Warehouses {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Warehouse> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Warehouse> list= new ArrayList<>();
     private String URLWarehouses;
     private String link;
 
-    public static WarehouseBD bdWarehouse;
-    public static SQLiteDatabase sqLiteDatabase;
+    private WarehouseBD bdWarehouse;
 
     /**
      * Class builder
@@ -46,7 +44,6 @@ public class Warehouses {
 
         URLWarehouses= link+"/app_movil/vendedor/cargarWarehouses.php";
         bdWarehouse= new WarehouseBD(context,"WarehouseBD",null,1);
-        sqLiteDatabase= bdWarehouse.getWritableDatabase();
     }
 
     /**

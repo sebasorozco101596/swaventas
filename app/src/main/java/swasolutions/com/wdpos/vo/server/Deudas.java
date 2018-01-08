@@ -1,7 +1,6 @@
 package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -28,13 +27,12 @@ public class Deudas {
     /**
      * Variables necessary for the operation of logic.
      */
-    Context context;
-    ArrayList<Deuda> list= new ArrayList<>();
+    private Context context;
+    private ArrayList<Deuda> list= new ArrayList<>();
     private  String URLDeudas;
     private String link;
 
-    public static DeudasBD bdDeudas;
-    public static SQLiteDatabase sqLiteDatabase;
+    private DeudasBD bdDeudas;
 
     /**
      * Class builder
@@ -47,7 +45,6 @@ public class Deudas {
 
         URLDeudas= link+"/app_movil/cliente/cargarDeudas.php";
         bdDeudas= new DeudasBD(context,"BDMessages",null,1);
-        sqLiteDatabase= bdDeudas.getWritableDatabase();
     }
 
     /**
