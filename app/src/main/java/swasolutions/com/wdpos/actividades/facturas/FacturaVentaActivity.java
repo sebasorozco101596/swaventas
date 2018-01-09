@@ -814,7 +814,6 @@ public class FacturaVentaActivity extends AppCompatActivity{
             default:
                 Log.d(TAG, "onActivityResult: Factura venta activity result");
                 break;
-
         }
     }
 
