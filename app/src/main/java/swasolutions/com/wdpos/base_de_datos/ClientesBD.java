@@ -22,7 +22,7 @@ public class ClientesBD extends SQLiteOpenHelper {
             "`group_id` INTEGER NOT NULL)";
 
 
-    public ClientesBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public ClientesBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "ClientesBD", factory, version);
     }
 

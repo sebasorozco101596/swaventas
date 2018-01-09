@@ -35,7 +35,7 @@ public class GastosVistaActivity extends AppCompatActivity {
 
         toolbarGastos = (Toolbar) findViewById(R.id.toolbarVistaGastos);
 
-        bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
+        bdGastos= new GastosBD(getApplicationContext(),null,1);
 
         gastos= bdGastos.gastos();
 

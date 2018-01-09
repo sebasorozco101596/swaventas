@@ -65,7 +65,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
         this.NICKNAME=nickname;
         this.IDVENDEDOR =id;
 
-        bdCredito= new CreditoBD(context,null,null,1);
+        bdCredito= new CreditoBD(context,null,1);
 
 
     }

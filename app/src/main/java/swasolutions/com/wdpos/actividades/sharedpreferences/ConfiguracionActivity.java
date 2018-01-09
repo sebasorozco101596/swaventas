@@ -72,7 +72,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         btnVolver.setOnClickListener(this);
         btnAgregarHosting2.setOnClickListener(this);
 
-        bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
+        bdWarehouses = new WarehouseBD(getApplicationContext(), null, 1);
         warehouses= bdWarehouses.warehouses();
 
 
@@ -145,16 +145,16 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
 
     private void obtenerDatosExternos() {
 
-        bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
+        bdWarehouses = new WarehouseBD(getApplicationContext(), null, 1);
         bdWarehouses.eliminarWarehouses();
 
-        GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
+        GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),null,1);
         bdGruposVendedor.eliminarGruposVendedor();
 
         CategoriasBD bdCategorias= new CategoriasBD(getApplicationContext(),null,1);
         bdCategorias.eliminarCategorias();
 
-        bdUnidades= new UnidadesBD(getApplicationContext(),"UnidadesBD",null,1);
+        bdUnidades= new UnidadesBD(getApplicationContext(),null,1);
         bdUnidades.eliminarUnidades();
 
 

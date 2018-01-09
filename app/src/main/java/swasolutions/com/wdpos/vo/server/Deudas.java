@@ -30,7 +30,6 @@ public class Deudas {
     private Context context;
     private ArrayList<Deuda> list= new ArrayList<>();
     private  String URLDeudas;
-    private String link;
 
     private DeudasBD bdDeudas;
 
@@ -41,7 +40,6 @@ public class Deudas {
     public Deudas(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLDeudas= link+"/app_movil/cliente/cargarDeudas.php";
         bdDeudas= new DeudasBD(context,null,1);

@@ -42,7 +42,7 @@ public class Clientes {
         this.context=context;
 
         URLClientes= link+"/app_movil/cliente/clientes.php";
-        bdClientes= new ClientesBD(context,"BDMessages",null,1);
+        bdClientes= new ClientesBD(context,null,1);
     }
 
     /**

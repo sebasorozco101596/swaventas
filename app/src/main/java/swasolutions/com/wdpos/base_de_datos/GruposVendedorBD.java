@@ -19,7 +19,7 @@ public class GruposVendedorBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT" +
             ", `name` TEXT NOT NULL, `percent` INTEGER NOT NULL)";
 
-    public GruposVendedorBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public GruposVendedorBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "GruposVendedorBD", factory, version);
     }
 

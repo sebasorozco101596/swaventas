@@ -92,7 +92,7 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
 
                             case R.id.accion_agregarCarrito:
 
-                                carritoBD= new CarritoBD(context,"CarritoBD",null,1);
+                                carritoBD= new CarritoBD(context,null,1);
 
                                 int id= Integer.parseInt(holder.id.getText().toString());
                                 String nombre= holder.nombre.getText().toString();
@@ -121,7 +121,7 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                                     @Override
                                     public void onClick(View v) {
 
-                                        devolucionesBD= new DevolucionesBD(context,"DevolucionesBD",null,1);
+                                        devolucionesBD= new DevolucionesBD(context,null,1);
 
                                         int precioD= Integer.parseInt(holder.precio.getText().toString());
                                         String nombreD= holder.nombre.getText().toString();

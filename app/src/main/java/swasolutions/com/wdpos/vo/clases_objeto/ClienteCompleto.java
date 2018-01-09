@@ -31,10 +31,6 @@ public class ClienteCompleto {
         this.tipo=tipo;
     }
 
-    public ClienteCompleto(String id, String grupo, String nombre, String cedula, String direccion, String ciudad, String estado, String pais, String telefono) {
-
-    }
-
     public int getTipo() {
         return tipo;
     }

@@ -73,17 +73,17 @@ public class PanelEliminacionActivity extends AppCompatActivity {
                         } else {
 
                             bdAbonos= new AbonosBD(getApplicationContext(),null,1);
-                            bdCarrito= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
-                            bdClientes= new ClientesBD(getApplicationContext(),"BDMessages",null,1);
-                            bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);
+                            bdCarrito= new CarritoBD(getApplicationContext(),null,1);
+                            bdClientes= new ClientesBD(getApplicationContext(),null,1);
+                            bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),null,1);
                             bdDeudas= new DeudasBD(getApplicationContext(),null,1);
-                            bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
-                            bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
+                            bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),null,1);
+                            bdGastos= new GastosBD(getApplicationContext(),null,1);
                             bdPedidos= new PedidosBD(getApplicationContext(),null,1);
                             bdProductos= new ProductosBD(getApplicationContext(),null,1);
                             bdVentas= new VentasBD(getApplicationContext(),null,1);
                             bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
-                            bdWarehouses= new WarehouseBD(getApplicationContext(),"WarehouusesBD",null,1);
+                            bdWarehouses= new WarehouseBD(getApplicationContext(),null,1);
 
 
                             bdAbonos.eliminarAbonos();
@@ -152,8 +152,7 @@ public class PanelEliminacionActivity extends AppCompatActivity {
                                 ConfiguracionActivity.getPreferenciaPing(PanelEliminacionActivity.this))){
                             txtContrasenia.setError("Ping incorrecto");
                         } else {
-                            bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),
-                                    "ClientesCompletoBD",null,1);
+                            bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),null,1);
                             bdClientesCompleto.eliminarClientes();
                             bdClientesCompleto.close();
 

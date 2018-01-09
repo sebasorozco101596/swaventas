@@ -31,7 +31,6 @@ import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Abono;
-import swasolutions.com.wdpos.vo.clases_objeto.ClienteCompleto;
 import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
@@ -45,11 +44,8 @@ public class SubirServidor implements Runnable {
 
     private ArrayList<Abono> abonos;
     private ArrayList<VentaCompleta> ventas;
-    private ArrayList<ProductoVenta> productosVentas;
     private ArrayList<Devolucion> devoluciones;
     private ArrayList<Gasto> gastos;
-    private ArrayList<ClienteCompleto> clientes;
-
 
     private GastosBD bdGastos;
     private AbonosBD bdAbonos;
@@ -79,7 +75,7 @@ public class SubirServidor implements Runnable {
     public SubirServidor(ArrayList<Abono> abonos, ArrayList<VentaCompleta> ventas,
                          ArrayList<Gasto> gastos,ArrayList<Devolucion> devoluciones,
                          Context context, int tipo, String link, String id,
-                         ArrayList<ClienteCompleto> clientes, Cache cache, int warehouse_id){
+                         Cache cache, int warehouse_id){
         this.abonos=abonos;
         this.ventas=ventas;
         this.gastos=gastos;
@@ -87,7 +83,6 @@ public class SubirServidor implements Runnable {
         this.context= context;
         this.tipo=tipo;
         this.id=id;
-        this.clientes=clientes;
         this.warehouse_id=warehouse_id;
         URLAbonos = link+"/app_movil/vendedor/actualizarDeuda.php";
         URLVentas = link+"/app_movil/vendedor/subirVenta.php";
@@ -99,11 +94,11 @@ public class SubirServidor implements Runnable {
          * Instancia de las bases de datos locales
          */
 
-        bdGastos= new GastosBD(context,"GastosBD",null,1);
+        bdGastos= new GastosBD(context,null,1);
         bdAbonos= new AbonosBD(context,null,1);
         bdVentas= new VentasBD(context,null,1);
         bdProductos= new ProductosBD(context,null,1);
-        bdDevoluciones= new DevolucionesBD(context,null,null,1);
+        bdDevoluciones= new DevolucionesBD(context,null,1);
         bdProductosVenta= new ProductosVentaBD(context,null,1);
 
 

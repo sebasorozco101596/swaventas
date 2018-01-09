@@ -159,7 +159,7 @@ public class SharedPreferences {
     public static void eliminarPreferencias(Context context) {
 
         android.content.SharedPreferences settings = context.getSharedPreferences(
-                STRING_PREFERENCE, Context.MODE_PRIVATE);
+                STRING_PREFERENCE, MODE_PRIVATE);
         settings.edit().clear().commit();
 
     }

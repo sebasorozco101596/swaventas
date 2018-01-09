@@ -21,7 +21,7 @@ public class DevolucionesBD extends SQLiteOpenHelper {
             ", `valor` INTEGER NOT NULL,`codigo_producto` TEXT NOT NULL,`nombre_producto` TEXT NOT NULL," +
             "`estado` TEXT NOT NULL,`tipo` TEXT NOT NULL)";
 
-    public DevolucionesBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public DevolucionesBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "DevolucionesBD", factory, version);
     }
 

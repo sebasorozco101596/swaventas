@@ -143,7 +143,7 @@ public class TerminalesActivity extends AppCompatActivity {
         fecha = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
         ProductosBD bdProductos= new ProductosBD(getApplicationContext(),null,1);
-        WarehouseBD bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
+        WarehouseBD bdWarehouses = new WarehouseBD(getApplicationContext(), null, 1);
 
         productos= bdProductos.fillMessages();
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductosTerminales);

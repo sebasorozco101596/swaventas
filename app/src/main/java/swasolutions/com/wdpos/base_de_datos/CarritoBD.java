@@ -22,7 +22,7 @@ public class CarritoBD extends SQLiteOpenHelper{
             " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL," +
             " `cantidad` INTEGER,`codigoProducto` TEXT NOT NULL, PRIMARY KEY(`idProducto`) )";
 
-    public CarritoBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public CarritoBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "CarritoBD", factory, version);
     }
 

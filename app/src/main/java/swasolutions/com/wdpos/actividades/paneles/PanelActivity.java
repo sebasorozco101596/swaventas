@@ -120,7 +120,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
          * Instancia de las bases de datos locales
          */
 
-        bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
+        bdGastos= new GastosBD(getApplicationContext(),null,1);
 
         //------------
 
@@ -183,7 +183,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
             case R.id.accion_actualizarClientes:
 
                 if(logica.verificarConexion(PanelActivity.this)) {
-                    bdClientes = new ClientesBD(getApplicationContext(), "BDClientes", null, 1);
+                    bdClientes = new ClientesBD(getApplicationContext(), null, 1);
                     bdClientes.eliminarTodosClientes();
 
                     Clientes clientes = new Clientes(getApplicationContext(), link);

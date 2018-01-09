@@ -187,8 +187,8 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdDeudas=new DeudasBD(getApplicationContext(),null,1);
         bdVentas=new VentasBD(getApplicationContext(),null,1);
-        bdCredito= new CreditoBD(context,null,null,1);
-        bdClientes= new ClientesBD(context,null,null,1);
+        bdCredito= new CreditoBD(context,null,1);
+        bdClientes= new ClientesBD(context,null,1);
 
 
         Intent intent = getIntent();

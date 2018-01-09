@@ -16,7 +16,7 @@ public class CreditoBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `cedula` TEXT NOT NULL" +
             ", `valor` INTEGER NOT NULL)";
 
-    public CreditoBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public CreditoBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "CreditoBD", factory, version);
     }
 

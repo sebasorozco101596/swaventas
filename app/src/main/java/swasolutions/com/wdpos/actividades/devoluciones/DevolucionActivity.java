@@ -51,8 +51,8 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
             CEDULA = bundle.getString("key_cedula");
         }
 
-        bdDevoluciones= new DevolucionesBD(getApplicationContext(),"DevolucionesBD",null,1);
-        bdCredito= new CreditoBD(getApplicationContext(),null,null,1);
+        bdDevoluciones= new DevolucionesBD(getApplicationContext(),null,1);
+        bdCredito= new CreditoBD(getApplicationContext(),null,1);
 
 
         productosDevolucion= bdDevoluciones.devoluciones(CEDULA);
@@ -78,7 +78,7 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        ProductosDevolucionAdapter adapter = new ProductosDevolucionAdapter(productosDevolucion,this);
+        ProductosDevolucionAdapter adapter = new ProductosDevolucionAdapter(productosDevolucion);
         recyclerView.setAdapter(adapter);
 
 

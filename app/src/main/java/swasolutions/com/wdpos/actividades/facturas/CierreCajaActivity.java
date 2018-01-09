@@ -407,14 +407,14 @@ public class CierreCajaActivity extends AppCompatActivity {
          * Instancia de las bases de datos locales
          */
 
-        bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
+        bdGastos= new GastosBD(getApplicationContext(),null,1);
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdVentas= new VentasBD(getApplicationContext(),null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
-        bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
-        bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);
-        bdDevoluciones= new DevolucionesBD(getApplicationContext(),null,null,1);
-        bdClientes = new ClientesBD(getApplicationContext(), "BDClientes", null, 1);
+        bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),null,1);
+        bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),null,1);
+        bdDevoluciones= new DevolucionesBD(getApplicationContext(),null,1);
+        bdClientes = new ClientesBD(getApplicationContext(), null, 1);
         //------------
 
         if(bdClientesCompleto.clientes().size() !=0){
@@ -737,7 +737,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                                         // Log.d("ERROR",""+i);
                                         Runnable workerVentas = new SubirServidor(abonos,ventasCompleto,gastos,
-                                                devoluciones, getApplicationContext(),i,link,ID,clientes,cache,
+                                                devoluciones, getApplicationContext(),i,link,ID,cache,
                                                 warehouseId);
                                         //The thread in the thread pool runs.
                                         executor.execute(workerVentas);

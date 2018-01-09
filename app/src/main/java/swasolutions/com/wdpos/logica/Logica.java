@@ -149,7 +149,7 @@ public class Logica {
                         context.startActivity(intent);
                     }else if("cierreCaja".equals(tipo)){
 
-                        GastosBD bdGastos= new GastosBD(context,"GastosBD",null,1);
+                        GastosBD bdGastos= new GastosBD(context,null,1);
                         AbonosBD bdAbonos= new AbonosBD(context,null,1);
                         VentasBD bdVentas= new VentasBD(context,null,1);
 

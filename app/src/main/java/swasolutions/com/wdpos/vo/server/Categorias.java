@@ -29,7 +29,6 @@ public class Categorias {
     private Context context;
     private ArrayList<Categoria> list= new ArrayList<>();
     private String URLCategorias;
-    private String link;
 
     private CategoriasBD bdCategorias;
 
@@ -40,7 +39,6 @@ public class Categorias {
     public Categorias(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLCategorias= link+"/app_movil/vendedor/cargarCategorias.php";
         bdCategorias= new CategoriasBD(context,null,1);

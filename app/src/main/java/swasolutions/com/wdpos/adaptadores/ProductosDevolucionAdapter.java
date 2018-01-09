@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ public class ProductosDevolucionAdapter extends  RecyclerView.Adapter<ProductosD
 
     private List<Devolucion> devoluciones;
 
-    public ProductosDevolucionAdapter(List<Devolucion> devoluciones, Context context) {
+    public ProductosDevolucionAdapter(List<Devolucion> devoluciones) {
         this.devoluciones = devoluciones;
     }
 

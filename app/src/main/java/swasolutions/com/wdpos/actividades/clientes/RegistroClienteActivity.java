@@ -117,9 +117,9 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
             imgPerfilAtras.setEnabled(false);
         }
 
-        bdClientes= new ClientesBD(getApplicationContext(),"ClientesBD",null,1);
-        bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);
-        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
+        bdClientes= new ClientesBD(getApplicationContext(),null,1);
+        bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),null,1);
+        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),null,1);
         sqLiteDatabase= bdClientes.getWritableDatabase();
 
         gruposVendedor= bdGruposVendedor.gruposVendedor();

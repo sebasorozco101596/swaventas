@@ -53,7 +53,7 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
         this.NICKNAME=nickname;
         this.IDVENDEDOR=idVendedor;
 
-        bdCredito= new CreditoBD(context,null,null,1);
+        bdCredito= new CreditoBD(context,null,1);
 
     }
 

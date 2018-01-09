@@ -58,7 +58,7 @@ public class CarritoActivity extends AppCompatActivity {
             ID = bundle.getString("key_id");
         }
 
-        bdCarrito= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
+        bdCarrito= new CarritoBD(getApplicationContext(),null,1);
 
         productosCarrito= bdCarrito.cargarProductosCarrito();
 

@@ -156,10 +156,10 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         btnSend.setOnClickListener(this);
         btnVolver.setOnClickListener(this);
 
-        bdFactura= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
-        bdClientes= new ClientesBD(getApplicationContext(),"ClientesBD",null,1);
+        bdFactura= new CarritoBD(getApplicationContext(),null,1);
+        bdClientes= new ClientesBD(getApplicationContext(),null,1);
         bdVentas= new VentasBD(getApplicationContext(),null,1);
-        bdCredito= new CreditoBD(context,null,null,1);
+        bdCredito= new CreditoBD(context,null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
 
         productos= bdFactura.cargarProductosCarrito();
@@ -170,7 +170,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new FacturaAdapter(productos,this);
+        adapter = new FacturaAdapter(productos);
         recyclerView.setAdapter(adapter);
 
 

@@ -35,7 +35,7 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaClientes);
         setSupportActionBar(toolbarFiltrado);
 
-        bdCliente= new ClientesCompletoBD(getApplicationContext(),"ClientesBD",null,1);
+        bdCliente= new ClientesCompletoBD(getApplicationContext(),null,1);
 
         clientes= bdCliente.clientesVista();
 

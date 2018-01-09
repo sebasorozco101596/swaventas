@@ -41,7 +41,7 @@ public class Warehouses {
         this.context=context;
 
         URLWarehouses= link+"/app_movil/vendedor/cargarWarehouses.php";
-        bdWarehouse= new WarehouseBD(context,"WarehouseBD",null,1);
+        bdWarehouse= new WarehouseBD(context,null,1);
     }
 
     /**

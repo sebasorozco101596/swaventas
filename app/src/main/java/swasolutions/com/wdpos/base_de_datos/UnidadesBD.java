@@ -19,7 +19,7 @@ public class UnidadesBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL)";
 
-    public UnidadesBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public UnidadesBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "UnidadesBD", factory, version);
     }
 

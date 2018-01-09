@@ -28,7 +28,6 @@ public class GruposVendedor {
     private Context context;
     private ArrayList<GrupoVendedor> list= new ArrayList<>();
     private String URLGruposClientes;
-    private String link;
 
     private GruposVendedorBD bdGruposVendedor;
 
@@ -39,10 +38,9 @@ public class GruposVendedor {
     public GruposVendedor(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLGruposClientes= link+"/app_movil/vendedor/cargarGruposVendedor.php";
-        bdGruposVendedor = new GruposVendedorBD(context,"GrupoVendedorBD",null,1);
+        bdGruposVendedor = new GruposVendedorBD(context,null,1);
     }
 
     /**

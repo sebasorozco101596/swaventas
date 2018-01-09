@@ -76,8 +76,8 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarCliente);
         setSupportActionBar(toolbarFiltrado);
 
-        bdCliente= new ClientesBD(getApplicationContext(),"ClientesBD",null,1);
-        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
+        bdCliente= new ClientesBD(getApplicationContext(),null,1);
+        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),null,1);
         sqLiteDatabase= bdCliente.getWritableDatabase();
 
         clientes= bdCliente.cargarClientes();

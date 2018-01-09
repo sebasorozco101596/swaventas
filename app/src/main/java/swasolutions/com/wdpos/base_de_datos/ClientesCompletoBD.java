@@ -22,7 +22,7 @@ public class ClientesCompletoBD extends SQLiteOpenHelper {
             "`pais` TEXT NOT NULL,`telefono` TEXT NOT NULL,`tipo` INTEGER NOT NULL)";
 
     //,`tipo` INTEGER NOT NULL
-    public ClientesCompletoBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public ClientesCompletoBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "ClientesCompletoBD", factory, version);
     }
 

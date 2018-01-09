@@ -20,7 +20,7 @@ public class GastosBD extends SQLiteOpenHelper{
             " `fecha` TEXT NOT NULL, `referencia` TEXT NOT NULL, `dinero` INTEGER NOT NULL," +
             " `vendedor` TEXT NOT NULL,`descripcion` TEXT NOT NULL )";
 
-    public GastosBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public GastosBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "GastosBD", factory, version);
     }
 

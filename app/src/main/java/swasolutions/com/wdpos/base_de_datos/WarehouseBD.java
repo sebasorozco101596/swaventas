@@ -19,7 +19,7 @@ public class WarehouseBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL, `phone` TEXT NOT NULL)";
 
-    public WarehouseBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public WarehouseBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "WarehousesBD", factory, version);
     }
 

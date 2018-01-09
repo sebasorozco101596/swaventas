@@ -165,7 +165,7 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
 
         }
 
-        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
+        bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),null,1);
 
         gruposVendedor= bdGruposVendedor.gruposVendedor();
         obtenerLista();

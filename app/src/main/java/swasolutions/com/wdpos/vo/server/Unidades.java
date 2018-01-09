@@ -42,7 +42,7 @@ public class Unidades {
         this.context=context;
 
         URLUnidades= link+"/app_movil/vendedor/cargarUnidades.php";
-        bdUnidades= new UnidadesBD(context,"UnidadesBD",null,1);
+        bdUnidades= new UnidadesBD(context,null,1);
     }
 
     /**

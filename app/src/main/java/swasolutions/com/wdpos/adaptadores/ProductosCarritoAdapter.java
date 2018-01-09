@@ -74,7 +74,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
             @Override
             public void onClick(View v) {
 
-                CarritoBD carritoBD= new CarritoBD(context,"CarritoBD",null,1);
+                CarritoBD carritoBD= new CarritoBD(context,null,1);
 
                 int id= Integer.parseInt(holder.id.getText().toString());
                 int precio= Integer.parseInt(holder.precio.getText().toString());
@@ -119,7 +119,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
                                 //Toast.makeText(context,holder.precio.getText().toString(),Toast.LENGTH_SHORT).show();
 
-                                CarritoBD carritoBD= new CarritoBD(context,"CarritoBD",null,1);
+                                CarritoBD carritoBD= new CarritoBD(context,null,1);
 
                                 int id= Integer.parseInt(holder.id.getText().toString());
                                 int precio= Integer.parseInt(holder.precio.getText().toString());
@@ -158,7 +158,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
             public void onClick(View v) {
 
 
-                CarritoBD carritoBD= new CarritoBD(context,"CarritoBD",null,1);
+                CarritoBD carritoBD= new CarritoBD(context,null,1);
 
                 int id= Integer.parseInt(holder.id.getText().toString());
                 int cantidad= Integer.parseInt(holder.cantidad.getText().toString());

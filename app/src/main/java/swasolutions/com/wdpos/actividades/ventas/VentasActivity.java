@@ -54,8 +54,8 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
         productos = new ArrayList<>();
 
         bdProductos = new ProductosBD(getApplicationContext(), null, 1);
-        bdCarrito = new CarritoBD(getApplicationContext(), "CarritoBD0", null, 1);
-        bdDevoluciones = new DevolucionesBD(getApplicationContext(), "DevolucionesBD", null, 1);
+        bdCarrito = new CarritoBD(getApplicationContext(), null, 1);
+        bdDevoluciones = new DevolucionesBD(getApplicationContext(), null, 1);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,16 +19,14 @@ import swasolutions.com.wdpos.vo.clases_objeto.ProductoCarrito;
 public class FacturaAdapter extends  RecyclerView.Adapter<FacturaAdapter.FacturaViewHolder>{
 
     private List<ProductoCarrito> productos;
-    private Context context;
 
     /**
      * Builder class
      * @param productos
      */
-    public FacturaAdapter(List<ProductoCarrito> productos,Context context){
+    public FacturaAdapter(List<ProductoCarrito> productos){
 
         this.productos=productos;
-        this.context=context;
     }
 
 
