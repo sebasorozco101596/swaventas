@@ -200,7 +200,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
 
                     String inicio= txtLinkHosting.getText().toString().substring(0,7);
                     Log.d("inicio",inicio);
-                    if(!inicio.toLowerCase().equals("http://")){
+                    if(!inicio.equalsIgnoreCase("http://")){
                         txtLinkHosting.setError("No olvide ingresar \"http://\" al inicio!");
                     }else{
 
@@ -336,7 +336,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
     public static String getPreferenciaHosting(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_HOSTING,""));
-        return channel.toString();
+        return channel;
     }
 
     public static String getPreferenciaHosting2(Context context){
@@ -354,7 +354,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
     public static int getPreferenciaPing(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_PING,""));
-        return Integer.parseInt(channel.toString());
+        return Integer.parseInt(channel);
     }
 
     public static String getPreferenciaTienda(Context context){

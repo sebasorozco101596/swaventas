@@ -138,7 +138,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     private ArrayList<Venta> ventas;
     private ArrayList<ProductoVenta> productosVentas;
     private ArrayList<Gasto> gastos;
-    private ArrayList<ClienteCompleto> clientes;
     private ArrayList<VentaCompleta> ventasCompleto;
     private ArrayList<Devolucion> devoluciones;
     private ArrayList<String> clientesRepetidos;
@@ -524,7 +523,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                 ventas= bdVentas.ventas();
                 abonos= bdAbonos.abonos();
                 gastos=bdGastos.gastos();
-                clientes= bdClientesCompleto.clientes();
                 productosVentas= bdProductosVenta.productosVenta();
                 ventasCompleto= encontrarVentas(ventas,productosVentas);
 

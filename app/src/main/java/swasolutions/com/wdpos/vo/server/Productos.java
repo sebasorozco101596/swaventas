@@ -78,7 +78,6 @@ public class Productos {
 
                                 int id= Integer.parseInt(idString);
 
-
                                 priceString.replaceAll(".",",");
                                 cantidad.replaceAll(".",",");
 

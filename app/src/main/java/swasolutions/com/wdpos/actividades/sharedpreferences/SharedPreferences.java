@@ -102,13 +102,13 @@ public class SharedPreferences {
     public static String getPreferenciaNotaAbono(Context context){
         android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_NOTA_ABONO,""));
-        return channel.toString();
+        return channel;
     }
 
     public static String getPreferenciaNotaFactura(Context context){
         android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_NOTA_FACTURA,""));
-        return channel.toString();
+        return channel;
     }
 
     public static int getPreferenciaNumeroIntentosFactura(Context context){
@@ -152,7 +152,7 @@ public class SharedPreferences {
     public static String getPreferenciaTodosGrupos(Context context){
         android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_GRUPO_TODOS,""));
-        return channel.toString();
+        return channel;
     }
 
 

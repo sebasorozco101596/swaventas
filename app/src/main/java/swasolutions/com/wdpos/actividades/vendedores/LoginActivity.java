@@ -296,7 +296,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String getUserName(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_USERNAME,""));
-        return channel.toString();
+        return channel;
     }
 
     /**
@@ -306,7 +306,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String getUserType(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_USERNAME_TYPE,""));
-        return channel.toString();
+        return channel;
     }
 
     /**
@@ -316,7 +316,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String getId(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_IDVENDEDOR,""));
-        return channel.toString();
+        return channel;
     }
 
     /**
