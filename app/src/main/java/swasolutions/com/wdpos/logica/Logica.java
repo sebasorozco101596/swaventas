@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
@@ -18,13 +19,24 @@ import swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity;
 import swasolutions.com.wdpos.actividades.paneles.PanelConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.productos.CrearProductoActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
+import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
+import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.actividades.vistas.AbonosVistaActivity;
 import swasolutions.com.wdpos.actividades.vistas.ClientesNuevosVistaActivity;
 import swasolutions.com.wdpos.actividades.vistas.GastosVistaActivity;
 import swasolutions.com.wdpos.actividades.vistas.VistaVentasActivity;
 import swasolutions.com.wdpos.base_de_datos.AbonosBD;
+import swasolutions.com.wdpos.base_de_datos.CarritoBD;
+import swasolutions.com.wdpos.base_de_datos.ClientesBD;
+import swasolutions.com.wdpos.base_de_datos.ClientesCompletoBD;
+import swasolutions.com.wdpos.base_de_datos.DeudasBD;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
+import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
+import swasolutions.com.wdpos.base_de_datos.PedidosBD;
+import swasolutions.com.wdpos.base_de_datos.ProductosBD;
+import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
+import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
 
 /**
  * Created by sebas on 29/12/2017.
@@ -205,6 +217,60 @@ public class Logica {
                     }else if("vistaGastos".equals(tipo)){
                         Intent intent = new Intent(context, GastosVistaActivity.class);
                         context.startActivity(intent);
+                    }else if("eliminarTodo".equals(tipo)){
+                        AbonosBD bdAbonos= new AbonosBD(context,null,1);
+                        CarritoBD bdCarrito= new CarritoBD(context,null,1);
+                        ClientesBD bdClientes= new ClientesBD(context,null,1);
+                        ClientesCompletoBD bdClientesCompleto= new ClientesCompletoBD(context,null,1);
+                        DeudasBD bdDeudas= new DeudasBD(context,null,1);
+                        GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(context,null,1);
+                        GastosBD bdGastos= new GastosBD(context,null,1);
+                        PedidosBD bdPedidos= new PedidosBD(context,null,1);
+                        ProductosBD bdProductos= new ProductosBD(context,null,1);
+                        VentasBD bdVentas= new VentasBD(context,null,1);
+                        ProductosVentaBD bdProductosVenta= new ProductosVentaBD(context,null,1);
+                        WarehouseBD bdWarehouses= new WarehouseBD(context,null,1);
+
+                        bdAbonos.eliminarAbonos();
+                        bdCarrito.eliminarProductosCarrito();
+                        bdClientes.eliminarTodosClientes();
+                        bdClientesCompleto.eliminarClientes();
+                        bdDeudas.eliminarTodasLasDeudas();
+                        bdGruposVendedor.eliminarGruposVendedor();
+                        bdGastos.eliminarGastos();
+                        bdPedidos.eliminarPedidos();
+                        bdProductos.eliminarTodosProductos();
+                        bdVentas.eliminarVentas();
+                        bdProductosVenta.eliminarProductosVenta();
+                        bdWarehouses.eliminarWarehouses();
+
+                        bdAbonos.close();
+                        bdCarrito.close();
+                        bdClientes.close();
+                        bdClientesCompleto.close();
+                        bdDeudas.close();
+                        bdGruposVendedor.close();
+                        bdGastos.close();
+                        bdPedidos.close();
+                        bdProductos.close();
+                        bdVentas.close();
+                        bdProductosVenta.close();
+                        bdWarehouses.close();
+
+                        ConfiguracionActivity.eliminarPreferencias(context);
+                        LoginActivity.eliminarPreferencias(context);
+                        SharedPreferences.eliminarPreferencias(context);
+
+
+                        Intent intent= new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
+                    }else if("eliminarClientesNuevos".equals(tipo)){
+                        ClientesCompletoBD bdClientesCompleto= new ClientesCompletoBD(context,null,1);
+                        bdClientesCompleto.eliminarClientes();
+                        bdClientesCompleto.close();
+
+                        Toast.makeText(context,"Clientes eliminados correctamente",
+                                Toast.LENGTH_SHORT).show();
                     }
 
 

@@ -56,13 +56,11 @@ public class FacturaVentaActivity extends AppCompatActivity{
      */
     private ArrayList<ProductoCarrito> productos;
 
-    private RecyclerView recyclerView;
-    private FacturaAdapter adapter;
     private static TextView txtTotalFactura;
 
 
 
-    private TextView txtNombreCliente,txtFecha,txtIdVenta,txtPagado,txtDeuda,txtVendedor,txtEstado;
+    private TextView txtNombreCliente,txtFecha,txtIdVenta,txtPagado,txtDeuda,txtEstado;
     private Button btnVolver;
 
     private TextView txtTitulo,txtDireccion,txtTelefono;
@@ -130,6 +128,9 @@ public class FacturaVentaActivity extends AppCompatActivity{
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: dentro");
+                            break;
                     }
                     break;
                 case BluetoothService.MESSAGE_CONNECTION_LOST:
@@ -141,6 +142,9 @@ public class FacturaVentaActivity extends AppCompatActivity{
                 case BluetoothService.MESSAGE_UNABLE_CONNECT:
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    Log.d(TAG, "handleMessage: facturaVenta");
                     break;
             }
         }
@@ -179,7 +183,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
         txtTitulo= (TextView) findViewById(R.id.txtNombreTienda_factura);
         txtDireccion= (TextView) findViewById(R.id.txtDireccion_factura);
         txtTelefono= (TextView) findViewById(R.id.txtTelefono_factura);
-        txtVendedor= (TextView) findViewById(R.id.txtVendedor_factura);
+        TextView txtVendedor= (TextView) findViewById(R.id.txtVendedor_factura);
 
         btnSearch = (Button) findViewById(R.id.btnSearch);
         btnSend = (Button) findViewById(R.id.btnSend);
@@ -259,13 +263,13 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
         bdFactura.close();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewFactura);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewFactura);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new FacturaAdapter(productos);
+        FacturaAdapter adapter = new FacturaAdapter(productos);
         recyclerView.setAdapter(adapter);
     }
 
@@ -328,13 +332,13 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            if (v == btnSearch) {
+            if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 btnSend.setEnabled(true);
                 //btnSendCopia.setEnabled(true);
 
-            }else if(v== btnVolver){
+            }else if(v.equals(btnVolver)){
                 {
                     /**
                      * We will create a personalized alert, we will add
@@ -378,7 +382,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
             }
 
-            else if (v == btnSend) {
+            else if (v.equals(btnSend)) {
 
                 if(!bdVentas.existeRegistro(txtIdVenta.getText().toString())){
 
@@ -427,10 +431,8 @@ public class FacturaVentaActivity extends AppCompatActivity{
                                 estadoVenta,pagado,cantidadProductos,idCliente,FacturaVentaActivity.this,existe,
                                 null,CREDITO);
 
-                    if(CREDITO>0){
-                        if(bdCredito.buscarCliente(cedulaCliente)){
+                    if(CREDITO>0 && bdCredito.buscarCliente(cedulaCliente)){
                             bdCredito.descontarCredito(cedulaCliente,CREDITO,context);
-                        }
                     }
 
 
@@ -559,7 +561,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
                 }
 
 
-            }else if(v == btnSendCopia ){
+            }else if(v.equals(btnSendCopia)){
                 if(SharedPreferences.getPreferenciaNumeroIntentosFactura(FacturaVentaActivity.this) >0){
 
 
@@ -575,7 +577,8 @@ public class FacturaVentaActivity extends AppCompatActivity{
                         @Override
                         public void onClick(View v) {
 
-                            if(!(Integer.parseInt(txtContrasenia.getText().toString()) == ConfiguracionActivity.getPreferenciaPing(FacturaVentaActivity.this))){
+                        if(Integer.parseInt(txtContrasenia.getText().toString()) !=
+                                ConfiguracionActivity.getPreferenciaPing(FacturaVentaActivity.this)){
                                 txtContrasenia.setError("Ping incorrecto");
                             } else {
 
@@ -807,6 +810,9 @@ public class FacturaVentaActivity extends AppCompatActivity{
                     con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
+                break;
+            default:
+                Log.d(TAG, "onActivityResult: Factura venta activity result");
                 break;
         }
     }
