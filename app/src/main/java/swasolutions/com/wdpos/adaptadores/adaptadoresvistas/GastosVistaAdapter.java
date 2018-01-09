@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ public class GastosVistaAdapter extends RecyclerView.Adapter<GastosVistaAdapter.
 
     private List<Gasto> gastos;
 
-    public GastosVistaAdapter(List<Gasto> gastos, Context context) {
+    public GastosVistaAdapter(List<Gasto> gastos) {
         this.gastos = gastos;
     }
 

@@ -36,7 +36,7 @@ public class VistaVentasActivity extends AppCompatActivity {
 
         toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaVentas);
 
-        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
+        bdVentas= new VentasBD(getApplicationContext(),null,1);
 
         ventas= bdVentas.ventas();
 

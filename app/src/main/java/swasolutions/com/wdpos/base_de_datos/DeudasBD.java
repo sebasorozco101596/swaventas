@@ -23,7 +23,7 @@ public class DeudasBD extends SQLiteOpenHelper{
             "`idCliente` TEXT NOT NULL," +
             " `total` INTEGER NOT NULL, `pagado` INTEGER NOT NULL )";
 
-    public DeudasBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public DeudasBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "DeudasBD", factory, version);
     }
 
@@ -95,12 +95,6 @@ public class DeudasBD extends SQLiteOpenHelper{
 
     public void eliminarTodasLasDeudas() {
         SQLiteDatabase database= this.getWritableDatabase();
-        String delete="DROP Table Deudas";
-        String creacionBD="CREATE TABLE `Deudas` " +
-                "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "`fecha` TEXT NOT NULL,`referencia` TEXT NOT NULL,`comprador` TEXT NOT NULL," +
-                "`idCliente` INTEGER NOT NULL," +
-                " `total` INTEGER NOT NULL, `pagado` INTEGER NOT NULL )";
         String queryDelete= "DELETE FROM Deudas;";
         database.execSQL(queryDelete);
     }

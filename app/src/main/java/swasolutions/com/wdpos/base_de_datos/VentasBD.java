@@ -30,7 +30,7 @@ public class VentasBD extends SQLiteOpenHelper{
 
     //,`credito` INTEGER NOT NULL
 
-    public VentasBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
+    public VentasBD(Context context, SQLiteDatabase.CursorFactory factory, int version)
     {
         super(context, "VentasBD", factory, version);
     }

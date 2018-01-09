@@ -30,7 +30,6 @@ public class Productos {
     private Context context;
     private ArrayList<Producto> list= new ArrayList<>();
     private String URLProductos;
-    private String link;
     int warehouseId;
 
     private ProductosBD bdProductos;
@@ -42,11 +41,10 @@ public class Productos {
     public Productos(Context context,String link,int warehouseId){
 
         this.context=context;
-        this.link=link;
         this.warehouseId=warehouseId;
 
         URLProductos= link+"/app_movil/vendedor/productos.php";
-        bdProductos= new ProductosBD(context,"BDMessages",null,1);
+        bdProductos= new ProductosBD(context,null,1);
     }
 
     /**

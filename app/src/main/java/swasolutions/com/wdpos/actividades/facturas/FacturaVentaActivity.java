@@ -30,8 +30,6 @@ import com.zj.btsdk.BluetoothService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import swasolutions.com.wdpos.R;
@@ -48,17 +46,10 @@ import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.impresion.DeviceListActivity;
-import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 import swasolutions.com.wdpos.vo.clases_objeto.ProductoCarrito;
 
 public class FacturaVentaActivity extends AppCompatActivity{
 
-    /**
-     * Usado para la impresion de la factura
-     */
-    private static final int MI_PERMISO_NETWORK = 1 ;
-    private static final int MI_PERMISO_LEER = 2;
-    private static final int MI_PERMISO_ESCRIBIR = 3;
 
     /**
      * Productos de la factura
@@ -235,12 +226,12 @@ public class FacturaVentaActivity extends AppCompatActivity{
          * Inicializacion de las variables de base de datos.
          */
         bdFactura= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
-        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
-        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
-        bdDeudas= new DeudasBD(getApplicationContext(),"DeudasBD",null,1);
+        bdVentas= new VentasBD(getApplicationContext(),null,1);
+        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
+        bdDeudas= new DeudasBD(getApplicationContext(),null,1);
         bdClientes= new ClientesBD(getApplicationContext(),"ClientesBD",null,1);
         bdClientesCompletos= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);
-        bdProductos= new ProductosBD(getApplicationContext(),"ProductosBD",null,1);
+        bdProductos= new ProductosBD(getApplicationContext(),null,1);
         bdCredito= new CreditoBD(context,null,null,1);
 
         //---------------
@@ -259,7 +250,6 @@ public class FacturaVentaActivity extends AppCompatActivity{
         txtDireccion.setText(ConfiguracionActivity.getDireccionTienda(FacturaVentaActivity.this));
         txtTelefono.setText(ConfiguracionActivity.getTelefonoTienda(FacturaVentaActivity.this));
 
-        Calendar ca = new GregorianCalendar();  // This creates a Calendar instance with the current time
         String date = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
         String id= date+ "/"+ NOMBRE;
@@ -391,7 +381,6 @@ public class FacturaVentaActivity extends AppCompatActivity{
             else if (v == btnSend) {
 
                 if(!bdVentas.existeRegistro(txtIdVenta.getText().toString())){
-                    ArrayList<Cliente> clientes= bdClientes.cargarClientes();
 
                     //for(int j=1;j<clientes.size();j++){
 

@@ -30,7 +30,6 @@ public class Clientes {
     private Context context;
     private ArrayList<Cliente> list= new ArrayList<>();
     private String URLClientes;
-    private String link;
 
     private ClientesBD bdClientes;
 
@@ -41,7 +40,6 @@ public class Clientes {
     public Clientes(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLClientes= link+"/app_movil/cliente/clientes.php";
         bdClientes= new ClientesBD(context,"BDMessages",null,1);

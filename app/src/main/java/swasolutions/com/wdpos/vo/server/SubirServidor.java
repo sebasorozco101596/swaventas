@@ -66,7 +66,6 @@ public class SubirServidor implements Runnable {
     private JsonObjectRequest requestDevoluciones;
     private StringRequest requestGastos;
     private RequestQueue requestQueue;
-    private String link;
     private String id;
     private int warehouse_id;
 
@@ -87,7 +86,6 @@ public class SubirServidor implements Runnable {
         this.devoluciones=devoluciones;
         this.context= context;
         this.tipo=tipo;
-        this.link=link;
         this.id=id;
         this.clientes=clientes;
         this.warehouse_id=warehouse_id;
@@ -103,10 +101,10 @@ public class SubirServidor implements Runnable {
 
         bdGastos= new GastosBD(context,"GastosBD",null,1);
         bdAbonos= new AbonosBD(context,null,1);
-        bdVentas= new VentasBD(context,"VentasBD",null,1);
-        bdProductos= new ProductosBD(context,null,null,1);
+        bdVentas= new VentasBD(context,null,1);
+        bdProductos= new ProductosBD(context,null,1);
         bdDevoluciones= new DevolucionesBD(context,null,null,1);
-        bdProductosVenta= new ProductosVentaBD(context,"ProductosVentaBD",null,1);
+        bdProductosVenta= new ProductosVentaBD(context,null,1);
 
 
         requestQueue= MySingleton.getInstance(context).

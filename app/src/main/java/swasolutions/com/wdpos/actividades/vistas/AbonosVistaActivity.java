@@ -56,7 +56,7 @@ public class AbonosVistaActivity extends AppCompatActivity {
         recyclerViewAbonos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new AbonosVistaAdapter(abonos,this);
+        adapter = new AbonosVistaAdapter(abonos);
         recyclerViewAbonos.setAdapter(adapter);
     }
 }

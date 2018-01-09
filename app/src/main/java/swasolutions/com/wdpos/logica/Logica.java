@@ -151,7 +151,7 @@ public class Logica {
 
                         GastosBD bdGastos= new GastosBD(context,"GastosBD",null,1);
                         AbonosBD bdAbonos= new AbonosBD(context,null,1);
-                        VentasBD bdVentas= new VentasBD(context,"VentasBD",null,1);
+                        VentasBD bdVentas= new VentasBD(context,null,1);
 
                         int cantidadProductos= bdVentas.cantidadProductos();
                         int totalVentas= bdVentas.totalVentas();

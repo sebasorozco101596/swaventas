@@ -42,9 +42,9 @@ public class VentasVistaAdapter extends  RecyclerView.Adapter<VentasVistaAdapter
         this.ventas=ventas;
         this.context=context;
 
-        bdVentas= new VentasBD(context,"VentasBD",null,1);
-        bdProductosVenta= new ProductosVentaBD(context,"ProductosVentaBD",null,1);
-        bdProductos= new ProductosBD(context,"ProductosBD",null,1);
+        bdVentas= new VentasBD(context,null,1);
+        bdProductosVenta= new ProductosVentaBD(context,null,1);
+        bdProductos= new ProductosBD(context,null,1);
 
 
     }

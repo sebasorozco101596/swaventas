@@ -31,8 +31,6 @@ public class CarritoActivity extends AppCompatActivity {
     private ArrayList<ProductoCarrito> productosCarrito;
 
     private RecyclerView recyclerView;
-    private ProductosCarritoAdapter adapter;
-
     private CarritoBD bdCarrito;
 
     private String NICKNAME;
@@ -76,7 +74,8 @@ public class CarritoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ProductosCarritoAdapter(productosCarrito,this,total, LoginActivity.getUserType(this));
+        ProductosCarritoAdapter adapter = new ProductosCarritoAdapter(productosCarrito,
+                this, LoginActivity.getUserType(this));
         recyclerView.setAdapter(adapter);
 
 

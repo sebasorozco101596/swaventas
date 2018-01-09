@@ -101,14 +101,14 @@ public class ClientesNuevosVistaAdapter extends  RecyclerView.Adapter<ClientesNu
 
     static class ClientesViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView nombre;
-        TextView compania;
-        TextView direccion;
-        TextView telefono;
-        TextView optionMenu;
+        private TextView id;
+        private TextView nombre;
+        private TextView compania;
+        private TextView direccion;
+        private TextView telefono;
+        private TextView optionMenu;
 
         public ClientesViewHolder(View itemView) {
             super(itemView);

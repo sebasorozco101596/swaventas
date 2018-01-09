@@ -62,7 +62,7 @@ public class PedidosActivity extends AppCompatActivity {
         /*
         Se instancian las bases de datos a usar
          */
-        bdPedidos= new PedidosBD(getApplicationContext(),"PedidosBD",null,1);
+        bdPedidos= new PedidosBD(getApplicationContext(),null,1);
         sqLiteDatabase= bdPedidos.getWritableDatabase();
 
 

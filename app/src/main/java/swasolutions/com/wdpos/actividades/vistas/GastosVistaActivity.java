@@ -56,7 +56,7 @@ public class GastosVistaActivity extends AppCompatActivity {
         recyclerViewGastos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new GastosVistaAdapter(gastos,this);
+        adapter = new GastosVistaAdapter(gastos);
         recyclerViewGastos.setAdapter(adapter);
 
 

@@ -19,7 +19,7 @@ public class PedidosBD extends SQLiteOpenHelper {
     private String queryCreate= "CREATE TABLE Pedidos ( `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
             " `pedido` TEXT NOT NULL, `cliente` TEXT NOT NULL)";
 
-    public PedidosBD(Context context, String name, SQLiteDatabase.CursorFactory factory,
+    public PedidosBD(Context context, SQLiteDatabase.CursorFactory factory,
                      int version) {
         super(context, "PedidosBD", factory, version);
     }

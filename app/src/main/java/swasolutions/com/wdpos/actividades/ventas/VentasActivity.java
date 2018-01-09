@@ -53,7 +53,7 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
 
         productos = new ArrayList<>();
 
-        bdProductos = new ProductosBD(getApplicationContext(), "ProductosBD", null, 1);
+        bdProductos = new ProductosBD(getApplicationContext(), null, 1);
         bdCarrito = new CarritoBD(getApplicationContext(), "CarritoBD0", null, 1);
         bdDevoluciones = new DevolucionesBD(getApplicationContext(), "DevolucionesBD", null, 1);
 

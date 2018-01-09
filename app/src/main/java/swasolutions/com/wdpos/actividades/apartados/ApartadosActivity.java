@@ -121,6 +121,9 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
                     break;
+                default:
+                    Toast.makeText(getApplicationContext(),"No presiono nada",Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
 
@@ -155,9 +158,9 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
 
         bdFactura= new CarritoBD(getApplicationContext(),"CarritoBD",null,1);
         bdClientes= new ClientesBD(getApplicationContext(),"ClientesBD",null,1);
-        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
+        bdVentas= new VentasBD(getApplicationContext(),null,1);
         bdCredito= new CreditoBD(context,null,null,1);
-        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
+        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
 
         productos= bdFactura.cargarProductosCarrito();
 

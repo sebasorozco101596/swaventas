@@ -45,8 +45,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class RegistroClienteActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText txtNombre,txtCedula,txtDireccion,txtCiudad,txtEstado,
-    txtPais,txtTelefono;
+    private EditText txtNombre,txtCedula,txtDireccion,txtCiudad,txtEstado,txtPais,txtTelefono;
     private Button btnRegistrar;
     private Spinner spinnerGrupos;
 
@@ -74,9 +73,9 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
     private final int PHOTO_CODE_BACK= 201;
     private final int SELECT_PICTURE = 300;
 
-    String mPath;
+    private String mPath;
 
-    View view;
+    private View view;
 
 
     @Override
@@ -90,8 +89,6 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
 
         view = findViewById(android.R.id.content);
         gruposVendedor= new ArrayList<>();
-
-        float number= 400f;
 
         txtNombre= (EditText) this.findViewById(R.id.txtNombre_registro);
         txtCedula= (EditText) this.findViewById(R.id.txtCedula_registro);
@@ -201,9 +198,9 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(newFile));
-            if(lado=="Adelante")
+            if("Adelante".equals(lado))
             startActivityForResult(intent, PHOTO_CODE);
-            else if(lado=="Atras")
+            else if("Atras".equals(lado))
                 startActivityForResult(intent, PHOTO_CODE_BACK);
         }
     }

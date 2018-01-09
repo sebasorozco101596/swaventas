@@ -29,7 +29,6 @@ public class Warehouses {
     private Context context;
     private ArrayList<Warehouse> list= new ArrayList<>();
     private String URLWarehouses;
-    private String link;
 
     private WarehouseBD bdWarehouse;
 
@@ -40,7 +39,6 @@ public class Warehouses {
     public Warehouses(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLWarehouses= link+"/app_movil/vendedor/cargarWarehouses.php";
         bdWarehouse= new WarehouseBD(context,"WarehouseBD",null,1);

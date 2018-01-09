@@ -1,7 +1,5 @@
 package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
-import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +18,10 @@ import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 public class AbonosVistaAdapter extends RecyclerView.Adapter<AbonosVistaAdapter.AbonosVistaViewHolder>{
 
     private List<Abono> abonos;
-    private Context context;
 
 
-    public AbonosVistaAdapter(List<Abono> abonos, Context context) {
+    public AbonosVistaAdapter(List<Abono> abonos) {
         this.abonos = abonos;
-        this.context = context;
     }
 
     @Override
@@ -51,19 +47,15 @@ public class AbonosVistaAdapter extends RecyclerView.Adapter<AbonosVistaAdapter.
     }
 
     static class AbonosVistaViewHolder extends RecyclerView.ViewHolder{
-
-
-        CardView cardView;
-
-        TextView idVenta;
-        TextView estado;
-        TextView pago;
-        TextView fecha;
+        
+        private TextView idVenta;
+        private TextView estado;
+        private TextView pago;
+        private TextView fecha;
 
         public AbonosVistaViewHolder(View itemView) {
             super(itemView);
 
-            cardView= (CardView) itemView.findViewById(R.id.cardViewVistaAbonos);
             idVenta= (TextView) itemView.findViewById(R.id.txtIdVenta_CardViewAbonos);
             estado= (TextView) itemView.findViewById(R.id.txtEstado_CardViewAbonos);
             pago= (TextView) itemView.findViewById(R.id.txtPago_CardViewAbonos);

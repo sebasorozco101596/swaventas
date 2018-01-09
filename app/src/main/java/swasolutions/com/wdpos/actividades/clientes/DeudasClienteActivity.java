@@ -52,7 +52,7 @@ public class DeudasClienteActivity extends AppCompatActivity {
             IDVENDEDOR= bundle.getString("key_idVendedor");
         }
 
-        bdDeudas= new DeudasBD(getApplicationContext(),"DeudasBD",null,1);
+        bdDeudas= new DeudasBD(getApplicationContext(),null,1);
         sqLiteDatabase= bdDeudas.getWritableDatabase();
 
         Log.d("iddddddddddddddd",""+ CEDULA_CLIENTE);

@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores.adaptadoresvistas;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,16 +19,13 @@ import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
 public class ProductosVentaVistaAdapter  extends  RecyclerView.Adapter<ProductosVentaVistaAdapter.ProductosVentaVistaViewHolder> {
 
     private List<ProductoVenta> productos;
-    private Context context;
-
 
     /**
      * Builder class
      * @param productos
      */
-    public ProductosVentaVistaAdapter(List<ProductoVenta> productos, Context context) {
+    public ProductosVentaVistaAdapter(List<ProductoVenta> productos) {
         this.productos = productos;
-        this.context = context;
     }
 
 

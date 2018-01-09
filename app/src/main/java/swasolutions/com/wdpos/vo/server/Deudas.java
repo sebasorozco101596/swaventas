@@ -44,7 +44,7 @@ public class Deudas {
         this.link=link;
 
         URLDeudas= link+"/app_movil/cliente/cargarDeudas.php";
-        bdDeudas= new DeudasBD(context,"BDMessages",null,1);
+        bdDeudas= new DeudasBD(context,null,1);
     }
 
     /**

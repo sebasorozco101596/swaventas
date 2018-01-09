@@ -52,7 +52,7 @@ public class ProductosVistaActivity extends AppCompatActivity {
         }
 
 
-        bdProductos= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
+        bdProductos= new ProductosVentaBD(getApplicationContext(),null,1);
 
         productoVentas= bdProductos.productosVenta(IDVENTA);
 
@@ -73,7 +73,7 @@ public class ProductosVistaActivity extends AppCompatActivity {
         recyclerViewProductos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ProductosVentaVistaAdapter(productoVentas,this);
+        adapter = new ProductosVentaVistaAdapter(productoVentas);
         recyclerViewProductos.setAdapter(adapter);
 
     }

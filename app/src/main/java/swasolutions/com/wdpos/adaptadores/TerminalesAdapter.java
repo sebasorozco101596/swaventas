@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,16 +19,14 @@ import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 public class TerminalesAdapter extends  RecyclerView.Adapter<TerminalesAdapter.TerminalesVistaViewHolder> {
 
     private List<Producto> productos;
-    private Context context;
 
 
     /**
      * Builder class
      * @param productos
      */
-    public TerminalesAdapter(List<Producto> productos, Context context) {
+    public TerminalesAdapter(List<Producto> productos) {
         this.productos = productos;
-        this.context = context;
     }
 
 

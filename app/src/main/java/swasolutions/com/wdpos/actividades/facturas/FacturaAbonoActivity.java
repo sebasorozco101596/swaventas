@@ -53,7 +53,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
     private int ID;
     private String IDCLIENTE;
     private int PAGADOTOTAL;
-    private int contador;
 
     private String IDVENDEDOR;
     private String NICKNAME;
@@ -136,7 +135,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_factura_abono);
 
-        contador=1;
 
         context = this;
 
@@ -187,8 +185,8 @@ public class FacturaAbonoActivity extends AppCompatActivity {
 
 
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
-        bdDeudas=new DeudasBD(getApplicationContext(),"DeudasBD",null,1);
-        bdVentas=new VentasBD(getApplicationContext(),"VentasBD",null,1);
+        bdDeudas=new DeudasBD(getApplicationContext(),null,1);
+        bdVentas=new VentasBD(getApplicationContext(),null,1);
         bdCredito= new CreditoBD(context,null,null,1);
         bdClientes= new ClientesBD(context,null,null,1);
 
@@ -278,12 +276,12 @@ public class FacturaAbonoActivity extends AppCompatActivity {
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            if (v == btnSearch) {
+            if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 //btnSend.setEnabled(true);
                 //btnSendCopia.setEnabled(true);
-            } else if (v == btnSend) {
+            } else if (v.equals(btnSend)) {
 
                 btnSend.setEnabled(false);
 
@@ -320,7 +318,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                                 idVendedor, fecha, referencia, pagado,IDCLIENTE,CREDITO,context);
                         bdDeudas.actualizarDeuda(ID, pagado);
                     }
-                    contador=5;
 
                     header += centrarCadena(txtTitulo.getText().toString().toUpperCase())+ BREAK;
                     header += alinearLineas(txtDireccion.getText().toString()) + BREAK;
@@ -374,7 +371,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
 
 
 
-            }else if(v== btnVolver){
+            }else if(v.equals(btnVolver)){
 
                 {
 
@@ -419,7 +416,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                 }
 
 
-            }else if(v == btnSendCopia){
+            }else if(v.equals(btnSendCopia)){
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(FacturaAbonoActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);

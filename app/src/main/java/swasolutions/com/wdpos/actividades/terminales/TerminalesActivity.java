@@ -101,6 +101,9 @@ public class TerminalesActivity extends AppCompatActivity {
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
                     break;
+                default:
+                    Log.d(TAG, "handleMessage: no entro");
+                    break;
             }
         }
 
@@ -139,7 +142,7 @@ public class TerminalesActivity extends AppCompatActivity {
 
         fecha = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
-        ProductosBD bdProductos= new ProductosBD(getApplicationContext(),"ProductosBD",null,1);
+        ProductosBD bdProductos= new ProductosBD(getApplicationContext(),null,1);
         WarehouseBD bdWarehouses = new WarehouseBD(getApplicationContext(), "WarehousesBD", null, 1);
 
         productos= bdProductos.fillMessages();
@@ -158,7 +161,7 @@ public class TerminalesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new TerminalesAdapter(productos,this);
+        adapter = new TerminalesAdapter(productos);
         recyclerView.setAdapter(adapter);
 
         toolbarFiltrado.setNavigationOnClickListener(new View.OnClickListener() {

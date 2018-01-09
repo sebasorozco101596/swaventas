@@ -23,7 +23,7 @@ public class ProductosVentaBD extends SQLiteOpenHelper {
             "`codigoProducto` TEXT NOT NULL, `nombreProducto` TEXT NOT NULL," +
             " `precioUnidad` INTEGER NOT NULL, `cantidad` INTEGER NOT NULL, `idVendedor` INTEGER NOT NULL )";
 
-    public ProductosVentaBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public ProductosVentaBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "ProductosVentaBD", factory, version);
     }
 
@@ -56,7 +56,6 @@ public class ProductosVentaBD extends SQLiteOpenHelper {
     public int cantidadProductosVentas(){
 
         //List where all messages will be saved
-        ArrayList<ProductoVenta> lista= new ArrayList<>();
         SQLiteDatabase database= this.getWritableDatabase();
 
 

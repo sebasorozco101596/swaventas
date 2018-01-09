@@ -114,8 +114,8 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         ArrayList<String> stringCategorias= new ArrayList<>();
         stringUnidades= new ArrayList<>();
         stringTipos= new ArrayList<>();
-        bdCategorias= new CategoriasBD(getApplicationContext(),"CategoriasBD",null,1);
-        bdProductos= new ProductosBD(getApplicationContext(),null,null,1);
+        bdCategorias= new CategoriasBD(getApplicationContext(),null,1);
+        bdProductos= new ProductosBD(getApplicationContext(),null,1);
         bdUnidades= new UnidadesBD(getApplicationContext(),"UnidadesBD",null,1);
 
         categorias= bdCategorias.categorias();

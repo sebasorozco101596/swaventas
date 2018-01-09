@@ -2,7 +2,6 @@ package swasolutions.com.wdpos.actividades.devoluciones;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,11 +33,9 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<Devolucion> productosDevolucion;
 
     private RecyclerView recyclerView;
-    private ProductosDevolucionAdapter adapter;
 
     public static CreditoBD bdCredito;
     public static DevolucionesBD bdDevoluciones;
-    public static SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,7 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ProductosDevolucionAdapter(productosDevolucion,this);
+        ProductosDevolucionAdapter adapter = new ProductosDevolucionAdapter(productosDevolucion,this);
         recyclerView.setAdapter(adapter);
 
 

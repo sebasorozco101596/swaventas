@@ -33,7 +33,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
      * Builder class
      * @param productos
      */
-    public ProductosCarritoAdapter(List<ProductoCarrito> productos,Context context,int total,String tipo){
+    public ProductosCarritoAdapter(List<ProductoCarrito> productos,Context context,String tipo){
 
         this.productos=productos;
         this.context=context;

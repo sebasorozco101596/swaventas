@@ -20,7 +20,7 @@ public class ProductosBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `nombre` TEXT NOT NULL" +
             ", `precio` INTEGER NOT NULL, `codigoProducto` TEXT NOT NULL, `cantidad` INTEGER NOT NULL )";
 
-    public ProductosBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public ProductosBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "ProductosBD", factory, version);
     }
 

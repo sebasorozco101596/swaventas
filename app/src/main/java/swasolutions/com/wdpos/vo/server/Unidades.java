@@ -30,7 +30,6 @@ public class Unidades {
     private Context context;
     private ArrayList<Unidad> list= new ArrayList<>();
     private String URLUnidades;
-    private String link;
 
     private UnidadesBD bdUnidades;
 
@@ -41,7 +40,6 @@ public class Unidades {
     public Unidades(Context context,String link){
 
         this.context=context;
-        this.link=link;
 
         URLUnidades= link+"/app_movil/vendedor/cargarUnidades.php";
         bdUnidades= new UnidadesBD(context,"UnidadesBD",null,1);

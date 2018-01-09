@@ -160,7 +160,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                 if(logica.verificarConexion(PanelActivity.this)) {
 
 
-                    bdProductos = new ProductosBD(getApplicationContext(), "BDMessages", null, 1);
+                    bdProductos = new ProductosBD(getApplicationContext(), null, 1);
                     bdProductos.eliminarTodosProductos();
 
 
@@ -202,7 +202,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
             case R.id.accion_actualizarDeudasCliente:
 
                 if(logica.verificarConexion(PanelActivity.this)) {
-                    bdDeudas = new DeudasBD(getApplicationContext(), "BDDeudas", null, 1);
+                    bdDeudas = new DeudasBD(getApplicationContext(), null, 1);
                     bdDeudas.eliminarTodasLasDeudas();
 
                     Deudas deudas = new Deudas(getApplicationContext(), link);
@@ -353,6 +353,5 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(),"No presiono nada",Toast.LENGTH_SHORT).show();
                 break;
         }
-
     }
 }

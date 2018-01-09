@@ -26,6 +26,7 @@ import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
 import swasolutions.com.wdpos.base_de_datos.PedidosBD;
 import swasolutions.com.wdpos.impresion.DeviceListActivity;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Pedido;
 
 import static android.os.Build.ID;
@@ -43,10 +44,11 @@ public class PanelPedidoActivity extends AppCompatActivity {
     private Button btnSearch;
     private Button btnSend;
     private Button btnVolver;
-    private  Button btnAgregarPedido;
+    private Button btnAgregarPedido;
     private BluetoothService mService = null;
     private BluetoothDevice con_dev = null;
     private Context context;
+    private Logica logica;
 
     private  String msg = "";
     private  String header= "";
@@ -103,6 +105,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_panel_pedido);
 
         context = this;
+        logica= new Logica();
         mService = new BluetoothService(this, mHandler);
 
         if (!mService.isAvailable()) {
@@ -113,7 +116,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
         /*
         Se instancian las bases de datos a usar
          */
-        bdPedidos= new PedidosBD(getApplicationContext(),"PedidosBD",null,1);
+        bdPedidos= new PedidosBD(getApplicationContext(),null,1);
         sqLiteDatabase= bdPedidos.getWritableDatabase();
 
         pedidos= bdPedidos.pedidos();
@@ -175,7 +178,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
 
                 String date = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
-                header += centrarCadena("Pedidos")+ BREAK;
+                header += logica.centrarCadena("Pedidos")+ BREAK;
                 header += "Fecha:"+ date + BREAK;
                 header += DIVIDER_DOUBLE;
 
@@ -260,62 +263,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
             }
         }
     }
-
-    private String centrarCadena(String cadena) {
-
-
-        String espaciosInicio="";
-        String espaciosFinal="";
-        String cadenaFinal="";
-
-        if(cadena.length()<32){
-
-            int falta= ((((cadena.length()-32)*(-1))/2)-1);
-            for(int i=0;i<falta;i++){
-                espaciosInicio+=" ";
-                espaciosFinal+=" ";
-            }
-            cadenaFinal=espaciosInicio+cadena+espaciosFinal;
-
-        }else{
-            cadenaFinal=cadena;
-        }
-
-        return cadenaFinal;
-
-    }
-
-    private String alinearLineas(String cadena){
-
-        String nombre= cadena;
-        String linea1= nombre;
-        String linea2="";
-        String resultado="";
-
-        if(cadena.length()>32){
-
-
-
-            for(int j=32;j>1;j--){
-
-                if(linea1.charAt(j)==' '){
-                    linea1= nombre.substring(0,j);
-                    linea2= nombre.substring(j,nombre.length());
-                    break;
-                }
-            }
-            resultado= centrarCadena(linea1)+BREAK+centrarCadena(linea2);
-
-            return resultado;
-
-        }else{
-
-            resultado= centrarCadena(cadena);
-
-            return resultado;
-
-        }
-    }
+    
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -334,6 +282,9 @@ public class PanelPedidoActivity extends AppCompatActivity {
                     con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
+                break;
+            default:
+                Log.d(TAG, "onActivityResult: impresion");
                 break;
         }
     }

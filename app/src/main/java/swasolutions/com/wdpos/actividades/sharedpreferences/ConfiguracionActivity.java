@@ -31,7 +31,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
 
     private EditText txtLinkHosting,txtPing;
     private EditText txtNombreTienda,txtDireccionTienda,txtTelefonoTienda;
-    private Button btnAgregarHosting,btnAgregarDatosTienda,btnVolver,btnAgregarHosting2;
+    private Button btnAgregarHosting,btnVolver,btnAgregarHosting2;
     private Spinner spinnerWarehouses;
     private ArrayList<String> Stringwarehouses;
     private ArrayList<Warehouse> warehouses;
@@ -89,7 +89,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         txtNombreTienda= (EditText) findViewById(R.id.txtNombreTienda);
         txtDireccionTienda= (EditText) findViewById(R.id.txtDireccionTienda);
         txtTelefonoTienda= (EditText) findViewById(R.id.txtTelefonoTienda);
-        btnAgregarDatosTienda= (Button) findViewById(R.id.btnGuardarDatosTienda);
+        Button btnAgregarDatosTienda= (Button) findViewById(R.id.btnGuardarDatosTienda);
         txtPing = (EditText) findViewById(R.id.txtPing_Configuracion);
         btnAgregarDatosTienda.setOnClickListener(this);
 
@@ -151,7 +151,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
         bdGruposVendedor.eliminarGruposVendedor();
 
-        CategoriasBD bdCategorias= new CategoriasBD(getApplicationContext(),"CategoriasBD",null,1);
+        CategoriasBD bdCategorias= new CategoriasBD(getApplicationContext(),null,1);
         bdCategorias.eliminarCategorias();
 
         bdUnidades= new UnidadesBD(getApplicationContext(),"UnidadesBD",null,1);

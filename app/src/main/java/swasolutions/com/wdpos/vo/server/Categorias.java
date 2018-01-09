@@ -43,7 +43,7 @@ public class Categorias {
         this.link=link;
 
         URLCategorias= link+"/app_movil/vendedor/cargarCategorias.php";
-        bdCategorias= new CategoriasBD(context,"CategoriasBD",null,1);
+        bdCategorias= new CategoriasBD(context,null,1);
     }
 
     /**

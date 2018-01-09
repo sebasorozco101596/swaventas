@@ -26,7 +26,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,7 +92,7 @@ public class CierreCajaActivity extends AppCompatActivity {
      * Datos necesarios para la impresion
      */
 
-    static final String TAG = "CierreCajaActivity";
+    private static final String TAG = "CierreCajaActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private String URLClientes;
@@ -410,8 +409,8 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         bdGastos= new GastosBD(getApplicationContext(),"GastosBD",null,1);
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
-        bdVentas= new VentasBD(getApplicationContext(),"VentasBD",null,1);
-        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),"ProductosVentaBD",null,1);
+        bdVentas= new VentasBD(getApplicationContext(),null,1);
+        bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
         bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),"GruposVendedorBD",null,1);
         bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),"ClientesCompletoBD",null,1);
         bdDevoluciones= new DevolucionesBD(getApplicationContext(),null,null,1);
@@ -512,7 +511,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            if (v == btnSearch) {
+            if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 
@@ -530,7 +529,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 ventasCompleto= encontrarVentas(ventas,productosVentas);
 
 
-            }else if(v==btnSubirClientes){
+            }else if(v.equals(btnSubirClientes)){
 
                 URLClientes = link + "/app_movil/vendedor/registrarClienteTest.php";
                 //Log.d("registroCliente", "" + clientes.size());
@@ -629,7 +628,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 }
 
 
-            }else if(v== btnEliminarCliRepetidos){
+            }else if(v.equals(btnEliminarCliRepetidos)){
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
@@ -649,7 +648,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
 
 
-            }else if(v== btnVolver){
+            }else if(v.equals(btnVolver)){
 
                 {
 
@@ -694,12 +693,11 @@ public class CierreCajaActivity extends AppCompatActivity {
 
             }
 
-            else if (v == btnSend) {
+            else if (v.equals(btnSend)) {
                 if(contador==0){
 
                     AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
                     View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
-                    final ProgressBar progressBar= (ProgressBar) mView.findViewById(R.id.progressBar_carga);
                     builder.setView(mView);
                     final AlertDialog alertDialog= builder.create();
                     alertDialog.setCancelable(false);
@@ -829,7 +827,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Ya imprimio una vez la factura",Toast.LENGTH_SHORT).show();
 
                 }
-            }else if(v == btnImprimirDetallado){
+            }else if(v.equals(btnImprimirDetallado)){
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
@@ -1188,11 +1186,6 @@ public class CierreCajaActivity extends AppCompatActivity {
         }
     }
     private class EjAsincTask extends AsyncTask<Void,Integer,Boolean> {
-
-
-        public EjAsincTask() {
-            super();
-        }
 
 
         @Override

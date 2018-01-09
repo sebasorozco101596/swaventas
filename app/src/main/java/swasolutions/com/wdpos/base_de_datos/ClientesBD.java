@@ -134,7 +134,6 @@ public class ClientesBD extends SQLiteOpenHelper {
 
         String sql= "SELECT id FROM Clientes where cedula='"+cedulacliente+"';";
 
-        Cursor cursor= getReadableDatabase().rawQuery(sql,null);
         SQLiteDatabase database= this.getWritableDatabase();
 
         Cursor register= database.rawQuery(sql,null);

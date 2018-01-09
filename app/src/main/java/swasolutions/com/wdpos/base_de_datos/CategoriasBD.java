@@ -19,7 +19,7 @@ public class CategoriasBD extends SQLiteOpenHelper {
             "( `id` INTEGER NOT NULL PRIMARY KEY, `code` TEXT NOT NULL" +
             ", `name` TEXT NOT NULL)";
 
-    public CategoriasBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public CategoriasBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "CategoriasBD", factory, version);
     }
 
