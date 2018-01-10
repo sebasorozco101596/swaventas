@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.actividades.paneles;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -46,7 +47,6 @@ public class PanelPedidoActivity extends AppCompatActivity {
     private Button btnVolver;
     private Button btnAgregarPedido;
     private BluetoothService mService = null;
-    private BluetoothDevice con_dev = null;
     private Context context;
     private Logica logica;
 
@@ -64,6 +64,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
     public static SQLiteDatabase sqLiteDatabase;
 
 
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -82,6 +83,9 @@ public class PanelPedidoActivity extends AppCompatActivity {
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: panel pedido");
+                            break;
 
                     }
                     break;
@@ -93,6 +97,9 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 case BluetoothService.MESSAGE_UNABLE_CONNECT:
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    Log.d(TAG, "handleMessage: panel pedido");
                     break;
             }
         }
@@ -170,11 +177,11 @@ public class PanelPedidoActivity extends AppCompatActivity {
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            if (v == btnSearch) {
+            if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 //btnSend.setEnabled(true);
-            } else if (v == btnSend) {
+            } else if (v.equals(btnSend)) {
 
                 String date = (DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()).toString());
 
@@ -208,7 +215,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 Log.d("ImpresionPedidos",header+ "\n"+msg);
 
                 bdPedidos.eliminarPedidos();
-            }else if(v== btnVolver) {
+            }else if(v.equals(btnVolver)) {
 
                 {
 
@@ -253,7 +260,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 }
 
 
-            }else if(v== btnAgregarPedido){
+            }else if(v.equals(btnAgregarPedido)){
 
                 Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
                 intent.putExtra("key_tipo","pedido");
@@ -279,7 +286,7 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    con_dev = mService.getDevByMac(address);
+                    BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
                 break;

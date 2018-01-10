@@ -432,8 +432,8 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(FacturaAbonoActivity.this))){
+                        if(Integer.parseInt(txtContrasenia.getText().toString()) !=
+                                ConfiguracionActivity.getPreferenciaPing(FacturaAbonoActivity.this)){
                             txtContrasenia.setError("Ping incorrecto");
                         } else {
 
@@ -568,6 +568,9 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                     BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
+                break;
+            default:
+                Log.d(TAG, "onActivityResult: factura abono");
                 break;
         }
     }

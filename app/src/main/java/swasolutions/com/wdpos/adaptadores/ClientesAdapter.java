@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.apartados.ApartadosActivity;
@@ -31,6 +30,7 @@ import swasolutions.com.wdpos.actividades.facturas.FacturaVentaActivity;
 import swasolutions.com.wdpos.actividades.pedidos.PedidosActivity;
 import swasolutions.com.wdpos.actividades.ventas.VentasActivity;
 import swasolutions.com.wdpos.base_de_datos.CreditoBD;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 /**
@@ -45,10 +45,10 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
     private int TOTAL;
     private String NICKNAME;
     private String IDVENDEDOR;
+    private Logica logica;
 
-
-    public static CreditoBD bdCredito;
-    public boolean isActivatedRadioButton;
+    private CreditoBD bdCredito;
+    private boolean isActivatedRadioButton;
 
 
     /**
@@ -65,6 +65,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
         this.NICKNAME=nickname;
         this.IDVENDEDOR =id;
 
+        logica= new Logica();
         bdCredito= new CreditoBD(context,null,1);
 
 
@@ -99,7 +100,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                 Menu menu= popupMenu.getMenu();
                 popupMenu.inflate(R.menu.menucliente);
 
-                if(TIPO.equals("venta")){
+                if("venta".equals(TIPO)){
                     MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
                     menuVenta.setVisible(false);
                     MenuItem menuPedidos= menu.findItem(R.id.accion_pedidos);
@@ -110,7 +111,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
-                }else if(TIPO.equals("pago")){
+                }else if("pago".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
                     MenuItem menuPedidos= menu.findItem(R.id.accion_pedidos);
@@ -121,7 +122,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
-                }else if(TIPO.equals("pedido")){
+                }else if("pedido".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
                     MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
@@ -132,7 +133,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
-                }else if(TIPO.equals("credito")){
+                }else if("credito".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
                     MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
@@ -143,7 +144,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
-                }else if(TIPO.equals("devolucion")){
+                }else if("devolucion".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
                     MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
@@ -154,7 +155,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuCredito.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
-                }else if(TIPO.equals("edicion")){
+                }else if("edicion".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
                     MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
@@ -228,9 +229,9 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                                         public void onClick(View v) {
                                             int pagar=0;
 
-                                            if(soloNumeros(txtPago.getText().toString())){
+                                            if(logica.soloNumeros(txtPago.getText().toString())){
                                                 pagar= Integer.parseInt(txtPago.getText().toString());
-                                            }else if(!soloNumeros(txtPago.getText().toString())){
+                                            }else if(!logica.soloNumeros(txtPago.getText().toString())){
                                                 txtPago.setError("Solo se admiten numeros");
                                                 return;
                                             }
@@ -401,14 +402,6 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
 
     }
 
-    private boolean soloNumeros(String name) {
-        Pattern patron = Pattern.compile("^[0-9]+$");
-        if (!patron.matcher(name).matches() || name.length() > 25) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public int getItemCount() {
         return clientes.size();
@@ -427,7 +420,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
         private TextView telefono;
         private TextView optionMenu;
 
-        public ClientesViewHolder(View itemView) {
+        private ClientesViewHolder(View itemView) {
             super(itemView);
 
             cardView= (CardView) itemView.findViewById(R.id.cardViewClientes);

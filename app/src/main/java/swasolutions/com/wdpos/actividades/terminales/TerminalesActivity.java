@@ -306,6 +306,9 @@ public class TerminalesActivity extends AppCompatActivity {
                     mService.connect(con_dev);
                 }
                 break;
+            default:
+                Log.d(TAG, "onActivityResult: terminales activity");
+                break;
         }
     }
 }

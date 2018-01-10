@@ -73,15 +73,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
     private final int PHOTO_CODE = 200;
 
 
-    private ArrayList<Categoria> categorias;
     private CategoriasBD bdCategorias;
     private ProductosBD bdProductos;
 
-    private ArrayList<Unidad> unidades;
-    private ArrayList<String> stringUnidades;
     private UnidadesBD bdUnidades;
 
-    private ArrayList<String> stringTipos;
 
     private  String mPath;
 
@@ -96,10 +92,8 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
     private Spinner spinnerCategoria;
     private EditText txtCosto;
     private EditText txtPrecio;
-    private Button btnCrearProducto;
 
     private Context context;
-    private StringRequest requestProducto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +103,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        categorias= new ArrayList<>();
-        unidades= new ArrayList<>();
+        ArrayList<Categoria> categorias= new ArrayList<>();
+        ArrayList<Unidad> unidades= new ArrayList<>();
         ArrayList<String> stringCategorias= new ArrayList<>();
-        stringUnidades= new ArrayList<>();
-        stringTipos= new ArrayList<>();
+        ArrayList<String> stringUnidades= new ArrayList<>();
+        ArrayList<String> stringTipos= new ArrayList<>();
         bdCategorias= new CategoriasBD(getApplicationContext(),null,1);
         bdProductos= new ProductosBD(getApplicationContext(),null,1);
         bdUnidades= new UnidadesBD(getApplicationContext(),null,1);
@@ -136,7 +130,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         txtCosto= (EditText) findViewById(R.id.txtCosto_crearProducto);
         txtPrecio= (EditText) findViewById(R.id.txtPrecio_crearProducto);
         imgPerfil= (ImageView) findViewById(R.id.imageProducto_crearProducto);
-        btnCrearProducto= (Button) findViewById(R.id.btnCrearProducto_crearProducto);
+        Button btnCrearProducto= (Button) findViewById(R.id.btnCrearProducto_crearProducto);
         imgPerfil.setOnClickListener(this);
         btnCrearProducto.setOnClickListener(this);
 
@@ -338,7 +332,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                     if(verificarCampos()){
                         final ProgressDialog loading = ProgressDialog.show(this,"Subiendo...",
                                 "Espere por favor...",false,false);
-                        requestProducto = new StringRequest(Request.Method.POST, URL_SUBIR, new Response.Listener<String>() {
+                        StringRequest requestProducto = new StringRequest(Request.Method.POST, URL_SUBIR, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 //Disimissing the progress dialog

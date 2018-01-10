@@ -16,27 +16,17 @@ import swasolutions.com.wdpos.vo.clases_objeto.Venta;
 
 public class VistaVentasActivity extends AppCompatActivity {
 
-
-    private ArrayList<Venta> ventas;
-
-    private RecyclerView recyclerViewVentas;
-    private VentasVistaAdapter adapter;
-
-    private Toolbar toolbarFiltrado;
-
-    private VentasBD bdVentas;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_ventas);
 
 
-        ventas= new ArrayList<>();
+        ArrayList<Venta> ventas= new ArrayList<>();
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaVentas);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaVentas);
 
-        bdVentas= new VentasBD(getApplicationContext(),null,1);
+        VentasBD bdVentas= new VentasBD(getApplicationContext(),null,1);
 
         ventas= bdVentas.ventas();
 
@@ -51,13 +41,13 @@ public class VistaVentasActivity extends AppCompatActivity {
             }
         });
 
-        recyclerViewVentas = (RecyclerView) findViewById(R.id.recyclerViewVentas);
+        RecyclerView recyclerViewVentas = (RecyclerView) findViewById(R.id.recyclerViewVentas);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerViewVentas.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new VentasVistaAdapter(ventas,this);
+        VentasVistaAdapter adapter = new VentasVistaAdapter(ventas,this);
         recyclerViewVentas.setAdapter(adapter);
 
     }

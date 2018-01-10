@@ -408,6 +408,8 @@ public class LoginActivity extends AppCompatActivity {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
 
+                    Log.d("LoginActivity", "onRequestPermissionsResult: existen los permisos");
+
                 } else {
 
                     pedirPermitos();

@@ -16,26 +16,17 @@ import swasolutions.com.wdpos.vo.clases_objeto.ClienteCompleto;
 
 public class ClientesNuevosVistaActivity extends AppCompatActivity {
 
-    private ArrayList<ClienteCompleto> clientes;
-
-    private RecyclerView recyclerView;
-    private ClientesNuevosVistaAdapter adapter;
-
-    private Toolbar toolbarFiltrado;
-
-    private ClientesCompletoBD bdCliente;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes_nuevos_vista);
 
-        clientes= new ArrayList<>();
+        ArrayList<ClienteCompleto> clientes= new ArrayList<>();
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaClientes);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaClientes);
         setSupportActionBar(toolbarFiltrado);
 
-        bdCliente= new ClientesCompletoBD(getApplicationContext(),null,1);
+        ClientesCompletoBD bdCliente= new ClientesCompletoBD(getApplicationContext(),null,1);
 
         clientes= bdCliente.clientesVista();
 
@@ -50,13 +41,13 @@ public class ClientesNuevosVistaActivity extends AppCompatActivity {
         });
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewVistaClientes);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewVistaClientes);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ClientesNuevosVistaAdapter(clientes,this);
+        ClientesNuevosVistaAdapter adapter = new ClientesNuevosVistaAdapter(clientes,this);
         recyclerView.setAdapter(adapter);
 
 

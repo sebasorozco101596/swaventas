@@ -175,15 +175,15 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
 
     static class ProductosViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView nombre;
-        TextView precio;
-        TextView cantidad;
-        TextView optionMenu;
+        private TextView id;
+        private TextView nombre;
+        private  TextView precio;
+        private TextView cantidad;
+        private TextView optionMenu;
 
-        public ProductosViewHolder(View itemView) {
+        private ProductosViewHolder(View itemView) {
             super(itemView);
 
             cardView= (CardView) itemView.findViewById(R.id.cardViewGroups);
