@@ -1,6 +1,5 @@
 package swasolutions.com.wdpos.adaptadores;
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,16 +45,14 @@ public class ProductosDevolucionAdapter extends  RecyclerView.Adapter<ProductosD
 
     static class ProductosDevolucionViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
 
-        TextView codigo;
-        TextView nombre;
-        TextView precio;
+        private TextView codigo;
+        private TextView nombre;
+        private TextView precio;
 
         public ProductosDevolucionViewHolder(View itemView) {
             super(itemView);
 
-            cardView= (CardView) itemView.findViewById(R.id.cardViewDevolucion);
             nombre= (TextView) itemView.findViewById(R.id.txtNombre_CardViewDevolucion);
             precio= (TextView) itemView.findViewById(R.id.txtPrecio_CardViewDevolucion);
             codigo= (TextView) itemView.findViewById(R.id.txtCode_CardViewDevolucion);

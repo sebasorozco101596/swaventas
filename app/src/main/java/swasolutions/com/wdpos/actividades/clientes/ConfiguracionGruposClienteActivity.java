@@ -26,7 +26,6 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
     private GruposVendedorBD bdGruposVendedor;
     public static SQLiteDatabase sqLiteDatabase;
 
-    private Switch aSwitchTodos;
     private Button btnRegistrarGrupo1,btnRegistrarGrupo2,btnRegistrarGrupo3,btnRegistrarGrupo4
             ,btnRegistrarGrupo5, btnRegistrarGrupo6;
     private Spinner spinnerGrupo1,spinnerGrupo2,spinnerGrupo3,spinnerGrupo4,spinnerGrupo5
@@ -55,7 +54,7 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
         btnRegistrarGrupo5= (Button) findViewById(R.id.btnGuardarDatosGrupo5_confGrupo);
         btnRegistrarGrupo6= (Button) findViewById(R.id.btnGuardarDatosGrupo6_confGrupo);
 
-        aSwitchTodos= (Switch) findViewById(R.id.SwitchTodosLosGrupos_confGrupos);
+        Switch aSwitchTodos= (Switch) findViewById(R.id.SwitchTodosLosGrupos_confGrupos);
         aSwitchTodos.setTextOn("SI"); // displayed text of the Switch whenever it is in checked or on state
         aSwitchTodos.setTextOff("NO");
 

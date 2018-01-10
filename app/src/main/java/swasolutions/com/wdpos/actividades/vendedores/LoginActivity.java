@@ -417,6 +417,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 return;
             }
+            default:
+                Log.d("aqui", "onRequestPermissionsResult: entre default");
+                break;
 
             // other 'case' lines to check for other
             // permissions this app might request

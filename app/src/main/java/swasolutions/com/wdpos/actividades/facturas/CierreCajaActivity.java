@@ -248,10 +248,8 @@ public class CierreCajaActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Cierre de caja completo",Toast.LENGTH_SHORT).show();
             }
 
-        }else if(CICLO.equals("2")){
-            if(bdClientesCompleto.clientes().size()>0){
+        }else if("2".equals(CICLO) && bdClientesCompleto.clientes().size()>0){
                 Toast.makeText(getApplicationContext(),"Aun existen clientes",Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
@@ -1298,7 +1296,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean booleana) {
             super.onPostExecute(booleana);
 
-            if(booleana==true){
+            if(booleana){
                 finish();
                 int cantidadProductos= bdVentas.cantidadProductos();
                 int totalVentas= bdVentas.totalVentas();

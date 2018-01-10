@@ -40,14 +40,9 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
 
     private ArrayList<ProductoCarrito> productos;
 
-    private RecyclerView recyclerView;
-    private FacturaAdapter adapter;
 
-    private Button btnSearch;
     private Button btnSend;
-    private Button btnVolver;
     private  BluetoothService mService = null;
-    private BluetoothDevice con_dev = null;
 
     private EditText txtNota;
 
@@ -110,6 +105,9 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: Apartados activity");
+                            break;
                     }
                     break;
                 case BluetoothService.MESSAGE_CONNECTION_LOST:
@@ -147,8 +145,8 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
 
 
         txtNota= (EditText) findViewById(R.id.txtNotaApartado_apartado);
-        btnSearch= (Button) findViewById(R.id.btnSearch_apartados);
-        btnVolver= (Button) findViewById(R.id.btnVolver_apartados);
+        Button btnSearch= (Button) findViewById(R.id.btnSearch_apartados);
+        Button btnVolver= (Button) findViewById(R.id.btnVolver_apartados);
         btnSend= (Button) findViewById(R.id.btnSend_apartados);
         btnSend.setEnabled(false);
 
@@ -164,13 +162,13 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
 
         productos= bdFactura.cargarProductosCarrito();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewApartado);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewApartado);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new FacturaAdapter(productos);
+        FacturaAdapter adapter = new FacturaAdapter(productos);
         recyclerView.setAdapter(adapter);
 
 
@@ -262,7 +260,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                 if (resultCode == Activity.RESULT_OK) {
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    con_dev = mService.getDevByMac(address);
+                    BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
                 break;

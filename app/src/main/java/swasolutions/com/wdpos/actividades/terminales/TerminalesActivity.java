@@ -90,6 +90,9 @@ public class TerminalesActivity extends AppCompatActivity {
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: no entro");
+                            break;
                     }
                     break;
                 case BluetoothService.MESSAGE_CONNECTION_LOST:
@@ -183,13 +186,13 @@ public class TerminalesActivity extends AppCompatActivity {
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            if (v == btnSearch) {
+            if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
                 //btnSend.setEnabled(true);
                 //btnSendCopia.setEnabled(true);
 
-            }else if (v == btnSend) {
+            }else if (v.equals(btnSend)) {
 
                 String titulo= ConfiguracionActivity.getNombreTienda(TerminalesActivity.this);
                 String direccion= ConfiguracionActivity.getDireccionTienda(TerminalesActivity.this);

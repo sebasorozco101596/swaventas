@@ -31,13 +31,10 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
 
     private EditText txtLinkHosting,txtPing;
     private EditText txtNombreTienda,txtDireccionTienda,txtTelefonoTienda;
-    private Button btnAgregarHosting,btnVolver,btnAgregarHosting2;
     private Spinner spinnerWarehouses;
     private ArrayList<String> Stringwarehouses;
-    private ArrayList<Warehouse> warehouses;
 
     private WarehouseBD bdWarehouses;
-    private UnidadesBD bdUnidades;
 
     private static final String STRING_PREFERENCE= "solutions.swa.com.wdpos";
 
@@ -60,13 +57,13 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
 
-        warehouses= new ArrayList<>();
+        ArrayList<Warehouse> warehouses= new ArrayList<>();
         Stringwarehouses = new ArrayList<>();
 
         txtLinkHosting= (EditText) findViewById(R.id.txtLinkHosting);
-        btnAgregarHosting= (Button) findViewById(R.id.btnGuardarDatosHosting);
-        btnVolver= (Button) findViewById(R.id.btnVolver_configuracion);
-        btnAgregarHosting2 = (Button) findViewById(R.id.btnGuardarPinYWare);
+        Button btnAgregarHosting= (Button) findViewById(R.id.btnGuardarDatosHosting);
+        Button btnVolver= (Button) findViewById(R.id.btnVolver_configuracion);
+        Button btnAgregarHosting2 = (Button) findViewById(R.id.btnGuardarPinYWare);
         spinnerWarehouses= (Spinner) findViewById(R.id.warehousesSpinner);
         btnAgregarHosting.setOnClickListener(this);
         btnVolver.setOnClickListener(this);
@@ -154,7 +151,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         CategoriasBD bdCategorias= new CategoriasBD(getApplicationContext(),null,1);
         bdCategorias.eliminarCategorias();
 
-        bdUnidades= new UnidadesBD(getApplicationContext(),null,1);
+        UnidadesBD bdUnidades= new UnidadesBD(getApplicationContext(),null,1);
         bdUnidades.eliminarUnidades();
 
 
@@ -342,7 +339,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
     public static String getPreferenciaHosting2(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_HOSTING2,""));
-        return channel.toString();
+        return channel;
     }
 
     public static int getPreferenciaWarehouseID(Context context){

@@ -61,12 +61,12 @@ public class ProductosVentaVistaAdapter  extends  RecyclerView.Adapter<Productos
 
     static class ProductosVentaVistaViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView nombre;
-        TextView precio;
-        TextView cantidad;
+        private TextView id;
+        private TextView nombre;
+        private TextView precio;
+        private TextView cantidad;
 
         public ProductosVentaVistaViewHolder(View itemView) {
             super(itemView);

@@ -203,15 +203,15 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
     static class ProductosCarritoViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView nombre;
-        EditText precio;
-        TextView cantidad;
-        TextView agregar;
-        TextView quitar;
-        Button btnCambiarPrecio;
+        private TextView id;
+        private TextView nombre;
+        private EditText precio;
+        private TextView cantidad;
+        private TextView agregar;
+        private TextView quitar;
+        private Button btnCambiarPrecio;
 
         public ProductosCarritoViewHolder(View itemView) {
             super(itemView);

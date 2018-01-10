@@ -93,11 +93,7 @@ public class Deudas {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-
-
-
-
+                Log.d("error","error on response");
             }
         });
         bdDeudas.close();

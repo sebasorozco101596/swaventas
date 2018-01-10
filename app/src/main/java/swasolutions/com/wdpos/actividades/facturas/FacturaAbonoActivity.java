@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -43,8 +42,7 @@ import swasolutions.com.wdpos.impresion.DeviceListActivity;
 
 public class FacturaAbonoActivity extends AppCompatActivity {
 
-    private TextView txtNombreCliente,txtNombreVendedor,txtId,txtFecha,txtTotal,txtDeuda,txtPago,
-            txtTotalDeudas;
+    private TextView txtNombreCliente,txtId,txtFecha,txtTotal,txtDeuda,txtPago;
 
     private TextView txtTitulo,txtDireccion,txtTelefono;
 
@@ -70,7 +68,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
     public static VentasBD bdVentas;
     public static CreditoBD bdCredito;
     public static ClientesBD bdClientes;
-    public static SQLiteDatabase sqLiteDatabase;
 
     /**
      * Imprimir factura
@@ -84,7 +81,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
     private Button btnVolver;
     private Button btnSendCopia;
     private BluetoothService mService = null;
-    private BluetoothDevice con_dev = null;
     private Context context;
 
     private String msg = "";
@@ -112,6 +108,9 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: Factura abono");
+                            break;
 
                     }
                     break;
@@ -124,6 +123,9 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                 case BluetoothService.MESSAGE_UNABLE_CONNECT:
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    Log.d(TAG, "handleMessage: Factura abono");
                     break;
             }
         }
@@ -163,7 +165,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         txtTelefono= (TextView) findViewById(R.id.txtTelefono_facturaAbono);
 
         txtNombreCliente= (TextView) findViewById(R.id.txtNombreCliente_FacturaAbono);
-        txtNombreVendedor= (TextView) findViewById(R.id.txtVendedor_facturaAbono);
+        TextView txtNombreVendedor= (TextView) findViewById(R.id.txtVendedor_facturaAbono);
         txtId = (TextView) findViewById(R.id.txtIdVenta_facturaAbono);
         txtFecha= (TextView) findViewById(R.id.txtFecha_facturaAbono);
         txtTotal= (TextView) findViewById(R.id.txtTotal_facturaAbono);
@@ -173,7 +175,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         btnSend= (Button) findViewById(R.id.btnSend_abono);
         btnSendCopia= (Button) findViewById(R.id.btnSendCopia_facturaAbono);
         btnVolver= (Button) findViewById(R.id.btnVolver_facturaAbono);
-        txtTotalDeudas= (TextView) findViewById(R.id.txtTotalDeudas_FacturaAbono);
+        TextView txtTotalDeudas= (TextView) findViewById(R.id.txtTotalDeudas_FacturaAbono);
 
         btnSearch.setOnClickListener(new ClickEvent());
         btnSend.setOnClickListener(new ClickEvent());
@@ -563,7 +565,7 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    con_dev = mService.getDevByMac(address);
+                    BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
                 break;
