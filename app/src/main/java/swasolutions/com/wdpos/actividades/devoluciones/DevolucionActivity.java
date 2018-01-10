@@ -25,14 +25,8 @@ import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 public class DevolucionActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String CEDULA;
-
-    private Button btnCancelarDevolucion,btnProductos,btnCompletarDevolucion;
-    private static TextView txtTotal,txtFecha;
-
-
+    private TextView txtTotal;
     private ArrayList<Devolucion> productosDevolucion;
-
-    private RecyclerView recyclerView;
 
     public static CreditoBD bdCredito;
     public static DevolucionesBD bdDevoluciones;
@@ -58,11 +52,11 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
         productosDevolucion= bdDevoluciones.devoluciones(CEDULA);
 
 
-        btnCancelarDevolucion= (Button) findViewById(R.id.btnCancelarDevo_devolucion);
-        btnProductos= (Button) findViewById(R.id.btnProductos_devolucion);
-        btnCompletarDevolucion= (Button) findViewById(R.id.btnCompletarDevo_devolucion);
+        Button btnCancelarDevolucion= (Button) findViewById(R.id.btnCancelarDevo_devolucion);
+        Button btnProductos= (Button) findViewById(R.id.btnProductos_devolucion);
+        Button btnCompletarDevolucion= (Button) findViewById(R.id.btnCompletarDevo_devolucion);
         txtTotal= (TextView) findViewById(R.id.txtPrecioTotal_devolucion);
-        txtFecha= (TextView) findViewById(R.id.txtFecha_devolucion);
+        TextView txtFecha= (TextView) findViewById(R.id.txtFecha_devolucion);
 
         btnCompletarDevolucion.setOnClickListener(this);
         btnProductos.setOnClickListener(this);
@@ -72,7 +66,7 @@ public class DevolucionActivity extends AppCompatActivity implements View.OnClic
         txtFecha.setText(date);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewDevoluciones);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewDevoluciones);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);

@@ -13,7 +13,7 @@ public class Cliente {
     private String direccion;
     private String telefono;
     private String id;
-    private int group_id;
+    private int groupId;
 
 
 
@@ -21,14 +21,14 @@ public class Cliente {
     }
 
     public Cliente(String cedula, String name, String compania, String direccion, String telefono,String id,
-    int group_id) {
+    int groupId) {
         this.cedula = cedula;
         this.name = name;
         this.compania = compania;
         this.direccion = direccion;
         this.telefono = telefono;
         this.id=id;
-        this.group_id=group_id;
+        this.groupId =groupId;
     }
 
     public String getCedula() {
@@ -75,8 +75,8 @@ public class Cliente {
         this.id = id;
     }
 
-    public int getGroup_id() {
-        return group_id;
+    public int getGroupId() {
+        return groupId;
     }
 
 }

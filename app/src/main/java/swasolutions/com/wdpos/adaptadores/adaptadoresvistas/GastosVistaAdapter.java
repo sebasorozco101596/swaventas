@@ -54,7 +54,7 @@ public class GastosVistaAdapter extends RecyclerView.Adapter<GastosVistaAdapter.
         private TextView dinero;
         private TextView descripcion;
 
-        public GastosVistaViewHolder(View itemView) {
+        private GastosVistaViewHolder(View itemView) {
             super(itemView);
 
             fecha= (TextView) itemView.findViewById(R.id.txtFecha_CardViewGastos);

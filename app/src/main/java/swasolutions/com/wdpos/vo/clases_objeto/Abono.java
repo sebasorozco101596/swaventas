@@ -10,7 +10,7 @@ public class Abono {
     private int id;
     private String estadoVenta;
     private int pagado;
-    private int pago_payment;
+    private int pagoPayment;
     private int idVendedor;
     private String fecha;
     private String referencia;
@@ -19,26 +19,26 @@ public class Abono {
 
 
     public Abono(int id, String estadoVenta, int pagado, int idVendedor, String fecha,
-                 String referencia,int pago_payment,String cedCliente) {
+                 String referencia,int pagoPayment,String cedCliente) {
         this.id = id;
         this.estadoVenta = estadoVenta;
         this.pagado = pagado;
         this.idVendedor = idVendedor;
         this.fecha = fecha;
         this.referencia=referencia;
-        this.pago_payment=pago_payment;
+        this.pagoPayment=pagoPayment;
         this.cedCliente= cedCliente;
     }
 
     public Abono(int id, String estadoVenta, int pagado, int idVendedor, String fecha,
-                 String referencia,int pago_payment,String cedCliente,int credito) {
+                 String referencia,int pagoPayment,String cedCliente,int credito) {
         this.id = id;
         this.estadoVenta = estadoVenta;
         this.pagado = pagado;
         this.idVendedor = idVendedor;
         this.fecha = fecha;
         this.referencia=referencia;
-        this.pago_payment=pago_payment;
+        this.pagoPayment=pagoPayment;
         this.cedCliente= cedCliente;
         this.credito=credito;
     }
@@ -87,8 +87,8 @@ public class Abono {
         this.fecha = fecha;
     }
 
-    public int getPago_payment() {
-        return pago_payment;
+    public int getPagoPayment() {
+        return pagoPayment;
     }
 
     public String getReferencia() {

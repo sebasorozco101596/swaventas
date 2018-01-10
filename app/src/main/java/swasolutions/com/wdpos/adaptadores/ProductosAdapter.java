@@ -76,10 +76,10 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                 Menu menu= popupMenu.getMenu();
                 popupMenu.inflate(R.menu.menuagregarcarrito);
 
-                if(tipo.equals("venta")){
+                if("venta".equals(tipo)){
                     MenuItem menuVenta= menu.findItem(R.id.accion_agregarDevolucion);
                     menuVenta.setVisible(false);
-                }else if(tipo.equals("devolucion")){
+                }else if("devolucion".equals(tipo)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_agregarCarrito);
                     menuPagar.setVisible(false);
                 }

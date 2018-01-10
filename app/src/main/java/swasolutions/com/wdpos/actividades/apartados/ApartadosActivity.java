@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.actividades.apartados;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -87,6 +88,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
     private String BREAK = "\r\n";
     private String SPACE4 = "     ";
 
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -263,6 +265,9 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                     BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
+                break;
+            default:
+                Log.d(TAG, "onActivityResult: entre");
                 break;
         }
     }

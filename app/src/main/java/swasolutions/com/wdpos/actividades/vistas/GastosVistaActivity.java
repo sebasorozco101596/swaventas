@@ -16,28 +16,17 @@ import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 
 public class GastosVistaActivity extends AppCompatActivity {
 
-    private ArrayList<Gasto> gastos;
-
-    private RecyclerView recyclerViewGastos;
-    private GastosVistaAdapter adapter;
-
-    private Toolbar toolbarGastos;
-
-    private GastosBD bdGastos;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gastos_vista);
 
-        gastos= new ArrayList<>();
 
-        toolbarGastos = (Toolbar) findViewById(R.id.toolbarVistaGastos);
+        Toolbar toolbarGastos = (Toolbar) findViewById(R.id.toolbarVistaGastos);
 
-        bdGastos= new GastosBD(getApplicationContext(),null,1);
+        GastosBD bdGastos= new GastosBD(getApplicationContext(),null,1);
 
-        gastos= bdGastos.gastos();
+        ArrayList<Gasto> gastos= bdGastos.gastos();
 
         bdGastos.close();
 
@@ -50,13 +39,13 @@ public class GastosVistaActivity extends AppCompatActivity {
             }
         });
 
-        recyclerViewGastos = (RecyclerView) findViewById(R.id.recyclerViewGastos);
+        RecyclerView recyclerViewGastos = (RecyclerView) findViewById(R.id.recyclerViewGastos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerViewGastos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new GastosVistaAdapter(gastos);
+        GastosVistaAdapter adapter = new GastosVistaAdapter(gastos);
         recyclerViewGastos.setAdapter(adapter);
 
 

@@ -48,13 +48,12 @@ import swasolutions.com.wdpos.R;
  * Activity in the result Intent.
  */
 public class DeviceListActivity extends AppCompatActivity {
-    static final String TAG = "DeviceListActivity";
+    private static final String TAG = "DeviceListActivity";
     // Return Intent extra
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
     // Member fields
-    BluetoothService mService = null;
-    private ArrayAdapter<String> mPairedDevicesArrayAdapter;
+    private BluetoothService mService = null;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
     // The BroadcastReceiver that listens for discovered devices and
     // changes the title when discovery is finished
@@ -122,7 +121,7 @@ public class DeviceListActivity extends AppCompatActivity {
 
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
-        mPairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.device_name);
+        ArrayAdapter<String> mPairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.device_name);
         mNewDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.device_name);
 
         // Find and set up the ListView for paired devices

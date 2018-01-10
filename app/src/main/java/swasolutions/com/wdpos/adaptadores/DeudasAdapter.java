@@ -19,11 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.facturas.FacturaAbonoActivity;
 import swasolutions.com.wdpos.base_de_datos.CreditoBD;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Deuda;
 
 /**
@@ -37,6 +37,8 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
     private String ID;
     private String IDVENDEDOR;
     private String NICKNAME;
+
+    private Logica logica;
 
     private CreditoBD bdCredito;
     private boolean isActivatedRadioButton;
@@ -53,6 +55,7 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
         this.NICKNAME=nickname;
         this.IDVENDEDOR=idVendedor;
 
+        logica= new Logica();
         bdCredito= new CreditoBD(context,null,1);
 
     }
@@ -150,9 +153,9 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
                                         int pagar=0;
                                         int total= Integer.parseInt(txtTotal.getText().toString());
 
-                                        if(soloNumeros(txtPago.getText().toString())){
+                                        if(logica.soloNumeros(txtPago.getText().toString())){
                                             pagar= Integer.parseInt(txtPago.getText().toString());
-                                        }else if(!soloNumeros(txtPago.getText().toString())){
+                                        }else if(!logica.soloNumeros(txtPago.getText().toString())){
                                             txtPago.setError("Solo se admiten numeros");
                                             return;
                                         }if (txtPago.getText().toString().length() <= 0) {
@@ -230,35 +233,23 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
 
     }
 
-    private boolean soloNumeros(String name) {
-        Pattern patron = Pattern.compile("^[0-9]+$");
-        if (!patron.matcher(name).matches() || name.length() > 25) {
-            return false;
-        }
-
-        return true;
-    }
-
     @Override
     public int getItemCount() {
         return deudas.size();
     }
 
-
-
-
     static class DeudasViewHolder extends RecyclerView.ViewHolder{
 
-        CardView cardView;
+        private CardView cardView;
 
-        TextView id;
-        TextView total;
-        TextView pagado;
-        TextView referencia;
-        TextView fecha;
-        TextView comprador;
-        TextView optionMenu;
-        TextView deuda;
+        private TextView id;
+        private TextView total;
+        private TextView pagado;
+        private TextView referencia;
+        private TextView fecha;
+        private TextView comprador;
+        private TextView optionMenu;
+        private TextView deuda;
 
         public DeudasViewHolder(View itemView) {
             super(itemView);

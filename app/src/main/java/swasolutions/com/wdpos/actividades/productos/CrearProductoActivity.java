@@ -103,8 +103,6 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        ArrayList<Categoria> categorias= new ArrayList<>();
-        ArrayList<Unidad> unidades= new ArrayList<>();
         ArrayList<String> stringCategorias= new ArrayList<>();
         ArrayList<String> stringUnidades= new ArrayList<>();
         ArrayList<String> stringTipos= new ArrayList<>();
@@ -112,8 +110,8 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         bdProductos= new ProductosBD(getApplicationContext(),null,1);
         bdUnidades= new UnidadesBD(getApplicationContext(),null,1);
 
-        categorias= bdCategorias.categorias();
-        unidades= bdUnidades.unidades();
+        ArrayList<Categoria> categorias= bdCategorias.categorias();
+        ArrayList<Unidad> unidades = bdUnidades.unidades();
 
         link= ConfiguracionActivity.getLinkHosting(CrearProductoActivity.this);
         bitmap=null;
@@ -152,7 +150,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
             stringUnidades.add(unidades.get(i).getNombre());
         }
 
-        ArrayAdapter<CharSequence> adapterCategorias =
+        ArrayAdapter adapterCategorias =
                 new ArrayAdapter(this,android.R.layout.simple_spinner_item,stringCategorias);
         spinnerCategoria.setAdapter(adapterCategorias);
 

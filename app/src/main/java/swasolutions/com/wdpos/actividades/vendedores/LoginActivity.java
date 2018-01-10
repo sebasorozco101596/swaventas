@@ -376,6 +376,8 @@ public class LoginActivity extends AppCompatActivity {
             if (ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
+                Log.d("LoginActivity", "pedirPermitos: aa");
+
                 // Show an expanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.

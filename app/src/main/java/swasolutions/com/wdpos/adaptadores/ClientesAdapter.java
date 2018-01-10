@@ -265,7 +265,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                                                     tipo="Apartado";
                                                 }
 
-                                                if(tipo.equals("Apartado")){
+                                                if("Apartado".equals(tipo)){
                                                     Intent intent= new Intent(context,ApartadosActivity.class);
 
                                                     int credito=0;
@@ -379,7 +379,7 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                                 intentEdicion.putExtra("key_nombre",clientes.get(position).getName());
                                 intentEdicion.putExtra("key_telefono",clientes.get(position).getTelefono());
                                 intentEdicion.putExtra("key_direccion",clientes.get(position).getDireccion());
-                                intentEdicion.putExtra("key_grupo_id",clientes.get(position).getGroup_id());
+                                intentEdicion.putExtra("key_grupo_id",clientes.get(position).getGroupId());
                                 intentEdicion.putExtra("key_tipo","edicion");
                                 context.startActivity(intentEdicion);
 

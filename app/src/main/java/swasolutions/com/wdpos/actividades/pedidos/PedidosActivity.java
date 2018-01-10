@@ -20,11 +20,7 @@ public class PedidosActivity extends AppCompatActivity {
     /*
     Componentes
      */
-    private TextView txtCliente;
     private EditText txtPedido;
-    private Button btnAgregarPedido;
-    private Toolbar toolbarPedidos;
-
     /*
     Variables normales
      */
@@ -53,10 +49,10 @@ public class PedidosActivity extends AppCompatActivity {
         /*
         Instanciamos los componentes de la actividad
          */
-        txtCliente= (TextView) findViewById(R.id.txtNombreCliente_pedidos);
+        TextView txtCliente= (TextView) findViewById(R.id.txtNombreCliente_pedidos);
         txtPedido= (EditText) findViewById(R.id.txtPedido_pedidos);
-        btnAgregarPedido= (Button) findViewById(R.id.btnGuardarPedido_pedidos);
-        toolbarPedidos= (Toolbar) findViewById(R.id.toolbarPedidos_pedidos);
+        Button btnAgregarPedido= (Button) findViewById(R.id.btnGuardarPedido_pedidos);
+        Toolbar toolbarPedidos= (Toolbar) findViewById(R.id.toolbarPedidos_pedidos);
         setSupportActionBar(toolbarPedidos);
 
         /*

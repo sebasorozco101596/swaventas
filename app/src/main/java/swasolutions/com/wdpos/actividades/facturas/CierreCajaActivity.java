@@ -1,6 +1,7 @@
 package swasolutions.com.wdpos.actividades.facturas;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -164,6 +165,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -183,6 +185,9 @@ public class CierreCajaActivity extends AppCompatActivity {
                         case BluetoothService.STATE_NONE:
                             Log.d(TAG, "Estado Bluetooth escuchar o ninguno");
                             break;
+                        default:
+                            Log.d(TAG, "handleMessage: entre");
+                            break;
                     }
                     break;
                 case BluetoothService.MESSAGE_CONNECTION_LOST:
@@ -193,6 +198,9 @@ public class CierreCajaActivity extends AppCompatActivity {
                 case BluetoothService.MESSAGE_UNABLE_CONNECT:
                     Toast.makeText(context, "No se puede conectar el dispositivo",
                             Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    Log.d(TAG, "handleMessage: entre");
                     break;
             }
         }
@@ -232,7 +240,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             CICLO= bundle.getString("key_ciclo");
         }
 
-        if(CICLO.equals("1")){
+        if("1".equals(CICLO)){
             if(bdAbonos.existenAbonos() || bdGastos.existenGastos() || bdVentas.existenVentas()
                     || bdProductosVenta.existenProductos() ){
                 if(bdAbonos.existenAbonos()){
@@ -881,7 +889,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                             for(int i=0;i<abonos.size();i++){
 
                                 String referencia= ""+abonos.get(i).getId();
-                                String valor = ""+abonos.get(i).getPago_payment();
+                                String valor = ""+abonos.get(i).getPagoPayment();
                                 String cedula= abonos.get(i).getCedCliente();
                                 msgAbonos += referencia + " , "+ cedula+ " , " + valor + BREAK;
 
@@ -1261,12 +1269,6 @@ public class CierreCajaActivity extends AppCompatActivity {
 
 
     private class EjAsincTask2 extends AsyncTask<Void,Integer,Boolean> {
-
-
-        public EjAsincTask2() {
-            super();
-        }
-
 
         @Override
         protected void onPreExecute() {

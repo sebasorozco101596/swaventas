@@ -33,7 +33,7 @@ public class AbonosBD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
     public void crearAbono(int id,String estadoVenta,int pago,int idVendedor,String fecha,

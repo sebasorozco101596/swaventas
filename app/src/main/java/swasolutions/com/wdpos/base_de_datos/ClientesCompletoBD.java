@@ -35,7 +35,7 @@ public class ClientesCompletoBD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
     public void agregarCliente(String id, String grupo, String nombre, String cedula, String direccion,

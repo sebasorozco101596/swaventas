@@ -43,7 +43,7 @@ public class VentasBD extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
     public void agregarVenta(int id, String fecha, String referencia, int idVendedor,String cedulaCliente,
                              String cliente,int total,String estadoVenta,int pagadoCliente,int cantidad,

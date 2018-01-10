@@ -36,7 +36,7 @@ public class ProductosVentaBD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
     public void crearProductoVenta(int idVenta,int idProducto,String codigoProducto,String nombreProducto,

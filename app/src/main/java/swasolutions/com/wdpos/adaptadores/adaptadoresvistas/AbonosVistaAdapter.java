@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.vo.clases_objeto.Abono;
@@ -17,10 +17,9 @@ import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 
 public class AbonosVistaAdapter extends RecyclerView.Adapter<AbonosVistaAdapter.AbonosVistaViewHolder>{
 
-    private List<Abono> abonos;
+    private ArrayList<Abono> abonos;
 
-
-    public AbonosVistaAdapter(List<Abono> abonos) {
+    public AbonosVistaAdapter(ArrayList<Abono> abonos) {
         this.abonos = abonos;
     }
 
@@ -53,7 +52,7 @@ public class AbonosVistaAdapter extends RecyclerView.Adapter<AbonosVistaAdapter.
         private TextView pago;
         private TextView fecha;
 
-        public AbonosVistaViewHolder(View itemView) {
+        private AbonosVistaViewHolder(View itemView) {
             super(itemView);
 
             idVenta= (TextView) itemView.findViewById(R.id.txtIdVenta_CardViewAbonos);

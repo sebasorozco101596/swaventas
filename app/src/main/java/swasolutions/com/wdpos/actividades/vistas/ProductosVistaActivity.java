@@ -17,30 +17,16 @@ import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
 
 public class ProductosVistaActivity extends AppCompatActivity {
 
-
-    private ArrayList<ProductoVenta> productoVentas;
-
-    private RecyclerView recyclerViewProductos;
-    private ProductosVentaVistaAdapter adapter;
-
-    private Toolbar toolbarFiltrado;
-
-    private ProductosVentaBD bdProductos;
-
-
-
     private int IDVENTA;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos_vista);
 
-        productoVentas= new ArrayList<>();
+        ArrayList<ProductoVenta> productoVentas= new ArrayList<>();
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductos);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductos);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -52,7 +38,7 @@ public class ProductosVistaActivity extends AppCompatActivity {
         }
 
 
-        bdProductos= new ProductosVentaBD(getApplicationContext(),null,1);
+        ProductosVentaBD bdProductos= new ProductosVentaBD(getApplicationContext(),null,1);
 
         productoVentas= bdProductos.productosVenta(IDVENTA);
 
@@ -67,13 +53,13 @@ public class ProductosVistaActivity extends AppCompatActivity {
             }
         });
 
-        recyclerViewProductos = (RecyclerView) findViewById(R.id.recyclerViewVistaProductos);
+        RecyclerView recyclerViewProductos = (RecyclerView) findViewById(R.id.recyclerViewVistaProductos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerViewProductos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ProductosVentaVistaAdapter(productoVentas);
+        ProductosVentaVistaAdapter adapter = new ProductosVentaVistaAdapter(productoVentas);
         recyclerViewProductos.setAdapter(adapter);
 
     }

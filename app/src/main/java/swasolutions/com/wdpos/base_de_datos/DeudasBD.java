@@ -35,7 +35,7 @@ public class DeudasBD extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
     public ArrayList<Deuda> obtenerDeudas(String idCliente) {

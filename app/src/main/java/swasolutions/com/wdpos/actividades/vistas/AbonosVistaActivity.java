@@ -16,26 +16,16 @@ import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 
 public class AbonosVistaActivity extends AppCompatActivity {
 
-
-    private ArrayList<Abono> abonos;
-
-    private RecyclerView recyclerViewAbonos;
-    private AbonosVistaAdapter adapter;
-
-    private Toolbar toolbarAbonos;
-
-    private AbonosBD bdAbonos;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abonos_vista);
 
-        abonos= new ArrayList<>();
+        ArrayList<Abono> abonos= new ArrayList<>();
 
-        toolbarAbonos = (Toolbar) findViewById(R.id.toolbarVistaAbonos);
+        Toolbar toolbarAbonos = (Toolbar) findViewById(R.id.toolbarVistaAbonos);
 
-        bdAbonos= new AbonosBD(getApplicationContext(),null,1);
+        AbonosBD bdAbonos= new AbonosBD(getApplicationContext(),null,1);
 
         abonos= bdAbonos.abonosVista();
 
@@ -50,13 +40,13 @@ public class AbonosVistaActivity extends AppCompatActivity {
             }
         });
 
-        recyclerViewAbonos = (RecyclerView) findViewById(R.id.recyclerViewAbonos);
+        RecyclerView recyclerViewAbonos = (RecyclerView) findViewById(R.id.recyclerViewAbonos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerViewAbonos.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new AbonosVistaAdapter(abonos);
+        AbonosVistaAdapter adapter = new AbonosVistaAdapter(abonos);
         recyclerViewAbonos.setAdapter(adapter);
     }
 }

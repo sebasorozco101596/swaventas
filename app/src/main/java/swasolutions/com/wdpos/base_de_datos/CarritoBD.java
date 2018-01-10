@@ -35,7 +35,7 @@ public class CarritoBD extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
     public void agregarProductoCarrito(int id,String nombre,int precio,Context context,String codigoProducto){

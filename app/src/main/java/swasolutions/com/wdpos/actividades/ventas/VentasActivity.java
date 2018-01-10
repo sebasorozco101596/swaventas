@@ -29,12 +29,8 @@ import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 
 public class VentasActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-    private Button btnCancelarVenta,btnCarrito;
     private ArrayList<Producto> productos;
 
-    private Toolbar toolbarFiltrado;
-
-    private RecyclerView recyclerView;
     private ProductosAdapter adapter;
 
     private String NICKNAME;
@@ -70,8 +66,8 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
 
 
         productos = bdProductos.fillMessages();
-        btnCancelarVenta = (Button) findViewById(R.id.btnCancelarVenta_venta);
-        btnCarrito = (Button) findViewById(R.id.btnCarroVenta);
+        Button btnCancelarVenta = (Button) findViewById(R.id.btnCancelarVenta_venta);
+        Button btnCarrito = (Button) findViewById(R.id.btnCarroVenta);
 
 
         if(TIPO.equals("devolucion")) {
@@ -79,10 +75,10 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
             btnCancelarVenta.setText("Cancelar devoluciones");
         }
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVentas);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVentas);
         setSupportActionBar(toolbarFiltrado);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewProductos);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewProductos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -199,13 +195,13 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onClick(View v) {
 
-                if(TIPO.equals("venta")){
+                if("venta".equals(TIPO)){
                     Intent intent= new Intent(getApplicationContext(), CarritoActivity.class);
                     intent.putExtra("key_nickname",NICKNAME);
                     intent.putExtra("key_id", IDVENDEDOR);
                     startActivity(intent);
                     finish();
-                }else if(TIPO.equals("devolucion")){
+                }else if("devolucion".equals(TIPO)){
                     Intent intentDevoluciones= new Intent(getApplicationContext(), DevolucionActivity.class);
                     intentDevoluciones.putExtra("key_cedula",CEDULA);
                     startActivity(intentDevoluciones);

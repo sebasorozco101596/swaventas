@@ -121,7 +121,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
             int group_6=SharedPreferences.getPreferenciaGrupo6(context);
 
             for(int i=0;i<clientes.size();i++){
-                int group_id= clientes.get(i).getGroup_id();
+                int group_id= clientes.get(i).getGroupId();
                 if(group_id==group_1 || group_id==group_2 || group_id==group_3 || group_id==group_4
                         || group_id==group_5 || group_id==group_6){
                     clientesNew.add(clientes.get(i));

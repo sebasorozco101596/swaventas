@@ -21,7 +21,6 @@ import swasolutions.com.wdpos.vo.clases_objeto.GrupoVendedor;
 public class EditarClienteActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText txtNombre,txtDireccion,txtTelefono;
-    private Button btnEditar;
     private Spinner spinnerGrupos;
 
 
@@ -63,7 +62,7 @@ public class EditarClienteActivity extends AppCompatActivity implements View.OnC
         txtDireccion= (EditText) this.findViewById(R.id.txtDirecion_edicion);
         txtTelefono= (EditText) this.findViewById(R.id.txtTelefono_edicion);
         spinnerGrupos= (Spinner) findViewById(R.id.spinnerGruposVendedor_edicion);
-        btnEditar= (Button) this.findViewById(R.id.btnRegistrar_edicion);
+        Button btnEditar= (Button) this.findViewById(R.id.btnRegistrar_edicion);
         btnEditar.setOnClickListener(this);
 
 

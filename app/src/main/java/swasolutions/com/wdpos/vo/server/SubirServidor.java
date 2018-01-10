@@ -171,8 +171,8 @@ public class SubirServidor implements Runnable {
                         hashMap.put("idVendedor",""+ id);
                         hashMap.put("pagado",""+ abonos.get(finalI).getPagado());
                         hashMap.put("idVenta", ""+abonos.get(finalI).getId());
-                        hashMap.put("pagoPayment", ""+abonos.get(finalI).getPago_payment());
-                        Log.d("pagoPayment",""+abonos.get(finalI).getPago_payment());
+                        hashMap.put("pagoPayment", ""+abonos.get(finalI).getPagoPayment());
+                        Log.d("pagoPayment",""+abonos.get(finalI).getPagoPayment());
                         return hashMap;
                     }
                 };
@@ -264,7 +264,7 @@ public class SubirServidor implements Runnable {
                             bdProductosVenta.eliminarProductosVenta();
 
                         } else {
-                            //Toast.makeText(context, "Error" + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Error" + response.getString("error"), Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
