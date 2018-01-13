@@ -36,11 +36,6 @@ public class ImprimirClientesActivity extends AppCompatActivity {
 
     private ArrayList<Cliente> clientes;
 
-    private RecyclerView recyclerView;
-    private ClientesAdapter adapter;
-
-    private Toolbar toolbarFiltrado;
-
     public static ClientesBD bdCliente;
 
     private String NICKNAME;
@@ -132,7 +127,7 @@ public class ImprimirClientesActivity extends AppCompatActivity {
             ID= bundle.getString("key_id");
         }
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarImprimirClientes);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarImprimirClientes);
         setSupportActionBar(toolbarFiltrado);
 
         bdCliente= new ClientesBD(getApplicationContext(),null,1);
@@ -152,13 +147,13 @@ public class ImprimirClientesActivity extends AppCompatActivity {
         });
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewImprimirClientes);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewImprimirClientes);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ClientesAdapter(clientes,this,"imprimirClientes",0,ID,NICKNAME);
+        ClientesAdapter adapter = new ClientesAdapter(clientes,this,"imprimirClientes",0,ID,NICKNAME);
         recyclerView.setAdapter(adapter);
 
 
