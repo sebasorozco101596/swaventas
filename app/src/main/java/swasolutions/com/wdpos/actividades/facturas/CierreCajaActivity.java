@@ -520,7 +520,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 
-                btnSend.setEnabled(true);
+                //btnSend.setEnabled(true);
                     //bdVentas.eliminarVentas();
                     //bdProductosVenta.eliminarProductosVenta();
                 //btnImprimirDetallado.setEnabled(true);

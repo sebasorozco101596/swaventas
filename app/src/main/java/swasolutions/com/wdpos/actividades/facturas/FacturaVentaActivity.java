@@ -335,7 +335,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
             if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                btnSend.setEnabled(true);
+                //btnSend.setEnabled(true);
                 //btnSendCopia.setEnabled(true);
 
             }else if(v.equals(btnVolver)){

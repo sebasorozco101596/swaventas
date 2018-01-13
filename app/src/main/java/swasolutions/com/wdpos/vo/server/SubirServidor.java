@@ -223,7 +223,7 @@ public class SubirServidor implements Runnable {
                 HashMap<String, String> hashMapVenta = new HashMap<String, String>();
                 hashMapVenta.put("id", ""+ ventas.get(i).getVenta().getIdVendedor()*10000+ventas.get(i).getVenta().getId());
                 hashMapVenta.put("fecha",""+ ventas.get(i).getVenta().getFecha());
-                hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v89");
+                hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v90");
                 hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getVenta().getCedulaCliente());
                 hashMapVenta.put("nombreCliente", ventas.get(i).getVenta().getCliente());
                 hashMapVenta.put("total", ""+ventas.get(i).getVenta().getTotal());
@@ -304,7 +304,7 @@ public class SubirServidor implements Runnable {
 
 
                             } else {
-                                //Toast.makeText(context, "Error" + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Error" + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import swasolutions.com.wdpos.R;
@@ -37,6 +38,7 @@ import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
+import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 /**
  * Created by sebas on 29/12/2017.
@@ -323,5 +325,34 @@ public class Logica {
 
     public boolean verificarConexion(Context context) {
         return isNetDisponible(context) && isOnlineNet();
+    }
+
+    public static ArrayList<Cliente> filtrarClientes(ArrayList<Cliente> clientes,Context context) {
+
+        ArrayList<Cliente> clientesNew= new ArrayList<>();
+
+        if(SharedPreferences.getPreferenciaTodosGrupos(context).toString().equals("no")){
+
+            int group_1=SharedPreferences.getPreferenciaGrupo1(context);
+            int group_2=SharedPreferences.getPreferenciaGrupo2(context);
+            int group_3=SharedPreferences.getPreferenciaGrupo3(context);
+            int group_4=SharedPreferences.getPreferenciaGrupo4(context);
+            int group_5=SharedPreferences.getPreferenciaGrupo5(context);
+            int group_6=SharedPreferences.getPreferenciaGrupo6(context);
+
+            for(int i=0;i<clientes.size();i++){
+                int group_id= clientes.get(i).getGroupId();
+                if(group_id==group_1 || group_id==group_2 || group_id==group_3 || group_id==group_4
+                        || group_id==group_5 || group_id==group_6){
+                    clientesNew.add(clientes.get(i));
+                }
+            }
+
+        }else{
+            clientesNew= clientes;
+        }
+
+        return clientesNew;
+
     }
 }

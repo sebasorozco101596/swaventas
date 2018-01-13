@@ -19,10 +19,10 @@ import android.view.View;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 import swasolutions.com.wdpos.adaptadores.ClientesAdapter;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 public class ClientesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -34,6 +34,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
 
     private Toolbar toolbarFiltrado;
 
+
     public static ClientesBD bdCliente;
     public static GruposVendedorBD bdGruposVendedor;
     public static SQLiteDatabase sqLiteDatabase;
@@ -44,7 +45,6 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
     private String ID;
 
     private Context context;
-    public ArrayList<Integer> grupos;
 
 
     @Override
@@ -53,9 +53,10 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         setContentView(R.layout.activity_clientes);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+        Logica logica= new Logica();
+
         clientes= new ArrayList<>();
         context= ClientesActivity.this;
-        grupos= new ArrayList<>();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -82,7 +83,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
 
         clientes= bdCliente.cargarClientes();
 
-        clientes=filtrarClientes(clientes);
+        clientes= logica.filtrarClientes(clientes,context);
 
         bdCliente.close();
 
@@ -105,51 +106,6 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         recyclerView.setAdapter(adapter);
 
     }
-
-    private ArrayList<Cliente> filtrarClientes(ArrayList<Cliente> clientes) {
-
-        ArrayList<Cliente> clientesNew= new ArrayList<>();
-
-        if(SharedPreferences.getPreferenciaTodosGrupos(context).toString().equals("no")){
-            grupos = encontrarGrupos();
-
-            int group_1=SharedPreferences.getPreferenciaGrupo1(context);
-            int group_2=SharedPreferences.getPreferenciaGrupo2(context);
-            int group_3=SharedPreferences.getPreferenciaGrupo3(context);
-            int group_4=SharedPreferences.getPreferenciaGrupo4(context);
-            int group_5=SharedPreferences.getPreferenciaGrupo5(context);
-            int group_6=SharedPreferences.getPreferenciaGrupo6(context);
-
-            for(int i=0;i<clientes.size();i++){
-                int group_id= clientes.get(i).getGroupId();
-                if(group_id==group_1 || group_id==group_2 || group_id==group_3 || group_id==group_4
-                        || group_id==group_5 || group_id==group_6){
-                    clientesNew.add(clientes.get(i));
-                }
-            }
-
-        }else{
-            clientesNew= clientes;
-        }
-
-        return clientesNew;
-
-    }
-
-    private ArrayList<Integer> encontrarGrupos() {
-
-        ArrayList<Integer> listGrupos= new ArrayList<>();
-
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo1(context));
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo2(context));
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo3(context));
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo4(context));
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo5(context));
-        listGrupos.add(SharedPreferences.getPreferenciaGrupo6(context));
-
-        return listGrupos;
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

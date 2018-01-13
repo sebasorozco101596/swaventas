@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
+import swasolutions.com.wdpos.actividades.clientes.ImprimirClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
@@ -56,7 +57,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("89");
+        txtVersion.setText("90");
 
         logica= new Logica();
 
@@ -79,6 +80,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         Button btnVistaVentas = (Button) findViewById(R.id.btnVistaVentas_panel);
         Button btnVistaAbonos= (Button) findViewById(R.id.btnVistaAbonos_panel);
         Button btnVistaGastos= (Button) findViewById(R.id.btnVistaGastos_panel);
+        Button btnImprimirClientes= (Button) findViewById(R.id.btnImprimirClientes_panel);
 
         btnVender.setOnClickListener(this);
         btnBuscarCLiente.setOnClickListener(this);
@@ -95,6 +97,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         btnVistaAbonos.setOnClickListener(this);
         btnVistaVentas.setOnClickListener(this);
         btnVistaGastos.setOnClickListener(this);
+        btnImprimirClientes.setOnClickListener(this);
 
 
         link= ConfiguracionActivity.getLinkHosting(PanelActivity.this);
@@ -348,6 +351,11 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.btnVistaClientes_panel:
                 logica.verificarContrasenia(PanelActivity.this,ID,"vistaClientes",null);
+                break;
+            case R.id.btnImprimirClientes_panel:
+                Intent intentClientes= new Intent(getApplicationContext(),ImprimirClientesActivity.class);
+                intentClientes.putExtra("key_id",ID);
+                startActivity(intentClientes);
                 break;
             default:
                 Toast.makeText(getApplicationContext(),"No presiono nada",Toast.LENGTH_SHORT).show();

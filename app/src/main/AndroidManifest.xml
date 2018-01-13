@@ -61,7 +61,8 @@
         <activity android:name=".actividades.apartados.ApartadosActivity" />
         <activity android:name=".actividades.paneles.PanelEliminacionActivity" />
         <activity android:name=".actividades.vistas.ClientesNuevosVistaActivity" />
-        <activity android:name=".actividades.clientes.EditarClienteActivity"></activity>
+        <activity android:name=".actividades.clientes.EditarClienteActivity" />
+        <activity android:name=".actividades.clientes.ImprimirClientesActivity"></activity>
     </application>
 
 </manifest>
