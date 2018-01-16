@@ -267,8 +267,7 @@ public class SubirServidor implements Runnable {
                             ventas= ventas.substring(0,ventas.length()-1);
 
                             ArrayList<String> userList = new ArrayList<>(Arrays.asList(ventas.split(",")));
-
-
+                            
                             //Toast.makeText(context,userList.toString(),Toast.LENGTH_SHORT).show();
 
                             for(int i=0;i<userList.size();i++){

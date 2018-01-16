@@ -481,6 +481,15 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtDineroEntregar.setText(""+DINERO_ENTREGAR);
 
         txtNumeroClientesNuevos.setText(""+bdClientesCompleto.clientes().size());
+
+
+
+        ventas= bdVentas.ventas();
+        abonos= bdAbonos.abonos();
+        gastos=bdGastos.gastos();
+        productosVentas= bdProductosVenta.productosVenta();
+        ventasCompleto= encontrarVentas(ventas,productosVentas);
+
     }
 
 
@@ -526,13 +535,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                     //bdVentas.eliminarVentas();
                     //bdProductosVenta.eliminarProductosVenta();
                 //btnImprimirDetallado.setEnabled(true);
-
-
-                ventas= bdVentas.ventas();
-                abonos= bdAbonos.abonos();
-                gastos=bdGastos.gastos();
-                productosVentas= bdProductosVenta.productosVenta();
-                ventasCompleto= encontrarVentas(ventas,productosVentas);
 
 
             }else if(v.equals(btnSubirClientes)){

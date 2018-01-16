@@ -25,7 +25,6 @@ import com.zj.btsdk.BluetoothService;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity;
 import swasolutions.com.wdpos.actividades.facturas.FacturaVentaActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
