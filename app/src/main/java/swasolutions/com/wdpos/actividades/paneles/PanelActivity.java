@@ -57,7 +57,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("90");
+        txtVersion.setText("91");
 
         logica= new Logica();
 

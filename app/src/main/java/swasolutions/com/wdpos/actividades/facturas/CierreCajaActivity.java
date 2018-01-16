@@ -52,6 +52,7 @@ import java.util.concurrent.Executors;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
+import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.base_de_datos.AbonosBD;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
@@ -449,9 +450,16 @@ public class CierreCajaActivity extends AppCompatActivity {
         btnImprimirDetallado.setEnabled(false);
         btnEliminarCliRepetidos.setEnabled(false);
 
+        if(!(SharedPreferences.getPreferenciaImpresion(CierreCajaActivity.this))){
+            btnSend.setEnabled(true);
+            btnImprimirDetallado.setEnabled(true);
+        }
+
+        /*
         if(validarClientesRepetidos(bdClientes.cargarClientes(),bdClientesCompleto.clientes())){
             btnEliminarCliRepetidos.setEnabled(true);
         }
+        */
 
 
 
@@ -475,22 +483,17 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtNumeroClientesNuevos.setText(""+bdClientesCompleto.clientes().size());
     }
 
-    private boolean validarClientesRepetidos(ArrayList<Cliente> clientes, ArrayList<ClienteCompleto> clientesNuevos) {
 
-        boolean bandera=false;
+    private void validarClientesRepetidos(ArrayList<Cliente> clientes, ArrayList<ClienteCompleto> clientesNuevos) {
 
         for(int i=0;i<clientesNuevos.size();i++){
             for(int j=0;j<clientes.size();j++){
                 if(clientesNuevos.get(i).getCedula().toString().equals(clientes.get(j).getCedula().toString())
                         && !clientesNuevos.get(i).getNombre().toString().equals(clientes.get(j).getName().toString())){
-                    bandera=true;
                     clientesRepetidos.add(clientesNuevos.get(i).getId());
                 }
             }
         }
-
-        return bandera;
-
     }
 
     @Override
@@ -520,7 +523,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 
-                //btnSend.setEnabled(true);
                     //bdVentas.eliminarVentas();
                     //bdProductosVenta.eliminarProductosVenta();
                 //btnImprimirDetallado.setEnabled(true);
@@ -546,7 +548,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                         AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
                         View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
 
-                        EjAsincTask2 ejAsincTask2= new EjAsincTask2();
+                        final EjAsincTask2 ejAsincTask2= new EjAsincTask2();
                         ejAsincTask2.execute();
 
 
@@ -596,6 +598,9 @@ public class CierreCajaActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 try {
                                     if (response.names().get(0).equals("success")) {
+
+                                        Toast.makeText(getApplicationContext(),response.getString("success"),Toast.LENGTH_SHORT).show();
+
                                         bdClientesCompleto.eliminarClientes();
                                         contador++;
 
@@ -603,7 +608,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                                             bdClientes.eliminarTodosClientes();
                                             Clientes clientes = new Clientes(getApplicationContext(), link);
                                             clientes.obtenerClientes();
-
                                         }else{
                                             Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
                                                     Toast.LENGTH_SHORT).show();
@@ -611,6 +615,11 @@ public class CierreCajaActivity extends AppCompatActivity {
                                     }else if(response.names().get(0).equals("error")){
                                         Toast.makeText(getApplicationContext(),response.getString("error"),
                                                 Toast.LENGTH_SHORT).show();
+
+                                        ejAsincTask2.cancel(true);
+                                        alertDialog.dismiss();
+
+                                        btnEliminarCliRepetidos.setEnabled(true);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -640,6 +649,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 EjAsincTask2 ejAsincTask2= new EjAsincTask2();
                 ejAsincTask2.execute();
 
+                validarClientesRepetidos(bdClientes.cargarClientes(),bdClientesCompleto.clientes());
 
                 builder.setView(mView);
                 final AlertDialog alertDialog= builder.create();
@@ -1269,6 +1279,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
 
     private class EjAsincTask2 extends AsyncTask<Void,Integer,Boolean> {
+
 
         @Override
         protected void onPreExecute() {

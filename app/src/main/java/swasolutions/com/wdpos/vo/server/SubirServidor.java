@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -223,7 +224,7 @@ public class SubirServidor implements Runnable {
                 HashMap<String, String> hashMapVenta = new HashMap<String, String>();
                 hashMapVenta.put("id", ""+ ventas.get(i).getVenta().getIdVendedor()*10000+ventas.get(i).getVenta().getId());
                 hashMapVenta.put("fecha",""+ ventas.get(i).getVenta().getFecha());
-                hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v90");
+                hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v91");
                 hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getVenta().getCedulaCliente());
                 hashMapVenta.put("nombreCliente", ventas.get(i).getVenta().getCliente());
                 hashMapVenta.put("total", ""+ventas.get(i).getVenta().getTotal());
@@ -235,6 +236,7 @@ public class SubirServidor implements Runnable {
                 hashMapVenta.put("existe",""+ventas.get(i).getVenta().getExiste());
                 hashMapVenta.put("warehouse_id",""+warehouse_id);
                 hashMapVenta.put("nota",ventas.get(i).getVenta().getNota());
+                hashMapVenta.put("ventalocal_id",""+ventas.get(i).getVenta().getId());
 
                 jsonObjectVenta= new JSONObject(hashMapVenta);
                 try {
@@ -260,7 +262,19 @@ public class SubirServidor implements Runnable {
                 public void onResponse(JSONObject response) {
                     try {
                         if (response.names().get(0).equals("success")) {
-                            bdVentas.eliminarVentas();
+
+                            String ventas = response.getString("success");
+                            ventas= ventas.substring(0,ventas.length()-1);
+
+                            ArrayList<String> userList = new ArrayList<>(Arrays.asList(ventas.split(",")));
+
+
+                            //Toast.makeText(context,userList.toString(),Toast.LENGTH_SHORT).show();
+
+                            for(int i=0;i<userList.size();i++){
+                                bdVentas.eliminarVenta(Integer.parseInt(userList.get(i)));
+                            }
+
                             bdProductosVenta.eliminarProductosVenta();
 
                         } else {

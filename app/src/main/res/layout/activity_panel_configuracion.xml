@@ -168,6 +168,24 @@
 
         </LinearLayout>
 
+        <Switch
+            android:id="@+id/SwitchImprimir_panelConfiguracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="¿Desea imprimir?"
+            android:checked="true"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:switchPadding="20dp"
+            android:layout_marginTop="10dp"
+            android:textOff="NO"
+            android:textOn="SI"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
+
+
 
 </LinearLayout>

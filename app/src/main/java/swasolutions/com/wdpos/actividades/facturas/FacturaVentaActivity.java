@@ -205,6 +205,11 @@ public class FacturaVentaActivity extends AppCompatActivity{
         btnSendCopia.setOnClickListener(new ClickEvent());
         btnSendCopia.setEnabled(false);
 
+        if(!(SharedPreferences.getPreferenciaImpresion(FacturaVentaActivity.this))){
+            btnSend.setEnabled(true);
+            btnSendCopia.setEnabled(true);
+        }
+
         productos= new ArrayList<>();
 
         Intent intent = getIntent();
@@ -335,7 +340,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
             if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                //btnSend.setEnabled(true);
+                btnSend.setEnabled(true);
                 //btnSendCopia.setEnabled(true);
 
             }else if(v.equals(btnVolver)){
@@ -427,7 +432,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
                     }
 
                     //for(int i=0;i<100;i++){
-                        bdVentas.agregarVenta(id,fecha,referencia,idVendedor,cedulaCliente,cliente,total,
+                        bdVentas.agregarVenta(id+1,fecha,referencia,idVendedor,cedulaCliente,cliente,total,
                                 estadoVenta,pagado,cantidadProductos,idCliente,FacturaVentaActivity.this,existe,
                                 null,CREDITO);
 
@@ -444,7 +449,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
                             String nombreProducto= productos.get(j).getNombre();
                             int precioUnitario= productos.get(j).getPrecio();
                             int cantidad= productos.get(j).getCantidad();
-                            bdProductosVenta.crearProductoVenta(id,idProducto,codigoProducto,nombreProducto,precioUnitario,
+                            bdProductosVenta.crearProductoVenta(id+1,idProducto,codigoProducto,nombreProducto,precioUnitario,
                                     cantidad,idVendedor);
                             bdProductos.actualizarProducto(idProducto,cantidad);
                         }

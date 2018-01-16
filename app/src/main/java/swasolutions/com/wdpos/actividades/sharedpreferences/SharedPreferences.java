@@ -23,6 +23,8 @@ public class SharedPreferences {
     private static final String PREFERENCE_GRUPO_6= "state.edit.grupo.6";
     private static final String PREFERENCE_GRUPO_TODOS= "state.edit.grupo.todos";
 
+    private static final String PREFERENCE_IMPRESION="state.edit.impresion";
+
 
     /**
      * String donde se guardara el paquete de la aplicacion
@@ -97,6 +99,16 @@ public class SharedPreferences {
         android.content.SharedPreferences.Editor edit= sharedPreferences.edit();
         edit.putString(PREFERENCE_GRUPO_TODOS,estado);
         edit.commit();
+    }
+
+    public static void guardarPreferenciaImpresion(Context context,boolean estado){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean(PREFERENCE_IMPRESION,estado).apply();
+    }
+
+    public static boolean getPreferenciaImpresion(Context context){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        return sharedPreferences.getBoolean(PREFERENCE_IMPRESION,false);
     }
 
     public static String getPreferenciaNotaAbono(Context context){

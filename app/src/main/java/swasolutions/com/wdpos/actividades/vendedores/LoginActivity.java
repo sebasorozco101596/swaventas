@@ -172,6 +172,10 @@ public class LoginActivity extends AppCompatActivity {
                                         saveStateRadioButton();
                                         saveID();
                                         saveUserType();
+
+                                        swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences.guardarPreferenciaImpresion(getApplicationContext(),true);
+
+
                                         intent.putExtra("key_nickname",txtEmail.getText().toString());
                                         intent.putExtra("key_id",id);
                                         startActivity(intent);

@@ -185,6 +185,11 @@ public class FacturaAbonoActivity extends AppCompatActivity {
         btnSendCopia.setEnabled(false);
         btnSend.setEnabled(false);
 
+        if(!(SharedPreferences.getPreferenciaImpresion(FacturaAbonoActivity.this))){
+            btnSend.setEnabled(true);
+            btnSendCopia.setEnabled(true);
+        }
+
 
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdDeudas=new DeudasBD(getApplicationContext(),null,1);

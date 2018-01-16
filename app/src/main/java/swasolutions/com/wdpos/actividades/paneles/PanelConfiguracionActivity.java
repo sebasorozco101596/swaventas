@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ConfiguracionGruposClienteActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
+import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 import swasolutions.com.wdpos.actividades.terminales.TerminalesActivity;
 
 public class PanelConfiguracionActivity extends AppCompatActivity {
@@ -35,6 +38,20 @@ public class PanelConfiguracionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+
+        Switch aSwitchImpresion= (Switch) findViewById(R.id.SwitchImprimir_panelConfiguracion);
+
+        aSwitchImpresion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    SharedPreferences.guardarPreferenciaImpresion(getApplicationContext(),true);
+                }else{
+                    SharedPreferences.guardarPreferenciaImpresion(getApplicationContext(),false);
+                }
             }
         });
 

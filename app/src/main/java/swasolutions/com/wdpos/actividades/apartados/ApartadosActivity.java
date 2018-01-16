@@ -25,8 +25,10 @@ import com.zj.btsdk.BluetoothService;
 import java.util.ArrayList;
 
 import swasolutions.com.wdpos.R;
+import swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity;
 import swasolutions.com.wdpos.actividades.facturas.FacturaVentaActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
+import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.adaptadores.FacturaAdapter;
 import swasolutions.com.wdpos.base_de_datos.CarritoBD;
@@ -155,6 +157,10 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         btnSearch.setOnClickListener(this);
         btnSend.setOnClickListener(this);
         btnVolver.setOnClickListener(this);
+
+        if(!(SharedPreferences.getPreferenciaImpresion(ApartadosActivity.this))){
+            btnSend.setEnabled(true);
+        }
 
         bdFactura= new CarritoBD(getApplicationContext(),null,1);
         bdClientes= new ClientesBD(getApplicationContext(),null,1);
