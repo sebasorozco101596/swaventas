@@ -497,8 +497,8 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         for(int i=0;i<clientesNuevos.size();i++){
             for(int j=0;j<clientes.size();j++){
-                if(clientesNuevos.get(i).getCedula().toString().equals(clientes.get(j).getCedula().toString())
-                        && !clientesNuevos.get(i).getNombre().toString().equals(clientes.get(j).getName().toString())){
+                if(clientesNuevos.get(i).getCedula().equals(clientes.get(j).getCedula())
+                        && !clientesNuevos.get(i).getNombre().equals(clientes.get(j).getName())){
                     clientesRepetidos.add(clientesNuevos.get(i).getId());
                 }
             }
