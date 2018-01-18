@@ -203,11 +203,11 @@ public class PanelPedidoActivity extends AppCompatActivity {
                 cmd[1] = 0x21;
                 cmd[2] |= 0x10;
                 mService.write(cmd);
-                mService.sendMessage(header, "GBK");
+                mService.sendMessage(header, "UTF-8");
 
                 cmd[2] &= 0xEF;
                 mService.write(cmd);
-                mService.sendMessage(msg, "GBK");
+                mService.sendMessage(msg, "UTF-8");
 
                 header="";
                 msg="";

@@ -483,7 +483,6 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtNumeroClientesNuevos.setText(""+bdClientesCompleto.clientes().size());
 
 
-
         ventas= bdVentas.ventas();
         abonos= bdAbonos.abonos();
         gastos=bdGastos.gastos();
@@ -535,7 +534,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                     //bdVentas.eliminarVentas();
                     //bdProductosVenta.eliminarProductosVenta();
                 //btnImprimirDetallado.setEnabled(true);
-
 
             }else if(v.equals(btnSubirClientes)){
 
@@ -666,46 +664,41 @@ public class CierreCajaActivity extends AppCompatActivity {
 
             }else if(v.equals(btnVolver)){
 
-                {
+                /**
+                 * We will create a personalized alert, we will add
+                 * buttons and also their actions, we give the
+                 * user a description of what will
+                 * happen if he deletes his account, and the user
+                 * will choose whether to delete it or not.
+                 */
 
-                    /**
-                     * We will create a personalized alert, we will add
-                     * buttons and also their actions, we give the
-                     * user a description of what will
-                     * happen if he deletes his account, and the user
-                     * will choose whether to delete it or not.
-                     */
+                AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
+                builder.setIcon(R.drawable.logo);
+                builder.setTitle("Esta seguro?");
+                builder.setMessage("Si vuelve al panel sin antes imprimir no se agregara la venta");
+                builder.setCancelable(false);
 
-                    AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
-                    builder.setIcon(R.drawable.logo);
-                    builder.setTitle("Esta seguro?");
-                    builder.setMessage("Si vuelve al panel sin antes imprimir no se agregara la venta");
-                    builder.setCancelable(false);
+                /**
+                 * Action of the button
+                 */
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                /**
+                 * Action of the button
+                 */
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-                    /**
-                     * Action of the button
-                     */
-                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    });
-                    /**
-                     * Action of the button
-                     */
-                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    AlertDialog alertDialog= builder.create();
-                    alertDialog.show();
-
-                }
-
+                AlertDialog alertDialog= builder.create();
+                alertDialog.show();
 
             }
 
@@ -788,11 +781,12 @@ public class CierreCajaActivity extends AppCompatActivity {
                                     cmd[1] = 0x21;
                                     cmd[2] |= 0x10;
                                     mService.write(cmd);
-                                    mService.sendMessage(header, "GBK");
+                                    mService.sendMessage(header, "UTF-8");
+
 
                                     cmd[2] &= 0xEF;
                                     mService.write(cmd);
-                                    mService.sendMessage(msg, "GBK");
+                                    mService.sendMessage(msg, "UTF-8");
 
                                     header="";
                                     msg="";
@@ -934,27 +928,27 @@ public class CierreCajaActivity extends AppCompatActivity {
                             cmd[1] = 0x21;
                             cmd[2] |= 0x10;
                             mService.write(cmd);
-                            mService.sendMessage(header, "GBK");
+                            mService.sendMessage(header, "UTF-8");
 
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msg, "GBK");
+                            mService.sendMessage(msg, "UTF-8");
 
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msgProductos, "GBK");
+                            mService.sendMessage(msgProductos, "UTF-8");
 
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msgAbonos, "GBK");
+                            mService.sendMessage(msgAbonos, "UTF-8");
 
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msgGastos, "GBK");
+                            mService.sendMessage(msgGastos, "UTF-8");
 
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msgDatos, "GBK");
+                            mService.sendMessage(msgDatos, "UTF-8");
 
                             Log.d("facturaCierre", header + "\n" +msg + "\n" + msgProductos + "\n" + msgAbonos + "\n" + msgGastos
                                     + "\n" + msgDatos);

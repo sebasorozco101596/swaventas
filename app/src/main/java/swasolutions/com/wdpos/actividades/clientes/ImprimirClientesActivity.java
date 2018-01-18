@@ -212,11 +212,11 @@ public class ImprimirClientesActivity extends AppCompatActivity {
                 cmd[1] = 0x21;
                 cmd[2] |= 0x10;
                 mService.write(cmd);
-                mService.sendMessage(header, "GBK");
+                mService.sendMessage(header, "UTF-8");
 
                 cmd[2] &= 0xEF;
                 mService.write(cmd);
-                mService.sendMessage(msgDatos, "GBK");
+                mService.sendMessage(msgDatos, "UTF-8");
 
                 for (int i = 0; i < clientes.size(); i++) {
 
@@ -248,7 +248,7 @@ public class ImprimirClientesActivity extends AppCompatActivity {
                 //cmd[2] |= 0x01;
                 cmd[2] &= 0xEF;
                 mService.write(cmd);
-                mService.sendMessage(msgProductos, "GBK");
+                mService.sendMessage(msgProductos, "UTF-8");
 
                 Log.d("clientes", header + "\n" + msgDatos + "\n" + msgProductos + "\n" + msg);
 

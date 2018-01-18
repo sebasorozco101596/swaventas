@@ -456,11 +456,11 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         cmd[1] = 0x21;
         cmd[2] |= 0x10;
         mService.write(cmd);
-        mService.sendMessage(header, "GBK");
+        mService.sendMessage(header, "UTF-8");
 
         cmd[2] &= 0xEF;
         mService.write(cmd);
-        mService.sendMessage(msgDatos, "GBK");
+        mService.sendMessage(msgDatos, "UTF-8");
 
         for (int i = 0; i < productos.size(); i++) {
 
@@ -501,16 +501,16 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         //cmd[2] |= 0x01;
         cmd[2] &= 0xEF;
         mService.write(cmd);
-        mService.sendMessage(msgProductos, "GBK");
+        mService.sendMessage(msgProductos, "UTF-8");
 
         String raya = DIVIDER_DOUBLE + BREAK;
         cmd[2] &= 0xEF;
         mService.write(cmd);
-        mService.sendMessage(raya, "GBK");
+        mService.sendMessage(raya, "UTF-8");
 
         cmd[2] &= 0xEF;
         mService.write(cmd);
-        mService.sendMessage(msg, "GBK");
+        mService.sendMessage(msg, "UTF-8");
 
 
         Log.d("apartadosss", header + "\n" + msgDatos + "\n" + msgProductos + "\n" + msg);

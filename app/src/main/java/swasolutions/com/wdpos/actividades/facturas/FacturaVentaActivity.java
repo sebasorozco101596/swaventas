@@ -340,7 +340,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
             if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                btnSend.setEnabled(true);
+
                 //btnSendCopia.setEnabled(true);
 
             }else if(v.equals(btnVolver)){
@@ -491,11 +491,11 @@ public class FacturaVentaActivity extends AppCompatActivity{
                     cmd[1] = 0x21;
                     cmd[2] |= 0x10;
                     mService.write(cmd);
-                    mService.sendMessage(header, "GBK");
+                    mService.sendMessage(header, "UTF-8");
 
                     cmd[2] &= 0xEF;
                     mService.write(cmd);
-                    mService.sendMessage(msgDatos, "GBK");
+                    mService.sendMessage(msgDatos, "UTF-8");
 
                     for (int i = 0; i < productos.size(); i++) {
 
@@ -536,16 +536,16 @@ public class FacturaVentaActivity extends AppCompatActivity{
                     //cmd[2] |= 0x01;
                     cmd[2] &= 0xEF;
                     mService.write(cmd);
-                    mService.sendMessage(msgProductos, "GBK");
+                    mService.sendMessage(msgProductos, "UTF-8");
 
                     raya = DIVIDER_DOUBLE + BREAK;
                     cmd[2] &= 0xEF;
                     mService.write(cmd);
-                    mService.sendMessage(raya, "GBK");
+                    mService.sendMessage(raya, "UTF-8");
 
                     cmd[2] &= 0xEF;
                     mService.write(cmd);
-                    mService.sendMessage(msg, "GBK");
+                    mService.sendMessage(msg, "UTF-8");
                     takeScreenshot();
 
                     contador=1;
@@ -629,11 +629,11 @@ public class FacturaVentaActivity extends AppCompatActivity{
                                 cmd[1] = 0x21;
                                 cmd[2] |= 0x10;
                                 mService.write(cmd);
-                                mService.sendMessage(header, "GBK");
+                                mService.sendMessage(header, "UTF-8");
 
                                 cmd[2] &= 0xEF;
                                 mService.write(cmd);
-                                mService.sendMessage(msgDatos, "GBK");
+                                mService.sendMessage(msgDatos, "UTF-8");
 
                                 for(int i=0;i<productos.size();i++){
 
@@ -674,16 +674,16 @@ public class FacturaVentaActivity extends AppCompatActivity{
                                 }
                                 cmd[2] &= 0xEF ;
                                 mService.write(cmd);
-                                mService.sendMessage(msgProductos, "GBK");
+                                mService.sendMessage(msgProductos, "UTF-8");
 
                                 raya = DIVIDER_DOUBLE + BREAK;
                                 cmd[2] &= 0xEF  ;
                                 mService.write(cmd);
-                                mService.sendMessage(raya, "GBK");
+                                mService.sendMessage(raya, "UTF-8");
 
                                 cmd[2] &= 0xEF;
                                 mService.write(cmd);
-                                mService.sendMessage(msg, "GBK");
+                                mService.sendMessage(msg, "UTF-8");
 
                                 Log.d("ventaFactura",header+"\n"+msgDatos+"\n"+msgProductos+"\n"+msg);
 

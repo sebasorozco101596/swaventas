@@ -286,8 +286,6 @@ public class FacturaAbonoActivity extends AppCompatActivity {
             if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                //btnSend.setEnabled(true);
-                //btnSendCopia.setEnabled(true);
             } else if (v.equals(btnSend)) {
 
                 btnSend.setEnabled(false);
@@ -356,10 +354,10 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                     cmd[1] = 0x21;
                     cmd[2] |= 0x10;
                     mService.write(cmd);
-                    mService.sendMessage(header, "GBK");
+                    mService.sendMessage(header, "UTF-8");
                     cmd[2] &= 0xEF;
                     mService.write(cmd);
-                    mService.sendMessage(msg, "GBK");
+                    mService.sendMessage(msg, "UTF-8");
 
                     header="";
                     msg="";
@@ -477,10 +475,10 @@ public class FacturaAbonoActivity extends AppCompatActivity {
                             cmd[1] = 0x21;
                             cmd[2] |= 0x10;
                             mService.write(cmd);
-                            mService.sendMessage(header, "GBK");
+                            mService.sendMessage(header, "UTF-8");
                             cmd[2] &= 0xEF;
                             mService.write(cmd);
-                            mService.sendMessage(msg, "GBK");
+                            mService.sendMessage(msg, "UTF-8");
 
                             Toast.makeText(getApplicationContext(),"Copia correcta",Toast.LENGTH_SHORT).show();
                             Log.d("abonoFactura",header+ "\n" + msg);

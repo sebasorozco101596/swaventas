@@ -44,6 +44,12 @@ public class PanelConfiguracionActivity extends AppCompatActivity {
 
         Switch aSwitchImpresion= (Switch) findViewById(R.id.SwitchImprimir_panelConfiguracion);
 
+        if(SharedPreferences.getPreferenciaImpresion(getApplicationContext())){
+            aSwitchImpresion.setChecked(true);
+        }else{
+            aSwitchImpresion.setChecked(false);
+        }
+
         aSwitchImpresion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
