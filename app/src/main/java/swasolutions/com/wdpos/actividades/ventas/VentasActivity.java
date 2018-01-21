@@ -70,7 +70,7 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
         Button btnCarrito = (Button) findViewById(R.id.btnCarroVenta);
 
 
-        if(TIPO.equals("devolucion")) {
+        if("devolucion".equals(TIPO)) {
             btnCarrito.setText("Devoluciones");
             btnCancelarVenta.setText("Cancelar devoluciones");
         }
@@ -229,7 +229,7 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        newText = newText.toLowerCase();
+        String newTextToLower = newText.toLowerCase();
         ArrayList<Producto> nuevaLista= new ArrayList<>();
         for(Producto producto:productos){
 
@@ -238,9 +238,9 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
             String id= ""+producto.getId();
 
 
-            if(nombre.contains(newText) || id.contains(newText) ) {
+            if(nombre.contains(newTextToLower) || id.contains(newTextToLower) ) {
                 nuevaLista.add(producto);
-                Log.d("entrecli",newText);
+                Log.d("entrecli",newTextToLower);
             }
 
         }

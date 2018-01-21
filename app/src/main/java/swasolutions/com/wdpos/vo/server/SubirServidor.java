@@ -5,14 +5,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
@@ -58,11 +53,6 @@ public class SubirServidor implements Runnable {
     private Context context;
     private int tipo;
 
-    private StringRequest requestAbonos;
-    private JsonObjectRequest requestVentas;
-    private JsonObjectRequest requestDevoluciones;
-    private StringRequest requestGastos;
-    private RequestQueue requestQueue;
     private String id;
     private int warehouse_id;
 
@@ -75,8 +65,7 @@ public class SubirServidor implements Runnable {
 
     public SubirServidor(ArrayList<Abono> abonos, ArrayList<VentaCompleta> ventas,
                          ArrayList<Gasto> gastos,ArrayList<Devolucion> devoluciones,
-                         Context context, int tipo, String link, String id,
-                         Cache cache, int warehouse_id){
+                         Context context, int tipo, String link, String id, int warehouse_id){
         this.abonos=abonos;
         this.ventas=ventas;
         this.gastos=gastos;
@@ -103,20 +92,6 @@ public class SubirServidor implements Runnable {
         bdProductosVenta= new ProductosVentaBD(context,null,1);
 
 
-        requestQueue= MySingleton.getInstance(context).
-                getRequestQueue();
-
-        //------------
-// Set up the network to use HttpURLConnection as the HTTP client.
-        Network network = new BasicNetwork(new HurlStack());
-
-// Instantiate the RequestQueue with the cache and network.
-        requestQueue = new RequestQueue(cache, network);
-
-// Start the queue
-        requestQueue.start();
-
-        // requestQueue = Volley.newRequestQueue(context);
     }
 
 
@@ -136,7 +111,7 @@ public class SubirServidor implements Runnable {
 
                 Log.d("entreeeeeee", ""+abonos.get(i).getPagado());
                 final int finalI = i;
-                requestAbonos = new StringRequest(Request.Method.POST, URLAbonos, new Response.Listener<String>() {
+                StringRequest requestAbonos = new StringRequest(Request.Method.POST, URLAbonos, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
@@ -257,7 +232,7 @@ public class SubirServidor implements Runnable {
             Log.d("Ventasssssssss",jsonObjectVentas.toString());
 
 
-            requestVentas = new JsonObjectRequest(Request.Method.POST,URLVentas,jsonObjectVentas, new Response.Listener<JSONObject>() {
+            JsonObjectRequest requestVentas = new JsonObjectRequest(Request.Method.POST,URLVentas,jsonObjectVentas, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
@@ -302,7 +277,7 @@ public class SubirServidor implements Runnable {
 
                 Log.d("entreeeeeee", "3" + i);
                 final int finalI = i;
-                requestGastos = new StringRequest(Request.Method.POST, URLGastos, new Response.Listener<String>() {
+                StringRequest requestGastos = new StringRequest(Request.Method.POST, URLGastos, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
@@ -377,7 +352,7 @@ public class SubirServidor implements Runnable {
                 e.printStackTrace();
             }
 
-            requestDevoluciones = new JsonObjectRequest(Request.Method.POST,URLDevoluciones,
+            JsonObjectRequest requestDevoluciones = new JsonObjectRequest(Request.Method.POST,URLDevoluciones,
                     jsonObjectDevolucion, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {

@@ -30,11 +30,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Cache;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.zj.btsdk.BluetoothService;
 
@@ -727,13 +725,13 @@ public class CierreCajaActivity extends AppCompatActivity {
                                     ExecutorService executor = Executors.newFixedThreadPool(4);
 
                                     int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(CierreCajaActivity.this);
-                                    Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+                                    //Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
 
                                     for(int i=1;i<=4;i++){
 
                                         // Log.d("ERROR",""+i);
                                         Runnable workerVentas = new SubirServidor(abonos,ventasCompleto,gastos,
-                                                devoluciones, getApplicationContext(),i,link,ID,cache,
+                                                devoluciones, getApplicationContext(),i,link,ID,
                                                 warehouseId);
                                         //The thread in the thread pool runs.
                                         executor.execute(workerVentas);
@@ -838,8 +836,8 @@ public class CierreCajaActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(CierreCajaActivity.this))){
+                        if(Integer.parseInt(txtContrasenia.getText().toString()) !=
+                                ConfiguracionActivity.getPreferenciaPing(CierreCajaActivity.this)){
                             txtContrasenia.setError("Ping incorrecto");
                         } else {
 

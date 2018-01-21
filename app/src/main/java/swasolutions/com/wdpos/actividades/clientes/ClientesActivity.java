@@ -117,7 +117,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        newText = newText.toLowerCase();
+        String newTextToLower = newText.toLowerCase();
         ArrayList<Cliente> nuevaLista= new ArrayList<>();
         for(Cliente cliente:clientes){
 
@@ -126,10 +126,10 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
             String cedula= ""+cliente.getCedula();
 
 
-            if(nombre.contains(newText) || cedula.contains(newText) ) {
+            if(nombre.contains(newTextToLower) || cedula.contains(newTextToLower) ) {
                 nuevaLista.add(cliente);
 
-                Log.d("entrecli",newText);
+                Log.d("entrecli",newTextToLower);
             }
 
         }

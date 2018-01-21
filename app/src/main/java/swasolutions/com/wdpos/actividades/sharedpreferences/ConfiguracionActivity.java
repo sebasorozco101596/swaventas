@@ -357,7 +357,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
     public static String getPreferenciaTienda(Context context){
         SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         String channel = (sharedPreferences.getString(PREFERENCE_TIENDA,""));
-        return channel.toString();
+        return channel;
     }
 
     public static void eliminarPreferencias(Context context){

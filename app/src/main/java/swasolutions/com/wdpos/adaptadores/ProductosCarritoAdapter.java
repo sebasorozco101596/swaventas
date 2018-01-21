@@ -110,8 +110,8 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
                     @Override
                     public void onClick(View v) {
 
-                        if(!(Integer.parseInt(txtContrasenia.getText().toString()) ==
-                                ConfiguracionActivity.getPreferenciaPing(context))){
+                        if(Integer.parseInt(txtContrasenia.getText().toString()) !=
+                                ConfiguracionActivity.getPreferenciaPing(context)){
                             txtContrasenia.setError("Ping incorrecto");
                         } else {
 

@@ -264,7 +264,7 @@ public class VentasBD extends SQLiteOpenHelper{
         int nuevoCredito= encontrarCredito(id)+ credito;
         Log.d("Actualizando",""+nuevoPagado);
 
-        if(estadoVenta.equals("paid")){
+        if("paid".equals(estadoVenta)){
             String queryUpdate= "UPDATE Ventas SET pagadoCliente='"+nuevoPagado+"',estadoVenta='"+
                     estadoVenta+ "',credito='"+nuevoCredito+"' where id='"+id+"'";
             database.execSQL(queryUpdate);

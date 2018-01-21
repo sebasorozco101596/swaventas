@@ -342,10 +342,8 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
                             estadoVenta,PAGO,cantidadProductos,idCliente,ApartadosActivity.this,existe,
                             nota,CREDITO);
 
-                    if(CREDITO>0){
-                        if(bdCredito.buscarCliente(CEDULACLIENTE)){
+                    if(CREDITO>0 && bdCredito.buscarCliente(CEDULACLIENTE)){
                             bdCredito.descontarCredito(CEDULACLIENTE,CREDITO,context);
-                        }
                     }
 
                     for(int j=0;j<productos.size();j++){
