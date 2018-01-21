@@ -86,7 +86,7 @@ public class CierreCajaActivity extends AppCompatActivity {
     private TextView txtCantidadProductos,txtTotalVentas,
             txtDineroRecibidoVentas,txtDineroRecibidoAbonos,txtTotalGastos,txtDineroEntregar;
 
-    private TextView txtFecha,txtVendedor,txtNumeroClientesNuevos,txtProductosDevolver;
+    private TextView txtFecha,txtVendedor;
 
     private TextView txtTitulo,txtDireccion,txtTelefono;
 
@@ -97,9 +97,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     private static final String TAG = "CierreCajaActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 1;
-    private String URLClientes;
-
-    private JsonObjectRequest requestCliente;
 
 
     private Button btnSearch;
@@ -109,7 +106,6 @@ public class CierreCajaActivity extends AppCompatActivity {
     private Button btnSubirClientes;
     private Button btnEliminarCliRepetidos;
     private BluetoothService mService = null;
-    private BluetoothDevice con_dev = null;
     private Context context;
 
     private String msg = "";
@@ -297,7 +293,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_NETWORK_STATE},
                         MI_PERMISO_NETWORK);
             }
-            return;
 
         }else if(ActivityCompat.checkSelfPermission(CierreCajaActivity.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
@@ -332,7 +327,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         MI_PERMISO_LEER);
             }
-            return;
 
         }else if(ActivityCompat.checkSelfPermission(CierreCajaActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
@@ -366,10 +360,10 @@ public class CierreCajaActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         MI_PERMISO_ESCRIBIR);
             }
-            return;
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onStart() {
         super.onStart();
@@ -404,12 +398,12 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtTotalGastos= (TextView) findViewById(R.id.txtTotalGastos_cierreCaja);
         txtDineroEntregar= (TextView) findViewById(R.id.txtEfectivoEntregar_cierreCaja);
 
-        txtNumeroClientesNuevos= (TextView) findViewById(R.id.txtClientesNuevos_cierreCaja);
-        txtProductosDevolver= (TextView) findViewById(R.id.txtProductosDevolver_cierreCaja);
+        TextView txtNumeroClientesNuevos= (TextView) findViewById(R.id.txtClientesNuevos_cierreCaja);
+        TextView txtProductosDevolver= (TextView) findViewById(R.id.txtProductosDevolver_cierreCaja);
 
 
 
-        /**
+        /*
          * Instancia de las bases de datos locales
          */
 
@@ -531,13 +525,9 @@ public class CierreCajaActivity extends AppCompatActivity {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 
-                    //bdVentas.eliminarVentas();
-                    //bdProductosVenta.eliminarProductosVenta();
-                //btnImprimirDetallado.setEnabled(true);
-
             }else if(v.equals(btnSubirClientes)){
 
-                URLClientes = link + "/app_movil/vendedor/registrarClienteTest.php";
+                String URLClientes = link + "/app_movil/vendedor/registrarClienteTest.php";
                 //Log.d("registroCliente", "" + clientes.size());
 
                 int numeroClientes= bdClientesCompleto.clientes().size();
@@ -546,7 +536,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                     if(numeroClientes>0){
 
                         AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
-                        View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
+                        @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
 
                         final EjAsincTask2 ejAsincTask2= new EjAsincTask2();
                         ejAsincTask2.execute();
@@ -564,21 +554,19 @@ public class CierreCajaActivity extends AppCompatActivity {
                         ArrayList<ClienteCompleto> clientes= bdClientesCompleto.clientes();
                         for(int j = 0; j<clientes.size(); j++) {
 
-                            final int finalI = j;
-
-                            HashMap<String, String> hashMapCliente = new HashMap<String, String>();
-                            hashMapCliente.put("id", ""+clientes.get(finalI).getId());
-                            hashMapCliente.put("customer_group_name", "" + clientes.get(finalI).getGrupo());
-                            hashMapCliente.put("name", "" + clientes.get(finalI).getNombre());
-                            hashMapCliente.put("vat_no", "" + clientes.get(finalI).getCedula());
-                            hashMapCliente.put("address", "" + clientes.get(finalI).getDireccion());
-                            hashMapCliente.put("city", "" + clientes.get(finalI).getCiudad());
-                            hashMapCliente.put("state", "" + clientes.get(finalI).getEstado());
-                            hashMapCliente.put("country", "" + clientes.get(finalI).getPais());
-                            hashMapCliente.put("phone", "" + clientes.get(finalI).getTelefono());
+                            HashMap<String, String> hashMapCliente = new HashMap<>();
+                            hashMapCliente.put("id", ""+clientes.get(j).getId());
+                            hashMapCliente.put("customer_group_name", "" + clientes.get(j).getGrupo());
+                            hashMapCliente.put("name", "" + clientes.get(j).getNombre());
+                            hashMapCliente.put("vat_no", "" + clientes.get(j).getCedula());
+                            hashMapCliente.put("address", "" + clientes.get(j).getDireccion());
+                            hashMapCliente.put("city", "" + clientes.get(j).getCiudad());
+                            hashMapCliente.put("state", "" + clientes.get(j).getEstado());
+                            hashMapCliente.put("country", "" + clientes.get(j).getPais());
+                            hashMapCliente.put("phone", "" + clientes.get(j).getTelefono());
                             hashMapCliente.put("customer_group_id",""+bdGruposVendedor.
-                                    obtenerId(clientes.get(finalI).getGrupo()));
-                            hashMapCliente.put("tipo",""+clientes.get(finalI).getTipo());
+                                    obtenerId(clientes.get(j).getGrupo()));
+                            hashMapCliente.put("tipo",""+clientes.get(j).getTipo());
 
                             JSONObject jsonObjectProductos= new JSONObject(hashMapCliente);
 
@@ -593,7 +581,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        requestCliente = new JsonObjectRequest(Request.Method.POST,URLClientes,jsonObjectClientes, new Response.Listener<JSONObject>() {
+                        JsonObjectRequest requestCliente = new JsonObjectRequest(Request.Method.POST,URLClientes,jsonObjectClientes, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
@@ -644,7 +632,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             }else if(v.equals(btnEliminarCliRepetidos)){
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
+                @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
 
                 EjAsincTask2 ejAsincTask2= new EjAsincTask2();
                 ejAsincTask2.execute();
@@ -664,7 +652,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
             }else if(v.equals(btnVolver)){
 
-                /**
+                /*
                  * We will create a personalized alert, we will add
                  * buttons and also their actions, we give the
                  * user a description of what will
@@ -678,7 +666,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 builder.setMessage("Si vuelve al panel sin antes imprimir no se agregara la venta");
                 builder.setCancelable(false);
 
-                /**
+                /*
                  * Action of the button
                  */
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -687,7 +675,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-                /**
+                /*
                  * Action of the button
                  */
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -706,7 +694,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 if(contador==0){
 
                     AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
-                    View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
+                    @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
                     builder.setView(mView);
                     final AlertDialog alertDialog= builder.create();
                     alertDialog.setCancelable(false);
@@ -724,8 +712,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                         if(isNetDisponible() && isOnlineNet()){
 
-                            if(numeroclientes==0 && (TOTAL_GASTOS>0 || TOTAL_VENTAS>0 || DINERO_ABONOS>0 ||
-                                    devoluciones.size()>0)){
+                            if(TOTAL_GASTOS > 0 || TOTAL_VENTAS > 0 || DINERO_ABONOS > 0 || devoluciones.size() > 0){
 
                                 ventas=organizarVentas(ventas);
 
@@ -734,7 +721,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                                 if(TOTAL_GASTOS>0 || TOTAL_VENTAS>0 || DINERO_ABONOS >0 || devoluciones.size()>0){
 
 
-                                    /**
+                                    /*
                                      * Logica que sube todos los datos al servidor
                                      */
                                     ExecutorService executor = Executors.newFixedThreadPool(4);
@@ -754,7 +741,8 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                                     executor.shutdown();
 
-                                    while (!executor.isTerminated()) {
+                                    while (true) {
+                                        if (executor.isTerminated()) break;
                                     }
 
 
@@ -840,7 +828,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             }else if(v.equals(btnImprimirDetallado)){
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
+                @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_contrasenia,null);
                 final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
                 Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
                 builder.setView(mView);
@@ -980,17 +968,14 @@ public class CierreCajaActivity extends AppCompatActivity {
 
     private  ArrayList<Venta> organizarVentas(ArrayList<Venta> ventas) {
 
-        ArrayList<Venta> ventasNew= ventas;
-
-        for(int i=0;i<ventasNew.size();i++){
+        for(int i = 0; i< ventas.size(); i++){
             if(ventas.get(i).getExiste()==2){
-                ventasNew.get(i).setIdCliente(bdClientes.buscarCliente(ventasNew.get(i).getCedulaCliente()));
-                ventasNew.get(i).setExiste(1);
-                ventasNew.set(i,ventasNew.get(i));
+                ventas.get(i).setIdCliente(bdClientes.buscarCliente(ventas.get(i).getCedulaCliente()));
+                ventas.get(i).setExiste(1);
+                ventas.set(i, ventas.get(i));
             }
         }
-
-        return ventasNew;
+        return ventas;
 
     }
 
@@ -1030,7 +1015,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         String espaciosInicio="";
         String espaciosFinal="";
-        String cadenaFinal="";
+        String cadenaFinal;
 
         if(cadena.length()<32){
 
@@ -1051,10 +1036,9 @@ public class CierreCajaActivity extends AppCompatActivity {
 
     private String alinearLineas(String cadena){
 
-        String nombre= cadena;
-        String linea1= nombre;
+        String linea1= cadena;
         String linea2="";
-        String resultado="";
+        String resultado;
 
         if(cadena.length()>32){
 
@@ -1063,8 +1047,8 @@ public class CierreCajaActivity extends AppCompatActivity {
             for(int j=32;j>1;j--){
 
                 if(linea1.charAt(j)==' '){
-                    linea1= nombre.substring(0,j);
-                    linea2= nombre.substring(j,nombre.length());
+                    linea1= cadena.substring(0,j);
+                    linea2= cadena.substring(j, cadena.length());
                     break;
                 }
             }
@@ -1095,7 +1079,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    con_dev = mService.getDevByMac(address);
+                    BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
                 break;
@@ -1118,11 +1102,9 @@ public class CierreCajaActivity extends AppCompatActivity {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
 
             int val           = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
+            return (val == 0);
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return false;
@@ -1134,7 +1116,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             Thread.sleep(1000);
 
         }catch (InterruptedException e){
-
+            Log.d(TAG, "segundo: se pauso");
         }
     }
 
@@ -1195,6 +1177,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"entre error",Toast.LENGTH_SHORT).show();
         }
     }
+    @SuppressLint("StaticFieldLeak")
     private class EjAsincTask extends AsyncTask<Void,Integer,Boolean> {
 
 
@@ -1272,8 +1255,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         }
     }
 
-
-
+    @SuppressLint("StaticFieldLeak")
     private class EjAsincTask2 extends AsyncTask<Void,Integer,Boolean> {
 
 

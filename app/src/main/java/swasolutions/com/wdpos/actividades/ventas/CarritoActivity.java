@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.actividades.ventas;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,31 +25,29 @@ import swasolutions.com.wdpos.vo.clases_objeto.ProductoCarrito;
 
 public class CarritoActivity extends AppCompatActivity {
 
-    private Button btnCancelarVenta,btnProductos,btnVender;
+    @SuppressLint("StaticFieldLeak")
     private static TextView txtTotal;
 
 
     private ArrayList<ProductoCarrito> productosCarrito;
 
-    private RecyclerView recyclerView;
     private CarritoBD bdCarrito;
 
     private String NICKNAME;
     private String ID;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
 
-
-
         productosCarrito= new ArrayList<>();
 
         txtTotal= (TextView) findViewById(R.id.txtPrecioTotal_Carrito);
-        btnCancelarVenta= (Button) findViewById(R.id.btnCancelarVenta_carrito);
-        btnProductos= (Button) findViewById(R.id.btnProductos_carrito);
-        btnVender= (Button) findViewById(R.id.btnVender_carrito);
+        Button btnCancelarVenta= (Button) findViewById(R.id.btnCancelarVenta_carrito);
+        Button btnProductos= (Button) findViewById(R.id.btnProductos_carrito);
+        Button btnVender= (Button) findViewById(R.id.btnVender_carrito);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -68,7 +67,7 @@ public class CarritoActivity extends AppCompatActivity {
 
         txtTotal.setText(""+total);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewCarroVenta);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewCarroVenta);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -98,7 +97,7 @@ public class CarritoActivity extends AppCompatActivity {
 
                 {
 
-                    /**
+                    /*
                      * We will create a personalized alert, we will add
                      * buttons and also their actions, we give the
                      * user a description of what will
@@ -112,7 +111,7 @@ public class CarritoActivity extends AppCompatActivity {
                     builder.setMessage(R.string.detail_drop_account);
                     builder.setCancelable(false);
 
-                    /**
+                    /*
                      * Action of the button
                      */
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -125,7 +124,7 @@ public class CarritoActivity extends AppCompatActivity {
                             bdCarrito.close();
                         }
                     });
-                    /**
+                    /*
                      * Action of the button
                      */
                     builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -154,7 +153,7 @@ public class CarritoActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
 
-                    /**
+                    /*
                      * We will create a personalized alert, we will add
                      * buttons and also their actions, we give the
                      * user a description of what will
@@ -168,7 +167,7 @@ public class CarritoActivity extends AppCompatActivity {
                     builder.setMessage(R.string.mensajeVender);
                     builder.setCancelable(false);
 
-                    /**
+                    /*
                      * Action of the button
                      */
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -183,7 +182,7 @@ public class CarritoActivity extends AppCompatActivity {
                             finish();
                         }
                     });
-                    /**
+                    /*
                      * Action of the button
                      */
                     builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -205,6 +204,7 @@ public class CarritoActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public static int calcularTotal(List<ProductoCarrito> productos){
 
         int total=0;

@@ -17,7 +17,6 @@ import swasolutions.com.wdpos.actividades.terminales.TerminalesActivity;
 
 public class PanelConfiguracionActivity extends AppCompatActivity {
 
-    private Button btnTerminales, btnNotas,btnAjustes,btnGruposClientes,btnEliminarTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +24,11 @@ public class PanelConfiguracionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_panel_configuracion);
 
 
-        btnTerminales= (Button) findViewById(R.id.btnTerminales_panelConfiguracion);
-        btnNotas = (Button) findViewById(R.id.btnNotas_panelConfiguracion);
-        btnAjustes = (Button) findViewById(R.id.btnAjustes_panelConfiguracion);
-        btnGruposClientes= (Button) findViewById(R.id.btnGruposClientes_panelConfiguracion);
-        btnEliminarTodo= (Button) findViewById(R.id.btnEliminarTodo_panelConfiguracion);
+        Button btnTerminales= (Button) findViewById(R.id.btnTerminales_panelConfiguracion);
+        Button btnNotas = (Button) findViewById(R.id.btnNotas_panelConfiguracion);
+        Button btnAjustes = (Button) findViewById(R.id.btnAjustes_panelConfiguracion);
+        Button btnGruposClientes= (Button) findViewById(R.id.btnGruposClientes_panelConfiguracion);
+        Button btnEliminarTodo= (Button) findViewById(R.id.btnEliminarTodo_panelConfiguracion);
 
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbarPanelConfiguracion);
         setSupportActionBar(toolbar);

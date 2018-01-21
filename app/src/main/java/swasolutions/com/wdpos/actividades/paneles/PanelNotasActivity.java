@@ -12,15 +12,13 @@ import swasolutions.com.wdpos.actividades.notas.NotaFacturaActivity;
 
 public class PanelNotasActivity extends AppCompatActivity {
 
-    private Button btnNotaFactura,btnNotaAbono;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_notas);
 
-        btnNotaFactura = (Button) findViewById(R.id.btnNotasVentas_PanelNotas);
-        btnNotaAbono = (Button) findViewById(R.id.btnNotaAbonos_PanelNotas);
+        Button btnNotaFactura = (Button) findViewById(R.id.btnNotasVentas_PanelNotas);
+        Button btnNotaAbono = (Button) findViewById(R.id.btnNotaAbonos_PanelNotas);
 
         btnNotaFactura.setOnClickListener(new View.OnClickListener() {
             @Override

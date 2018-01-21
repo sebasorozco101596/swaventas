@@ -2,7 +2,6 @@ package swasolutions.com.wdpos.actividades.clientes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,23 +28,15 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
 
     private ArrayList<Cliente> clientes;
 
-    private RecyclerView recyclerView;
     private ClientesAdapter adapter;
-
-    private Toolbar toolbarFiltrado;
-
 
     public static ClientesBD bdCliente;
     public static GruposVendedorBD bdGruposVendedor;
-    public static SQLiteDatabase sqLiteDatabase;
 
     private String TIPO;
     private int TOTAL;
     private String NICKNAME;
     private String ID;
-
-    private Context context;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +47,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         Logica logica= new Logica();
 
         clientes= new ArrayList<>();
-        context= ClientesActivity.this;
+        Context context= ClientesActivity.this;
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -65,7 +56,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         if(bundle!=null) {
             TIPO = bundle.getString("key_tipo");
 
-            if(TIPO.equals("venta")){
+            if("venta".equals(TIPO)){
                 TOTAL= bundle.getInt("key_total");
             }
 
@@ -74,12 +65,11 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
 
         }
 
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarCliente);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarCliente);
         setSupportActionBar(toolbarFiltrado);
 
         bdCliente= new ClientesBD(getApplicationContext(),null,1);
         bdGruposVendedor= new GruposVendedorBD(getApplicationContext(),null,1);
-        sqLiteDatabase= bdCliente.getWritableDatabase();
 
         clientes= bdCliente.cargarClientes();
 
@@ -96,7 +86,7 @@ public class ClientesActivity extends AppCompatActivity implements SearchView.On
         });
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewClientes);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewClientes);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.getStackFromEnd();
         recyclerView.setLayoutManager(linearLayoutManager);

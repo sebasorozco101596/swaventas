@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.adaptadores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -22,7 +23,7 @@ import swasolutions.com.wdpos.base_de_datos.CarritoBD;
 import swasolutions.com.wdpos.base_de_datos.DevolucionesBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 
-/**
+/*
  * Created by sebas on 24/06/2017.
  */
 
@@ -38,7 +39,7 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
 
     /**
      * Builder class
-     * @param productos
+     * @param productos productos que se mostraran
      */
     public ProductosAdapter(List<Producto> productos,Context context,String tipo,String CEDULA){
 
@@ -56,8 +57,9 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
         return new ProductosAdapter.ProductosViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(final ProductosAdapter.ProductosViewHolder holder, final int position) {
+    public void onBindViewHolder(final ProductosAdapter.ProductosViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
             holder.nombre.setText(productos.get(position).getNombre().toLowerCase());
             holder.precio.setText(productos.get(position).getPrecio());
@@ -109,7 +111,7 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
 
 
                                 AlertDialog.Builder builder= new AlertDialog.Builder(context);
-                                View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_tipo_devolucion,null);
+                                @SuppressLint("InflateParams") View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_tipo_devolucion,null);
                                 builder.setView(mView);
                                 final AlertDialog alertDialog= builder.create();
                                 final RadioButton rdbNormal= (RadioButton) mView.findViewById(R.id.rdbNormal_dialogDevolucion);

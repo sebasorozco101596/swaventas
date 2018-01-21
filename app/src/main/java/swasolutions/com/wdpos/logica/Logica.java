@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.logica;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -46,14 +47,12 @@ import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 public class Logica {
 
-    public static String BREAK = "\r\n";
-
     public static String centrarCadena(String cadena) {
 
 
         String espaciosInicio="";
         String espaciosFinal="";
-        String cadenaFinal="";
+        String cadenaFinal;
 
         if(cadena.length()<32){
 
@@ -74,22 +73,22 @@ public class Logica {
 
     public static String alinearLineas(String cadena){
 
-        String nombre= cadena;
-        String linea1= nombre;
+        String linea1= cadena;
         String linea2="";
-        String resultado="";
+        String resultado;
 
         if(cadena.length()>32){
 
             for(int j=32;j>1;j--){
 
                 if(linea1.charAt(j)==' '){
-                    linea1= nombre.substring(0,j);
-                    linea2= nombre.substring(j,nombre.length());
+                    linea1= cadena.substring(0,j);
+                    linea2= cadena.substring(j, cadena.length());
                     break;
                 }
             }
-            resultado= centrarCadena(linea1)+BREAK+centrarCadena(linea2);
+            String BREAK = "\r\n";
+            resultado= centrarCadena(linea1)+ BREAK +centrarCadena(linea2);
 
             return resultado;
 
@@ -102,24 +101,7 @@ public class Logica {
         }
     }
 
-    public static String contarEspacios(String cadena) {
-
-
-        String espacios="";
-        if(cadena.length()<23){
-
-            int falta= (cadena.length()-24)*(-1);
-            for(int i=0;i<falta;i++){
-                espacios+=" ";
-            }
-
-        }
-
-        return espacios;
-
-    }
-
-    public static String contarEspaciosInicio(String cadena,int inicio) {
+    public String contarEspaciosInicio(String cadena,int inicio) {
 
 
         String espacios="";
@@ -134,13 +116,12 @@ public class Logica {
 
     }
 
-    public static boolean verificarContrasenia(final Context context, final String ID,final String tipo,
-                                               final String NICKNAME){
+    public void verificarContrasenia(final Context context, final String ID, final String tipo,
+                                     final String NICKNAME){
 
-        final boolean[] bandera = {false};
 
         AlertDialog.Builder builder= new AlertDialog.Builder(context);
-        View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_contrasenia,null);
+        @SuppressLint("InflateParams") View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_contrasenia,null);
         final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
         Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
         builder.setView(mView);
@@ -284,13 +265,12 @@ public class Logica {
 
         alertDialog.show();
 
-        return bandera[0];
     }
 
     /**
      * Metodo que verifica si la cadena que esta entrando solo admite numeros
-     * @param name
-     * @return
+     * @param name nombre que se verificara si tiene numeros
+     * @return boolean
      */
     public static boolean soloNumeros(String name) {
         Pattern patron = Pattern.compile("^[0-9]+$");
@@ -313,8 +293,7 @@ public class Logica {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
 
             int val           = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
+            return (val == 0);
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -327,11 +306,11 @@ public class Logica {
         return isNetDisponible(context) && isOnlineNet();
     }
 
-    public static ArrayList<Cliente> filtrarClientes(ArrayList<Cliente> clientes,Context context) {
+    public ArrayList<Cliente> filtrarClientes(ArrayList<Cliente> clientes,Context context) {
 
         ArrayList<Cliente> clientesNew= new ArrayList<>();
 
-        if(SharedPreferences.getPreferenciaTodosGrupos(context).toString().equals("no")){
+        if(SharedPreferences.getPreferenciaTodosGrupos(context).equals("no")){
 
             int group_1=SharedPreferences.getPreferenciaGrupo1(context);
             int group_2=SharedPreferences.getPreferenciaGrupo2(context);

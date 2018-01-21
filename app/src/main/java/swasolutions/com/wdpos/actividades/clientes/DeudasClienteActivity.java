@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.actividades.clientes;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,9 +23,6 @@ import swasolutions.com.wdpos.vo.clases_objeto.Deuda;
 
 public class DeudasClienteActivity extends AppCompatActivity {
 
-    private ArrayList<Deuda> deudas;
-    private TextView txtTotalDeudas;
-
     public static DeudasBD bdDeudas;
     public static SQLiteDatabase sqLiteDatabase;
 
@@ -33,14 +31,13 @@ public class DeudasClienteActivity extends AppCompatActivity {
     private String NICKNAME;
     private String IDVENDEDOR;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deudas_cliente);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
-
-        deudas= new ArrayList<>();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -56,9 +53,9 @@ public class DeudasClienteActivity extends AppCompatActivity {
         sqLiteDatabase= bdDeudas.getWritableDatabase();
 
         Log.d("iddddddddddddddd",""+ CEDULA_CLIENTE);
-        deudas= bdDeudas.obtenerDeudas(""+ CEDULA_CLIENTE);
+        ArrayList<Deuda> deudas= bdDeudas.obtenerDeudas(""+ CEDULA_CLIENTE);
 
-        txtTotalDeudas = (TextView) findViewById(R.id.txtTotalDeudas_DeudasCliente);
+        TextView txtTotalDeudas = (TextView) findViewById(R.id.txtTotalDeudas_DeudasCliente);
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbarDeudas);
         setSupportActionBar(toolbar);
 

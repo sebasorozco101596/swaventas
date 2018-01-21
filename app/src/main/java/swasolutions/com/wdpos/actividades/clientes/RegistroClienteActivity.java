@@ -46,7 +46,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class RegistroClienteActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText txtNombre,txtCedula,txtDireccion,txtCiudad,txtEstado,txtPais,txtTelefono;
-    private Button btnRegistrar;
     private Spinner spinnerGrupos;
 
     private ImageView imgPerfil;
@@ -98,7 +97,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
         txtPais= (EditText) this.findViewById(R.id.txtPais_registro);
         txtTelefono= (EditText) this.findViewById(R.id.txtTelefono_registro);
         spinnerGrupos= (Spinner) findViewById(R.id.spinnerGruposVendedor);
-        btnRegistrar= (Button) this.findViewById(R.id.btnRegistrar_registro);
+        Button btnRegistrar= (Button) this.findViewById(R.id.btnRegistrar_registro);
         imgPerfil= (ImageView) findViewById(R.id.imagePerfilAdelante_registroCliente);
         imgPerfilAtras = (ImageView) findViewById(R.id.imagePerfilAtras_registroCliente);
         imgPerfilAtras.setOnClickListener(this);

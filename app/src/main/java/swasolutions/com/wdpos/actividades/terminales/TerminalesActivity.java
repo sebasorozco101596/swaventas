@@ -1,5 +1,6 @@
 package swasolutions.com.wdpos.actividades.terminales;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -38,12 +39,7 @@ public class TerminalesActivity extends AppCompatActivity {
 
     private ArrayList<Producto> productos;
 
-    private Toolbar toolbarFiltrado;
     private TextView txtNroTerminal;
-
-    private RecyclerView recyclerView;
-    private TerminalesAdapter adapter;
-
 
     /*
     Datos impresion
@@ -59,7 +55,6 @@ public class TerminalesActivity extends AppCompatActivity {
     private Button btnSend;
 
     private BluetoothService mService = null;
-    private BluetoothDevice con_dev = null;
     private Context context;
 
     private String fecha;
@@ -68,10 +63,8 @@ public class TerminalesActivity extends AppCompatActivity {
     private String msgProductos= "";
     private String msgDatos= "";
     private String header= "";
-    private String DIVIDER = "--------------------------------";
-    private String DIVIDER_DOUBLE = "================================";
-    private String BREAK = "\r\n";
 
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -149,11 +142,11 @@ public class TerminalesActivity extends AppCompatActivity {
         WarehouseBD bdWarehouses = new WarehouseBD(getApplicationContext(), null, 1);
 
         productos= bdProductos.fillMessages();
-        toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductosTerminales);
+        Toolbar toolbarFiltrado= (Toolbar) findViewById(R.id.toolbarVistaProductosTerminales);
         setSupportActionBar(toolbarFiltrado);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewVistaProductosTerminales);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewVistaProductosTerminales);
         txtNroTerminal = (TextView) findViewById(R.id.txtNroTerminal_terminales);
 
         String nombreWarhouse = bdWarehouses.obtenerNombre(ConfiguracionActivity.getPreferenciaWarehouseID(TerminalesActivity.this));
@@ -164,7 +157,7 @@ public class TerminalesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new TerminalesAdapter(productos);
+        TerminalesAdapter adapter = new TerminalesAdapter(productos);
         recyclerView.setAdapter(adapter);
 
         toolbarFiltrado.setNavigationOnClickListener(new View.OnClickListener() {
@@ -197,16 +190,19 @@ public class TerminalesActivity extends AppCompatActivity {
                 String titulo= ConfiguracionActivity.getNombreTienda(TerminalesActivity.this);
                 String direccion= ConfiguracionActivity.getDireccionTienda(TerminalesActivity.this);
                 String telefono= ConfiguracionActivity.getTelefonoTienda(TerminalesActivity.this);
-                header += logica.centrarCadena(titulo.toUpperCase()) + BREAK;
-                header += logica.alinearLineas(direccion) + BREAK;
-                header += logica.centrarCadena("Republica dominicana") + BREAK;
-                header += logica.centrarCadena("Tel: " + telefono) + BREAK;
+                String BREAK = "\r\n";
+                header += Logica.centrarCadena(titulo.toUpperCase()) + BREAK;
+                header += Logica.alinearLineas(direccion) + BREAK;
+                header += Logica.centrarCadena("Republica dominicana") + BREAK;
+                header += Logica.centrarCadena("Tel: " + telefono) + BREAK;
 
+                String DIVIDER_DOUBLE = "================================";
                 header += DIVIDER_DOUBLE;
 
                 msgDatos += "Fecha: " + fecha + BREAK;
                 msgDatos += "Vendedor: " + LoginActivity.getUserName(TerminalesActivity.this) + BREAK;
                 msgDatos += "Terminal: " + txtNroTerminal.getText().toString() + BREAK;
+                String DIVIDER = "--------------------------------";
                 msgDatos += DIVIDER + BREAK;
 
 
@@ -240,7 +236,7 @@ public class TerminalesActivity extends AppCompatActivity {
 
                         String cadenaInicio = "" + productos.get(i).getCantidad();
                         msgProductos += "" + productos.get(i).getCantidad() + logica.contarEspaciosInicio(cadenaInicio,6) +
-                                linea1 +BREAK;
+                                linea1 + BREAK;
                         msgProductos += logica.contarEspaciosInicio(cadenaInicio,6) + linea2 + BREAK;
 
 
@@ -302,7 +298,7 @@ public class TerminalesActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    con_dev = mService.getDevByMac(address);
+                    BluetoothDevice con_dev = mService.getDevByMac(address);
                     mService.connect(con_dev);
                 }
                 break;
