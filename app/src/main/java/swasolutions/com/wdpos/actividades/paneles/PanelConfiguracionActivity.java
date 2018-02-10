@@ -14,15 +14,20 @@ import swasolutions.com.wdpos.actividades.clientes.ConfiguracionGruposClienteAct
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
 import swasolutions.com.wdpos.actividades.terminales.TerminalesActivity;
+import swasolutions.com.wdpos.logica.Logica;
 
 public class PanelConfiguracionActivity extends AppCompatActivity {
 
+    private Logica logica;
+    private String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_configuracion);
 
+        logica= new Logica();
+        link=ConfiguracionActivity.getLinkHosting(PanelConfiguracionActivity.this);
 
         Button btnTerminales= (Button) findViewById(R.id.btnTerminales_panelConfiguracion);
         Button btnNotas = (Button) findViewById(R.id.btnNotas_panelConfiguracion);
@@ -92,8 +97,8 @@ public class PanelConfiguracionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),ConfiguracionActivity.class);
-                startActivity(intent);
+                logica.verificarCodigoSecreto(PanelConfiguracionActivity.this,link,"btnAjustes");
+
 
             }
         });
@@ -102,11 +107,23 @@ public class PanelConfiguracionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                logica.verificarCodigoSecreto(PanelConfiguracionActivity.this,link,"btnEliminar");
 
-                Intent intent= new Intent(getApplicationContext(),PanelEliminacionActivity.class);
-                startActivity(intent);
+
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }

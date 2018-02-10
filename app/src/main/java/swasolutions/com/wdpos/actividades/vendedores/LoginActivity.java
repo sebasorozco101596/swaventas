@@ -441,4 +441,17 @@ public class LoginActivity extends AppCompatActivity {
         settings.edit().clear().commit();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
 }

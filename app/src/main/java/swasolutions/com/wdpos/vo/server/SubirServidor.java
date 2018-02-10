@@ -201,10 +201,10 @@ public class SubirServidor implements Runnable {
                         jsonArray.put(jsonObjectProductos);
                     }
 
-                    HashMap<String, String> hashMapVenta = new HashMap<String, String>();
+                    HashMap<String, String> hashMapVenta = new HashMap<>();
                     hashMapVenta.put("id", ""+ ventas.get(i).getVenta().getIdVendedor()*10000+ventas.get(i).getVenta().getId());
                     hashMapVenta.put("fecha",""+ ventas.get(i).getVenta().getFecha());
-                    hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v94");
+                    hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v97");
                     hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getVenta().getCedulaCliente());
                     hashMapVenta.put("nombreCliente", ventas.get(i).getVenta().getCliente());
                     hashMapVenta.put("total", ""+ventas.get(i).getVenta().getTotal());

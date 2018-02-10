@@ -17,6 +17,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.ImprimirClientesActivity;
@@ -31,6 +43,7 @@ import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.server.Clientes;
 import swasolutions.com.wdpos.vo.server.Deudas;
+import swasolutions.com.wdpos.vo.server.MySingleton;
 import swasolutions.com.wdpos.vo.server.Productos;
 
 public class PanelActivity extends AppCompatActivity implements View.OnClickListener{
@@ -41,7 +54,6 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
     private ClientesBD bdClientes;
     private DeudasBD bdDeudas;
     private GastosBD bdGastos;
-
 
 
     private String link;
@@ -57,11 +69,12 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("94");
+        txtVersion.setText("97");
 
         logica= new Logica();
 
         view = findViewById(android.R.id.content);
+
         /**
          * Inicilizacion de los botonoes iniciales
          */
@@ -162,19 +175,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
                 if(logica.verificarConexion(PanelActivity.this)) {
 
-
-                    bdProductos = new ProductosBD(getApplicationContext(), null, 1);
-                    bdProductos.eliminarTodosProductos();
-
-
-                    int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(PanelActivity.this);
-
-                    Productos productos = new Productos(getApplicationContext(), link,warehouseId);
-                    productos.obtenerProductos();
-
-
-                    String mensaje= "actualizando productos, espere un momento";
-                    mostrarSnockBar(mensaje,10);
+                    verificarExistencia(link,logica.getMacAddr(),"productos");
 
                 }else{
                     Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
@@ -186,15 +187,9 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
             case R.id.accion_actualizarClientes:
 
                 if(logica.verificarConexion(PanelActivity.this)) {
-                    bdClientes = new ClientesBD(getApplicationContext(), null, 1);
-                    bdClientes.eliminarTodosClientes();
 
-                    Clientes clientes = new Clientes(getApplicationContext(), link);
-                    clientes.obtenerClientes();
+                    verificarExistencia(link,logica.getMacAddr(),"clientes");
 
-                    Snackbar.make(findViewById(android.R.id.content), "actualizando clientes," +
-                            " espere un momento", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
                             Toast.LENGTH_SHORT).show();
@@ -205,15 +200,8 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
             case R.id.accion_actualizarDeudasCliente:
 
                 if(logica.verificarConexion(PanelActivity.this)) {
-                    bdDeudas = new DeudasBD(getApplicationContext(), null, 1);
-                    bdDeudas.eliminarTodasLasDeudas();
 
-                    Deudas deudas = new Deudas(getApplicationContext(), link);
-                    deudas.obtenerDeudas();
-
-
-                    Snackbar.make(findViewById(android.R.id.content), "actualizando deudas, espere un momento", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    verificarExistencia(link,logica.getMacAddr(),"deudas");
 
                 }else{
                     Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
@@ -239,6 +227,91 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         Snackbar.make(view.findViewById(android.R.id.content),mensaje,duracion)
                 .setAction("Action", null).show();
 
+    }
+
+
+    private void verificarExistencia(final String link, final String macAddress, final String tipo){
+
+        String URLVerificar = "http://wds.grupowebdo.com/app_movil/macaddress/verificarMacAddress.php";
+        StringRequest requestLogin = new StringRequest(Request.Method.POST, URLVerificar, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    if (jsonObject.names().get(0).equals("success")) {
+
+                        if("productos".equals(tipo)){
+
+                            bdProductos = new ProductosBD(getApplicationContext(), null, 1);
+                            bdProductos.eliminarTodosProductos();
+
+
+                            int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(PanelActivity.this);
+
+                            Productos productos = new Productos(getApplicationContext(), link,warehouseId);
+                            productos.obtenerProductos();
+
+
+                            String mensaje= "actualizando productos, espere un momento";
+                            mostrarSnockBar(mensaje,10);
+
+                        }else if("clientes".equals(tipo)){
+
+                            bdClientes = new ClientesBD(getApplicationContext(), null, 1);
+                            bdClientes.eliminarTodosClientes();
+
+                            Clientes clientes = new Clientes(getApplicationContext(), link);
+                            clientes.obtenerClientes();
+
+                            Snackbar.make(findViewById(android.R.id.content), "actualizando clientes," +
+                                    " espere un momento", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+                        }else if("deudas".equals(tipo)){
+                            bdDeudas = new DeudasBD(getApplicationContext(), null, 1);
+                            bdDeudas.eliminarTodasLasDeudas();
+
+                            Deudas deudas = new Deudas(getApplicationContext(), link);
+                            deudas.obtenerDeudas();
+
+
+                            Snackbar.make(findViewById(android.R.id.content), "actualizando deudas, espere un momento", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error: " + "Dispositivo no registrado", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(), "Verifique su conexión a internet", Toast.LENGTH_SHORT).show();
+                Log.d("error", "" + error);
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+
+                hashMap.put("link", link);
+                hashMap.put("mac_address",macAddress);
+                return hashMap;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQue(requestLogin);
     }
 
     @Override
@@ -361,5 +434,11 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(),"No presiono nada",Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

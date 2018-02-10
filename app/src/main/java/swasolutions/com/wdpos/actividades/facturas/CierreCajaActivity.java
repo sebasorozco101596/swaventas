@@ -30,10 +30,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.zj.btsdk.BluetoothService;
 
 import org.json.JSONArray;
@@ -44,6 +46,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -61,6 +64,7 @@ import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.impresion.DeviceListActivity;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 import swasolutions.com.wdpos.vo.clases_objeto.ClienteCompleto;
@@ -719,70 +723,112 @@ public class CierreCajaActivity extends AppCompatActivity {
                                 if(TOTAL_GASTOS>0 || TOTAL_VENTAS>0 || DINERO_ABONOS >0 || devoluciones.size()>0){
 
 
-                                    /*
-                                     * Logica que sube todos los datos al servidor
-                                     */
-                                    ExecutorService executor = Executors.newFixedThreadPool(4);
+                                    String URLVerificar = "http://wds.grupowebdo.com/app_movil/macaddress/verificarMacAddress.php";
+                                    StringRequest requestLogin = new StringRequest(Request.Method.POST, URLVerificar, new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
 
-                                    int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(CierreCajaActivity.this);
-                                    //Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+                                                JSONObject jsonObject = new JSONObject(response);
 
-                                    for(int i=1;i<=4;i++){
+                                                if (jsonObject.names().get(0).equals("success")) {
 
-                                        // Log.d("ERROR",""+i);
-                                        Runnable workerVentas = new SubirServidor(abonos,ventasCompleto,gastos,
-                                                devoluciones, getApplicationContext(),i,link,ID,
-                                                warehouseId);
-                                        //The thread in the thread pool runs.
-                                        executor.execute(workerVentas);
-                                    }
+                                                    /*
+                                                     * Logica que sube todos los datos al servidor
+                                                     */
+                                                    ExecutorService executor = Executors.newFixedThreadPool(4);
 
-                                    executor.shutdown();
+                                                    int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(CierreCajaActivity.this);
+                                                    //Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
 
-                                    while (true) {
-                                        if (executor.isTerminated()) break;
-                                    }
+                                                    for(int i=1;i<=4;i++){
 
+                                                        // Log.d("ERROR",""+i);
+                                                        Runnable workerVentas = new SubirServidor(abonos,ventasCompleto,gastos,
+                                                                devoluciones, getApplicationContext(),i,link,ID,
+                                                                warehouseId);
+                                                        //The thread in the thread pool runs.
+                                                        executor.execute(workerVentas);
+                                                    }
 
-                                    header += centrarCadena(txtTitulo.getText().toString().toUpperCase())+ BREAK;
-                                    header += alinearLineas(txtDireccion.getText().toString()) + BREAK;
-                                    header += centrarCadena("Republica dominicana")+ BREAK;
-                                    header += centrarCadena("Tel: "+txtTelefono.getText().toString())+BREAK ;
+                                                    executor.shutdown();
 
-                                    header += DIVIDER_DOUBLE + BREAK;
+                                                    while (true) {
+                                                        if (executor.isTerminated()) break;
+                                                    }
 
+                                                    header += centrarCadena(txtTitulo.getText().toString().toUpperCase())+ BREAK;
+                                                    header += alinearLineas(txtDireccion.getText().toString()) + BREAK;
+                                                    header += centrarCadena("Republica dominicana")+ BREAK;
+                                                    header += centrarCadena("Tel: "+txtTelefono.getText().toString())+BREAK ;
 
-                                    msg += "Fecha:"+ txtFecha.getText().toString()+ BREAK;
-                                    msg += "Vendedor:" + txtVendedor.getText().toString() + BREAK;
-                                    msg += "Cantidad productos:" +txtCantidadProductos.getText().toString() +BREAK;
-                                    msg += "Total por ventas:" +txtTotalVentas.getText().toString()+BREAK;
-
-                                    msg += "Dinero recibido ventas:" + txtDineroRecibidoVentas.getText().toString() + BREAK;
-                                    msg += "Dinero recibido abonos: "+ txtDineroRecibidoAbonos.getText().toString() + BREAK;
-                                    msg += "Total gastos:" + txtTotalGastos.getText().toString() + BREAK+BREAK;
-                                    msg += "Efectivo a entregar:" + txtDineroEntregar.getText().toString() + BREAK;
-
-                                    byte[] cmd = new byte[3];
-                                    cmd[0] = 0x1b;
-                                    cmd[1] = 0x21;
-                                    cmd[2] |= 0x10;
-                                    mService.write(cmd);
-                                    mService.sendMessage(header, "UTF-8");
+                                                    header += DIVIDER_DOUBLE + BREAK;
 
 
-                                    cmd[2] &= 0xEF;
-                                    mService.write(cmd);
-                                    mService.sendMessage(msg, "UTF-8");
+                                                    msg += "Fecha:"+ txtFecha.getText().toString()+ BREAK;
+                                                    msg += "Vendedor:" + txtVendedor.getText().toString() + BREAK;
+                                                    msg += "Cantidad productos:" +txtCantidadProductos.getText().toString() +BREAK;
+                                                    msg += "Total por ventas:" +txtTotalVentas.getText().toString()+BREAK;
 
-                                    header="";
-                                    msg="";
+                                                    msg += "Dinero recibido ventas:" + txtDineroRecibidoVentas.getText().toString() + BREAK;
+                                                    msg += "Dinero recibido abonos: "+ txtDineroRecibidoAbonos.getText().toString() + BREAK;
+                                                    msg += "Total gastos:" + txtTotalGastos.getText().toString() + BREAK+BREAK;
+                                                    msg += "Efectivo a entregar:" + txtDineroEntregar.getText().toString() + BREAK;
 
-                                    EjAsincTask ejAsincTask= new EjAsincTask();
-                                    ejAsincTask.execute();
+                                                    byte[] cmd = new byte[3];
+                                                    cmd[0] = 0x1b;
+                                                    cmd[1] = 0x21;
+                                                    cmd[2] |= 0x10;
+                                                    mService.write(cmd);
+                                                    mService.sendMessage(header, "UTF-8");
 
-                                    takeScreenshot();
 
-                                    contador=1;
+                                                    cmd[2] &= 0xEF;
+                                                    mService.write(cmd);
+                                                    mService.sendMessage(msg, "UTF-8");
+
+                                                    header="";
+                                                    msg="";
+
+                                                    EjAsincTask ejAsincTask= new EjAsincTask();
+                                                    ejAsincTask.execute();
+
+                                                    takeScreenshot();
+
+                                                    contador=1;
+
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), "Error: " + "Dispositivo no registrado", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+
+                                            Toast.makeText(getApplicationContext(), "Verifique su conexión a internet", Toast.LENGTH_SHORT).show();
+                                            Log.d("error", "" + error);
+
+                                        }
+                                    }) {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            HashMap<String, String> hashMap = new HashMap<String, String>();
+
+                                            Logica logica= new Logica();
+
+                                            hashMap.put("link", link);
+                                            hashMap.put("mac_address",logica.getMacAddr());
+                                            return hashMap;
+                                        }
+                                    };
+
+                                    MySingleton.getInstance(getApplicationContext()).addToRequestQue(requestLogin);
 
                                 }else{
                                     Toast.makeText(getApplicationContext(),"No tiene datos para cerrar caja."

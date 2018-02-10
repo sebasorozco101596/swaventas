@@ -85,7 +85,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
     private String link;
 
     private ImageView imgPerfil;
-    private EditText txtSlug;
+    private EditText txtCodigo;
     private EditText txtNombre;
     private Spinner spinnerTipo;
     private Spinner spinnerUnidad;
@@ -120,7 +120,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         view = findViewById(android.R.id.content);
         context= CrearProductoActivity.this;
 
-        txtSlug= (EditText) findViewById(R.id.txtSlug_crearProducto);
+        txtCodigo = (EditText) findViewById(R.id.txtSlug_crearProducto);
         txtNombre= (EditText) findViewById(R.id.txtNombre_crearProducto);
         spinnerTipo= (Spinner) findViewById(R.id.spinnerTipo_crearProducto);
         spinnerUnidad= (Spinner) findViewById(R.id.spinnerUnidad_crearProducto);
@@ -248,7 +248,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
             isDirectoryCreated = file.mkdirs();
 
         if(isDirectoryCreated){
-            String imageName = txtSlug.getText().toString()+".jpg";
+            String imageName = txtCodigo.getText().toString()+".jpg";
             mPath = Environment.getExternalStorageDirectory() + File.separator + MEDIA_DIRECTORY
                     + File.separator + imageName;
 
@@ -356,7 +356,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                                         txtCosto.setText("");
                                         txtNombre.setText("");
                                         txtPrecio.setText("");
-                                        txtSlug.setText("");
+                                        txtCodigo.setText("");
                                         spinnerCategoria.setSelection(0);
                                         spinnerTipo.setSelection(0);
                                         spinnerUnidad.setSelection(0);
@@ -393,7 +393,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                                 txtCosto.setText("");
                                 txtNombre.setText("");
                                 txtPrecio.setText("");
-                                txtSlug.setText("");
+                                txtCodigo.setText("");
                                 spinnerCategoria.setSelection(0);
                                 spinnerTipo.setSelection(0);
                                 spinnerUnidad.setSelection(0);
@@ -409,10 +409,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                                     image=getStringImage(bitmap);
                                 }
 
-                                hashMap.put("codigo", generarAlfaNumericoAleatorio()+"MOV");
+                                hashMap.put("codigo", txtCodigo.getText().toString());
                                 hashMap.put("nombre", txtNombre.getText().toString());
                                 hashMap.put("tipo", spinnerTipo.getSelectedItem().toString());
-                                hashMap.put("slug", txtSlug.getText().toString());
+                                hashMap.put("slug", txtNombre.getText().toString().toLowerCase().substring(0,
+                                        txtNombre.getText().length()/2)+generarAlfaNumericoAleatorio());
                                 hashMap.put("unidades", ""+bdUnidades.obtenerId(spinnerUnidad.getSelectedItem().toString()));
                                 hashMap.put("categoria",""+ bdCategorias.obtenerId(spinnerCategoria.getSelectedItem().toString()));
                                 hashMap.put("costo", ""+txtCosto.getText().toString());
@@ -457,8 +458,8 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
             txtNombre.setError("Diligencie el nombre");
         }else if(spinnerTipo.getSelectedItem().toString().equals("Seleccione un tipo")){
             Toast.makeText(getApplicationContext(),"Seleccione algun tipo",Toast.LENGTH_SHORT).show();
-        }else if(txtSlug.getText().length()==0){
-            txtSlug.setError("Diligencie el slug");
+        }else if(txtCodigo.getText().length()==0){
+            txtCodigo.setError("Diligencie el slug");
         }else if(spinnerUnidad.getSelectedItem().toString().equals("Seleccione una unidad")){
             Toast.makeText(getApplicationContext(),"Seleccione alguna unidad",Toast.LENGTH_SHORT).show();
         }else if(spinnerCategoria.getSelectedItem().toString().equals("Seleccione una categoria")){
@@ -502,7 +503,7 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         //char[] conjunto = new char[10];
         String pass="";
 
-        for(int i=0;i<4;i++){
+        for(int i=0;i<3;i++){
             int el = (int)(Math.random()*62);
             //conjunto[i] =  elementos[el];
             pass += elementos[el];

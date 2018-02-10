@@ -12,13 +12,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.NetworkInterface;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
 import swasolutions.com.wdpos.actividades.facturas.CierreCajaActivity;
 import swasolutions.com.wdpos.actividades.paneles.PanelConfiguracionActivity;
+import swasolutions.com.wdpos.actividades.paneles.PanelEliminacionActivity;
 import swasolutions.com.wdpos.actividades.productos.CrearProductoActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.SharedPreferences;
@@ -40,6 +55,7 @@ import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
+import swasolutions.com.wdpos.vo.server.MySingleton;
 
 /**
  * Created by sebas on 29/12/2017.
@@ -267,6 +283,92 @@ public class Logica {
 
     }
 
+
+    public void verificarCodigoSecreto(final Context context, final String link, final String tipo){
+
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(context);
+        @SuppressLint("InflateParams") View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_contrasenia,null);
+        final EditText txtContrasenia= (EditText) mView.findViewById(R.id.txtContrasenia_DialogoContrasenia);
+        Button btnEnviarContrasenia= (Button) mView.findViewById(R.id.btnEnviarContrasenia_contrasenia);
+        builder.setView(mView);
+        final AlertDialog alertDialog= builder.create();
+        btnEnviarContrasenia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(txtContrasenia.getText().length() <=0){
+                    txtContrasenia.setError("Campo vacio");
+                }else{
+
+                    verificarContraseniaSecreta(context,link,txtContrasenia.getText().toString(),
+                            getMacAddr(),tipo);
+
+                    alertDialog.dismiss();
+
+                }
+            }
+        });
+
+        alertDialog.show();
+
+    }
+
+    private void verificarContraseniaSecreta(final Context context, final String link, final String secret_id,
+                                             final String macAddr, final String tipo) {
+
+        String url= "http://wds.grupowebdo.com/app_movil/macaddress/verificarCodigoSecreto.php";
+        StringRequest requestLogin = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    if (jsonObject.names().get(0).equals("success user")) {
+
+                        if("btnEliminar".equals(tipo)){
+                            Intent intent= new Intent(context,PanelEliminacionActivity.class);
+                            context.startActivity(intent);
+                        }else if("btnAjustes".equals(tipo)){
+                            Intent intent = new Intent(context,ConfiguracionActivity.class);
+                            context.startActivity(intent);
+                        }
+
+                    } else {
+
+                        Toast.makeText(context, "Error: " + jsonObject.getString("error") +
+                                " solicite su codigo secreto con el administrador", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+                hashMap.put("link", link);
+                hashMap.put("mac_address",macAddr.toLowerCase());
+                hashMap.put("secret_id",secret_id);
+
+                return hashMap;
+            }
+        };
+
+        MySingleton.getInstance(context).addToRequestQue(requestLogin);
+
+
+    }
+
     /**
      * Metodo que verifica si la cadena que esta entrando solo admite numeros
      * @param name nombre que se verificara si tiene numeros
@@ -333,5 +435,32 @@ public class Logica {
 
         return clientesNew;
 
+    }
+
+    public String getMacAddr() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                return res1.toString().toLowerCase();
+            }
+        } catch (Exception ex) {
+            //handle exception
+        }
+        return "";
     }
 }

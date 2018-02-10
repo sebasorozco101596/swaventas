@@ -13,7 +13,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
@@ -21,15 +32,17 @@ import swasolutions.com.wdpos.base_de_datos.CategoriasBD;
 import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
 import swasolutions.com.wdpos.base_de_datos.UnidadesBD;
 import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
+import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Warehouse;
 import swasolutions.com.wdpos.vo.server.Categorias;
 import swasolutions.com.wdpos.vo.server.GruposVendedor;
+import swasolutions.com.wdpos.vo.server.MySingleton;
 import swasolutions.com.wdpos.vo.server.Unidades;
 import swasolutions.com.wdpos.vo.server.Warehouses;
 
 public class ConfiguracionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText txtLinkHosting,txtPing;
+    private EditText txtLinkHosting,txtPing,txtMacAddress;
     private EditText txtNombreTienda,txtDireccionTienda,txtTelefonoTienda;
     private Spinner spinnerWarehouses;
     private ArrayList<String> Stringwarehouses;
@@ -65,6 +78,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         Button btnVolver= (Button) findViewById(R.id.btnVolver_configuracion);
         Button btnAgregarHosting2 = (Button) findViewById(R.id.btnGuardarPinYWare);
         spinnerWarehouses= (Spinner) findViewById(R.id.warehousesSpinner);
+        txtMacAddress= (EditText) findViewById(R.id.txtMacAddress_configuracion);
         btnAgregarHosting.setOnClickListener(this);
         btnVolver.setOnClickListener(this);
         btnAgregarHosting2.setOnClickListener(this);
@@ -72,6 +86,8 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         bdWarehouses = new WarehouseBD(getApplicationContext(), null, 1);
         warehouses= bdWarehouses.warehouses();
 
+        Logica logica= new Logica();
+        txtMacAddress.setText(logica.getMacAddr());
 
         Stringwarehouses.add("Seleccione");
 
@@ -199,17 +215,9 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
                     Log.d("inicio",inicio);
                     if(!inicio.equalsIgnoreCase("http://")){
                         txtLinkHosting.setError("No olvide ingresar \"http://\" al inicio!");
-                    }else{
+                    }else {
 
-                        guardarLinkHosting();
-                        obtenerDatosExternos();
-                        guardarPreferenciasHosting();
-                        Toast.makeText(getApplicationContext(),"Dato guardado",Toast.LENGTH_SHORT).show();
-
-                        finish();
-                        Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
-                        startActivity(intent);
-
+                        verificarMacAddress();
                     }
 
                 }
@@ -256,6 +264,61 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
             default:
                 break;
         }
+
+    }
+
+    private void verificarMacAddress() {
+
+        String URLVerificar = "http://wds.grupowebdo.com/app_movil/macaddress/verificarMacAddress.php";
+        StringRequest requestLogin = new StringRequest(Request.Method.POST, URLVerificar, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    if (jsonObject.names().get(0).equals("success")) {
+
+                        guardarLinkHosting();
+                        obtenerDatosExternos();
+                        guardarPreferenciasHosting();
+                        Toast.makeText(getApplicationContext(),"Dato guardado",Toast.LENGTH_SHORT).show();
+
+                        finish();
+                        Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error: " + "Dispositivo no registrado", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(), "Verifique su conexión a internet", Toast.LENGTH_SHORT).show();
+                Log.d("error", "" + error);
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+
+                Logica logica= new Logica();
+                hashMap.put("link", txtLinkHosting.getText().toString().toLowerCase());
+                hashMap.put("mac_address",logica.getMacAddr());
+                return hashMap;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQue(requestLogin);
 
     }
 
@@ -393,5 +456,10 @@ public class ConfiguracionActivity extends AppCompatActivity implements View.OnC
         return channel.toString();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 
 }

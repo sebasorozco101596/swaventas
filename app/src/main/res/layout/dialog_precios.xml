@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/edittext"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo devolucion"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/verde"
+        android:fontFamily="serif"
+        android:gravity="center"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <RadioButton
+            android:id="@+id/rdbNormal_dialogDevolucion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="normal"
+            android:layout_marginEnd="10dp"
+            android:paddingRight="10dp"
+            android:textStyle="bold"
+            />
+
+        <RadioButton
+            android:id="@+id/rdbDeteriorado_dialogDevolucion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="deteriorado"
+            android:textStyle="bold"
+            android:paddingRight="10dp"
+            />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnAgregarDevolucion_dialogDevolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Agregar devolucion"
+        android:textColor="@color/blanco"
+        android:background="@drawable/buttonspanelbluedark"
+
+        />
+
+
+
+</LinearLayout>
