@@ -33,10 +33,11 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
 
     private ProductosAdapter adapter;
 
-    private String NICKNAME;
     private String IDVENDEDOR;
     private String TIPO;
     private String CEDULA;
+    private String NOMBRE;
+    private int ID_GRUPO;
 
     private ProductosBD bdProductos;
     private CarritoBD bdCarrito;
@@ -58,10 +59,11 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
 
 
         if (bundle != null) {
-            NICKNAME = bundle.getString("key_nickname");
             IDVENDEDOR = bundle.getString("key_idVendedor");
             TIPO = bundle.getString("key_tipo");
             CEDULA= bundle.getString("key_cedula");
+            NOMBRE= bundle.getString("key_nombre");
+            ID_GRUPO= bundle.getInt("key_grupo");
         }
 
 
@@ -84,7 +86,7 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        adapter = new ProductosAdapter(productos,this,TIPO,CEDULA);
+        adapter = new ProductosAdapter(productos,this,TIPO,CEDULA,ID_GRUPO);
         recyclerView.setAdapter(adapter);
 
         toolbarFiltrado.setNavigationOnClickListener(new View.OnClickListener() {
@@ -197,8 +199,9 @@ public class VentasActivity extends AppCompatActivity implements SearchView.OnQu
 
                 if("venta".equals(TIPO)){
                     Intent intent= new Intent(getApplicationContext(), CarritoActivity.class);
-                    intent.putExtra("key_nickname",NICKNAME);
                     intent.putExtra("key_id", IDVENDEDOR);
+                    intent.putExtra("key_cedula",CEDULA);
+                    intent.putExtra("key_nombre",NOMBRE);
                     startActivity(intent);
                     finish();
                 }else if("devolucion".equals(TIPO)){

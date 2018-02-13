@@ -9,6 +9,7 @@ public class ProductoCarrito {
     private int id;
     private String nombre;
     private int precio;
+    private int precio2;
     private int cantidad;
     private String codigoProducto;
 
@@ -16,10 +17,11 @@ public class ProductoCarrito {
 
     }
 
-    public ProductoCarrito(int id, String nombre, int precio, int cantidad,String codigoProducto) {
+    public ProductoCarrito(int id, String nombre, int precio,int precio2, int cantidad,String codigoProducto) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.precio2=precio2;
         this.cantidad = cantidad;
         this.codigoProducto=codigoProducto;
     }
@@ -64,5 +66,11 @@ public class ProductoCarrito {
         this.codigoProducto = codigoProducto;
     }
 
+    public int getPrecio2() {
+        return precio2;
+    }
 
+    public void setPrecio2(int precio2) {
+        this.precio2 = precio2;
+    }
 }

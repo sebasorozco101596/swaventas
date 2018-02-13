@@ -100,62 +100,113 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3.5"
-                        android:text="Precio: "
-                        android:textStyle="bold|italic"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/negro"
-                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="$1500000"
-                            android:layout_weight="5"
-                            android:layout_marginRight="3dp"
-                            android:maxWidth="280dp"
-                            android:gravity="center"
-                            android:textColor="@color/negro"
-                            android:textStyle="bold"
-                            android:enabled="false"
-                            android:id="@+id/txtPrecio_CardViewProductosCarro"/>
+                            android:paddingBottom="5dp"
+                            android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/btnCambiarPrecii_productosCarrito"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginRight="5dp"
-                            android:visibility="invisible"
-                            android:background="@drawable/ok"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.5"
+                                android:text="Precio: "
+                                android:textStyle="bold|italic"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/negro"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="$1500000"
+                                    android:layout_weight="5"
+                                    android:layout_marginRight="3dp"
+                                    android:maxWidth="280dp"
+                                    android:gravity="center"
+                                    android:textColor="@color/negro"
+                                    android:textStyle="bold"
+                                    android:enabled="false"
+                                    android:inputType="number"
+                                    android:id="@+id/txtPrecio_CardViewProductosCarro"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.5"
+                                android:text="Precio2: "
+                                android:textStyle="bold|italic"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/negro"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="$1500000"
+                                    android:layout_weight="5"
+                                    android:layout_marginRight="3dp"
+                                    android:maxWidth="280dp"
+                                    android:gravity="center"
+                                    android:textColor="@color/negro"
+                                    android:textStyle="bold"
+                                    android:enabled="false"
+                                    android:inputType="number"
+                                    android:id="@+id/txtPrecio2_CardViewProductosCarro"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
+                    <Button
+                        android:id="@+id/btnCambiarPrecii_productosCarrito"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="0.1"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:visibility="invisible"
+                        android:background="@drawable/ok"/>
 
                 </LinearLayout>
-
-
-
-
-
-
-
-
 
             </LinearLayout>
 

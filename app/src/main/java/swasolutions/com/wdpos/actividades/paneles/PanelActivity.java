@@ -35,7 +35,6 @@ import swasolutions.com.wdpos.actividades.clientes.ImprimirClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
-import swasolutions.com.wdpos.actividades.ventas.VentasActivity;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.DeudasBD;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
@@ -69,7 +68,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("97");
+        txtVersion.setText("98");
 
         logica= new Logica();
 
@@ -320,10 +319,10 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btnVender_panel:
 
-                Intent intent= new Intent(getApplicationContext(),VentasActivity.class);
-                intent.putExtra("key_nickname",NICKNAME);
+                Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);
+                //intent.putExtra("key_nickname",NICKNAME);
                 intent.putExtra("key_id",ID);
-                intent.putExtra("key_tipo","venta");
+                intent.putExtra("key_tipo","vender");
                 startActivity(intent);
                 break;
 

@@ -28,6 +28,7 @@
         android:background="@drawable/edittext"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -36,10 +37,41 @@
             android:layout_marginLeft="3dp"
             android:textSize="20dp"
             android:textColor="@color/negro"
-            android:text="total a pagar: "/>
+            android:text="total credito: "/>
 
         <TextView
-            android:id="@+id/txtTotalVenta_dialogo"
+            android:id="@+id/txtTotalVentaCredito_dialogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/verde"
+            android:text="150000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:textSize="20dp"
+            android:textColor="@color/negro"
+            android:text="total contado: "/>
+
+        <TextView
+            android:id="@+id/txtTotalVentaContado_dialogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"

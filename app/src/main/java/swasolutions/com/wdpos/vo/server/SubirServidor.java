@@ -30,7 +30,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Abono;
 import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
 import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
-import swasolutions.com.wdpos.vo.clases_objeto.VentaCompleta;
+import swasolutions.com.wdpos.vo.clases_objeto.Venta;
 
 /**
  * Created by sebas on 9/07/2017.
@@ -39,7 +39,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.VentaCompleta;
 public class SubirServidor implements Runnable {
 
     private ArrayList<Abono> abonos;
-    private ArrayList<VentaCompleta> ventas;
+    private ArrayList<Venta> ventas;
     private ArrayList<Devolucion> devoluciones;
     private ArrayList<Gasto> gastos;
 
@@ -63,7 +63,7 @@ public class SubirServidor implements Runnable {
 
 
 
-    public SubirServidor(ArrayList<Abono> abonos, ArrayList<VentaCompleta> ventas,
+    public SubirServidor(ArrayList<Abono> abonos, ArrayList<Venta> ventas,
                          ArrayList<Gasto> gastos,ArrayList<Devolucion> devoluciones,
                          Context context, int tipo, String link, String id, int warehouse_id){
         this.abonos=abonos;
@@ -177,10 +177,10 @@ public class SubirServidor implements Runnable {
 
                     final JSONArray jsonArray= new JSONArray();
 
-                    Log.d("entreee", "producto: "+ ventas.get(i).getVenta().getId());
+                    Log.d("entreee", "producto: "+ ventas.get(i).getId());
                     //Toast.makeText(context,""+ventas.get(i).getVenta().getIdCliente(),Toast.LENGTH_SHORT).show();
 
-                    final ArrayList<ProductoVenta> productosVenta= ventas.get(i).getProductos();
+                    final ArrayList<ProductoVenta> productosVenta= bdProductosVenta.productosVenta(ventas.get(i).getId());
 
                     for(int j = 0; j<productosVenta.size(); j++) {
 
@@ -202,21 +202,21 @@ public class SubirServidor implements Runnable {
                     }
 
                     HashMap<String, String> hashMapVenta = new HashMap<>();
-                    hashMapVenta.put("id", ""+ ventas.get(i).getVenta().getIdVendedor()*10000+ventas.get(i).getVenta().getId());
-                    hashMapVenta.put("fecha",""+ ventas.get(i).getVenta().getFecha());
-                    hashMapVenta.put("referencia",ventas.get(i).getVenta().getReferencia()+"v97");
-                    hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getVenta().getCedulaCliente());
-                    hashMapVenta.put("nombreCliente", ventas.get(i).getVenta().getCliente());
-                    hashMapVenta.put("total", ""+ventas.get(i).getVenta().getTotal());
-                    hashMapVenta.put("estadoVenta", ventas.get(i).getVenta().getEstadoVenta());
-                    hashMapVenta.put("idVendedor", ""+ventas.get(i).getVenta().getIdVendedor());
-                    hashMapVenta.put("cantidadProductos", ""+ventas.get(i).getVenta().getCantidadProductos());
-                    hashMapVenta.put("pagado", ""+ventas.get(i).getVenta().getPagadoPorCliente());
-                    hashMapVenta.put("idCliente",""+ventas.get(i).getVenta().getIdCliente());
-                    hashMapVenta.put("existe",""+ventas.get(i).getVenta().getExiste());
+                    hashMapVenta.put("id", ""+ ventas.get(i).getIdVendedor()*10000+ventas.get(i).getId());
+                    hashMapVenta.put("fecha",""+ ventas.get(i).getFecha());
+                    hashMapVenta.put("referencia",ventas.get(i).getReferencia()+"v99");
+                    hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getCedulaCliente());
+                    hashMapVenta.put("nombreCliente", ventas.get(i).getCliente());
+                    hashMapVenta.put("total", ""+ventas.get(i).getTotal());
+                    hashMapVenta.put("estadoVenta", ventas.get(i).getEstadoVenta());
+                    hashMapVenta.put("idVendedor", ""+ventas.get(i).getIdVendedor());
+                    hashMapVenta.put("cantidadProductos", ""+ventas.get(i).getCantidadProductos());
+                    hashMapVenta.put("pagado", ""+ventas.get(i).getPagadoPorCliente());
+                    hashMapVenta.put("idCliente",""+ventas.get(i).getIdCliente());
+                    hashMapVenta.put("existe",""+ventas.get(i).getExiste());
                     hashMapVenta.put("warehouse_id",""+warehouse_id);
-                    hashMapVenta.put("nota",ventas.get(i).getVenta().getNota());
-                    hashMapVenta.put("ventalocal_id",""+ventas.get(i).getVenta().getId());
+                    hashMapVenta.put("nota",ventas.get(i).getNota());
+                    hashMapVenta.put("ventalocal_id",""+ventas.get(i).getId());
 
                     jsonObjectVenta= new JSONObject(hashMapVenta);
                     try {

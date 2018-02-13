@@ -14,52 +14,115 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo devolucion"
+        android:text="Precios"
         android:textSize="30dp"
+        android:layout_marginBottom="10dp"
         android:textStyle="bold|italic"
         android:textColor="@color/verde"
         android:fontFamily="serif"
         android:gravity="center"/>
 
-    <RadioGroup
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:id="@+id/spinnerGrupos_precios"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="center"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        >
+        android:layout_centerHorizontal="true" />
 
-        <RadioButton
-            android:id="@+id/rdbNormal_dialogDevolucion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="normal"
-            android:layout_marginEnd="10dp"
-            android:paddingRight="10dp"
-            android:textStyle="bold"
-            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/rdbDeteriorado_dialogDevolucion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="deteriorado"
-            android:textStyle="bold"
-            android:paddingRight="10dp"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    </RadioGroup>
+            <CheckBox
+                android:id="@+id/cbPrecio1_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 1"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/cbPrecio3_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 3"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/cbPrecio5_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 5"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cbPrecio2_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 2"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/cbPrecio4_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 4"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/cbPrecio6_precios"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Precio 6"
+                android:padding="3dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnAgregarDevolucion_dialogDevolucion"
+        android:id="@+id/btnGuardarPrecios_dialogPrecios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Agregar devolucion"
+        android:layout_marginTop="10dp"
+        android:text="Guardar precios"
         android:textColor="@color/blanco"
         android:background="@drawable/buttonspanelbluedark"
 

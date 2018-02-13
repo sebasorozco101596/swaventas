@@ -175,7 +175,7 @@ public class ApartadosActivity extends AppCompatActivity implements View.OnClick
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        FacturaAdapter adapter = new FacturaAdapter(productos);
+        FacturaAdapter adapter = new FacturaAdapter(productos,TIPOPAGO);
         recyclerView.setAdapter(adapter);
 
 

@@ -54,6 +54,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
         if("administrator".equals(tipo) || "owner".equals(tipo)){
             holder.precio.setEnabled(true);
+            holder.precio2.setEnabled(true);
             holder.btnCambiarPrecio.setVisibility(View.VISIBLE);
         }
 
@@ -62,6 +63,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
         holder.nombre.setText(productos.get(position).getNombre().toLowerCase());
         holder.precio.setText(""+productos.get(position).getPrecio());
+        holder.precio2.setText(""+productos.get(position).getPrecio2());
         holder.id.setText(""+productos.get(position).getId());
         holder.cantidad.setText(""+productos.get(position).getCantidad());
         holder.cardView.getBackground().setAlpha(0);
@@ -78,15 +80,17 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
                 int id= Integer.parseInt(holder.id.getText().toString());
                 int precio= Integer.parseInt(holder.precio.getText().toString());
+                int precio2= Integer.parseInt(holder.precio2.getText().toString());
                 int cantidad= Integer.parseInt(holder.cantidad.getText().toString());
                 String codigoProducto= productos.get(position).getCodigoProducto();
 
-                carritoBD.agregarProductoCarrito(id,holder.nombre.getText().toString(),precio,context,codigoProducto);
+                carritoBD.agregarProductoCarrito(id,holder.nombre.getText().toString(),precio,precio2,context,codigoProducto);
 
                 holder.cantidad.setText(""+(cantidad+1));
 
                 productos= carritoBD.cargarProductosCarrito();
-                CarritoActivity.calcularTotal(productos);
+                CarritoActivity.calcularTotalCredito(productos);
+                CarritoActivity.calcularTotalContado(productos);
 
 
             }
@@ -113,8 +117,9 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
                         if(Integer.parseInt(txtContrasenia.getText().toString()) !=
                                 ConfiguracionActivity.getPreferenciaPing(context)){
                             txtContrasenia.setError("Ping incorrecto");
-                        } else {
-
+                        }else if(txtContrasenia.getText().length()==0){
+                            txtContrasenia.setError("Debe digitar la contraseña");
+                        }else{
                             if(soloNumeros(holder.precio.getText().toString())){
 
                                 //Toast.makeText(context,holder.precio.getText().toString(),Toast.LENGTH_SHORT).show();
@@ -123,15 +128,17 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
 
                                 int id= Integer.parseInt(holder.id.getText().toString());
                                 int precio= Integer.parseInt(holder.precio.getText().toString());
+                                int precio2= Integer.parseInt(holder.precio2.getText().toString());
                                 int cantidad= Integer.parseInt(holder.cantidad.getText().toString());
                                 String codigoProducto= productos.get(position).getCodigoProducto();
 
-                                carritoBD.actualizarProductoCarrito(id,holder.nombre.getText().toString(),precio,context,codigoProducto);
+                                carritoBD.actualizarProductoCarrito(id,holder.nombre.getText().toString(),precio,precio2,context,codigoProducto);
 
                                 holder.cantidad.setText(""+(cantidad));
 
                                 productos= carritoBD.cargarProductosCarrito();
-                                CarritoActivity.calcularTotal(productos);
+                                CarritoActivity.calcularTotalCredito(productos);
+                                CarritoActivity.calcularTotalContado(productos);
                             }else{
                                 holder.precio.setError("Solo se aceptan numeros");
                             }
@@ -169,14 +176,15 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
                     productos.remove(position);
                     notifyItemRemoved(position);
                     productos= carritoBD.cargarProductosCarrito();
-                    CarritoActivity.calcularTotal(productos);
+                    CarritoActivity.calcularTotalCredito(productos);
+                    CarritoActivity.calcularTotalContado(productos);
 
                 }else {
                     carritoBD.eliminarProductoCarrito(id,cantidad);
                     holder.cantidad.setText(""+(cantidad-1));
                     productos= carritoBD.cargarProductosCarrito();
-                    CarritoActivity.calcularTotal(productos);
-
+                    CarritoActivity.calcularTotalCredito(productos);
+                    CarritoActivity.calcularTotalContado(productos);
                 }
             }
         });
@@ -208,6 +216,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
         private TextView id;
         private TextView nombre;
         private EditText precio;
+        private EditText precio2;
         private TextView cantidad;
         private TextView agregar;
         private TextView quitar;
@@ -220,6 +229,7 @@ public class ProductosCarritoAdapter extends  RecyclerView.Adapter<ProductosCarr
             id= (TextView) itemView.findViewById(R.id.txtId_CardViewProductosCarro);
             nombre= (TextView) itemView.findViewById(R.id.txtNombre_CardViewProductosCarro);
             precio= (EditText) itemView.findViewById(R.id.txtPrecio_CardViewProductosCarro);
+            precio2= (EditText) itemView.findViewById(R.id.txtPrecio2_CardViewProductosCarro);
             cantidad= (TextView) itemView.findViewById(R.id.txtCantidad_cardViewProductosCarro);
             agregar = (TextView) itemView.findViewById(R.id.txtAgregarProducto_carrito);
             quitar = (TextView) itemView.findViewById(R.id.txtEliminarProducto_carrito);

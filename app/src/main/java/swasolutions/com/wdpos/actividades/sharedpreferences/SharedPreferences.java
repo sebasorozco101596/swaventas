@@ -23,6 +23,9 @@ public class SharedPreferences {
     private static final String PREFERENCE_GRUPO_6= "state.edit.grupo.6";
     private static final String PREFERENCE_GRUPO_TODOS= "state.edit.grupo.todos";
 
+    private static final String PREFERENCE_PRECIO_CONTADO ="state.edit.precio1";
+    private static final String PREFERENCE_PRECIO_CREDITO ="state.edit.precio2";
+
     private static final String PREFERENCE_IMPRESION="state.edit.impresion";
 
 
@@ -49,6 +52,19 @@ public class SharedPreferences {
         android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         android.content.SharedPreferences.Editor edit= sharedPreferences.edit();
         edit.putString(PREFERENCE_NOTA_FACTURA,nota);
+        edit.commit();
+    }
+    public static void guardarPreferenciaPrecioContado(Context context,int precio){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        android.content.SharedPreferences.Editor edit= sharedPreferences.edit();
+        edit.putInt(PREFERENCE_PRECIO_CONTADO,precio);
+        edit.commit();
+    }
+
+    public static void guardarPreferenciaPrecioCredito(Context context,int precio){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        android.content.SharedPreferences.Editor edit= sharedPreferences.edit();
+        edit.putInt(PREFERENCE_PRECIO_CREDITO,precio);
         edit.commit();
     }
 
@@ -126,6 +142,18 @@ public class SharedPreferences {
     public static int getPreferenciaNumeroIntentosFactura(Context context){
         android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
         int channel = (sharedPreferences.getInt(PREFERENCE_NUMERO_INTENTOS_FACTURA,0));
+        return channel;
+    }
+
+    public static int getPreferenciaPrecioContado(Context context){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        int channel = (sharedPreferences.getInt(PREFERENCE_PRECIO_CONTADO,1));
+        return channel;
+    }
+
+    public static int getPreferenciaPrecioCredito(Context context){
+        android.content.SharedPreferences sharedPreferences= context.getSharedPreferences(STRING_PREFERENCE,MODE_PRIVATE);
+        int channel = (sharedPreferences.getInt(PREFERENCE_PRECIO_CREDITO,2));
         return channel;
     }
 

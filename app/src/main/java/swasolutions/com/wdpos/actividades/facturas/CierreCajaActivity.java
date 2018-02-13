@@ -483,7 +483,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         abonos= bdAbonos.abonos();
         gastos=bdGastos.gastos();
         productosVentas= bdProductosVenta.productosVenta();
-        ventasCompleto= encontrarVentas(ventas,productosVentas);
+        //ventasCompleto= encontrarVentas(ventas,productosVentas);
 
     }
 
@@ -744,7 +744,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                                                     for(int i=1;i<=4;i++){
 
                                                         // Log.d("ERROR",""+i);
-                                                        Runnable workerVentas = new SubirServidor(abonos,ventasCompleto,gastos,
+                                                        Runnable workerVentas = new SubirServidor(abonos,ventas,gastos,
                                                                 devoluciones, getApplicationContext(),i,link,ID,
                                                                 warehouseId);
                                                         //The thread in the thread pool runs.
@@ -1023,6 +1023,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
     }
 
+    /*
     private ArrayList<VentaCompleta> encontrarVentas(ArrayList<Venta> ventas, ArrayList<ProductoVenta> productosVentas) {
 
         ArrayList<VentaCompleta> ventasCompl= new ArrayList<>();
@@ -1053,6 +1054,8 @@ public class CierreCajaActivity extends AppCompatActivity {
 
 
     }
+
+    */
 
     private String centrarCadena(String cadena) {
 

@@ -156,30 +156,6 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
         return false;
     }
 
-    /*
-    private void showOptions() {
-        final CharSequence[] option = {"Tomar foto frontal","Tomar foto ", "Elegir de galeria", "Cancelar"};
-        final AlertDialog.Builder builder = new AlertDialog.Builder(RegistroClienteActivity.this);
-        builder.setTitle("Eleige una opción");
-        builder.setItems(option, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if(option[which] == "Tomar foto frontal"){
-                    //openCamera();
-                }else if(option[which] == "Elegir de galeria"){
-                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    startActivityForResult(intent.createChooser(intent, "Selecciona app de imagen"), SELECT_PICTURE);
-                }else {
-                    dialog.dismiss();
-                }
-            }
-        });
-
-        builder.show();
-    }
-    */
-
     private void openCamera(String lado) {
         File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
         boolean isDirectoryCreated = file.exists();
@@ -340,7 +316,6 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
                     String ciudad= txtCiudad.getText().toString();
                     String grupo = spinnerGrupos.getSelectedItem().toString();
                     String estado= txtEstado.getText().toString();
-
                     String idd= "" + id;
                     //cedula = cedula.replaceFirst ("^0*", "");
 

@@ -25,6 +25,10 @@
         android:id="@+id/accion_editar_cliente"
         android:title="editar" />
 
+    <item
+        android:id="@+id/accion_vender"
+        android:title="vender" />
+
 
 
 </menu>

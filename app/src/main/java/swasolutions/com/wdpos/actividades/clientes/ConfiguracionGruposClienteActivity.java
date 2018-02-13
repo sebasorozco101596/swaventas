@@ -211,7 +211,6 @@ public class ConfiguracionGruposClienteActivity extends AppCompatActivity implem
             }
         }
         return number;
-
     }
 
     @Override

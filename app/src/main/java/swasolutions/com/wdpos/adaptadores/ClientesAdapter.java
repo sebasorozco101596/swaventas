@@ -12,25 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import swasolutions.com.wdpos.R;
-import swasolutions.com.wdpos.actividades.apartados.ApartadosActivity;
 import swasolutions.com.wdpos.actividades.clientes.DeudasClienteActivity;
 import swasolutions.com.wdpos.actividades.clientes.EditarClienteActivity;
-import swasolutions.com.wdpos.actividades.facturas.FacturaVentaActivity;
 import swasolutions.com.wdpos.actividades.pedidos.PedidosActivity;
 import swasolutions.com.wdpos.actividades.ventas.VentasActivity;
 import swasolutions.com.wdpos.base_de_datos.CreditoBD;
-import swasolutions.com.wdpos.logica.Logica;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 
 /**
@@ -45,10 +38,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
     private int TOTAL;
     private String NICKNAME;
     private String IDVENDEDOR;
-    private Logica logica;
 
     private CreditoBD bdCredito;
-    private boolean isActivatedRadioButton;
 
 
     /**
@@ -65,7 +56,6 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
         this.NICKNAME=nickname;
         this.IDVENDEDOR =id;
 
-        logica= new Logica();
         bdCredito= new CreditoBD(context,null,1);
 
 
@@ -111,6 +101,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
                 }else if("pago".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
@@ -122,6 +114,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
                 }else if("pedido".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
@@ -133,6 +127,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
                 }else if("credito".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
@@ -144,6 +140,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuDevolucion.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
                 }else if("devolucion".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
@@ -155,6 +153,8 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuCredito.setVisible(false);
                     MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
                     menuEdicion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
                 }else if("edicion".equals(TIPO)){
                     MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
                     menuPagar.setVisible(false);
@@ -166,6 +166,21 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                     menuCredito.setVisible(false);
                     MenuItem menuDevolucion= menu.findItem(R.id.accion_agregar_devolucion);
                     menuDevolucion.setVisible(false);
+                    MenuItem menuVender= menu.findItem(R.id.accion_vender);
+                    menuVender.setVisible(false);
+                }else if("vender".equals(TIPO)){
+                    MenuItem menuPagar= menu.findItem(R.id.accion_pagar);
+                    menuPagar.setVisible(false);
+                    MenuItem menuVenta= menu.findItem(R.id.accion_deudas);
+                    menuVenta.setVisible(false);
+                    MenuItem menuPedidos= menu.findItem(R.id.accion_pedidos);
+                    menuPedidos.setVisible(false);
+                    MenuItem menuCredito= menu.findItem(R.id.accion_agregar_credito);
+                    menuCredito.setVisible(false);
+                    MenuItem menuDevolucion= menu.findItem(R.id.accion_agregar_devolucion);
+                    menuDevolucion.setVisible(false);
+                    MenuItem menuEdicion= menu.findItem(R.id.accion_editar_cliente);
+                    menuEdicion.setVisible(false);
                 }
 
 
@@ -175,140 +190,6 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
 
                         switch (item.getItemId()){
                             case R.id.accion_pagar:
-
-                                    AlertDialog.Builder builder= new AlertDialog.Builder(context);
-                                    View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_pago,null);
-                                    builder.setView(mView);
-                                    final AlertDialog alertDialog= builder.create();
-                                    final EditText txtPago= (EditText) mView.findViewById(R.id.txtPago_DialogoPago);
-                                    final RadioGroup rdbGroup= (RadioGroup) mView.findViewById(R.id.groupRButtonTipoPago_Pago);
-                                    final RadioButton rdbContado= (RadioButton) mView.findViewById(R.id.rdbCotado_pagar);
-                                    final RadioButton rdbCredito= (RadioButton) mView.findViewById(R.id.rdbCredito_pagar);
-                                    final RadioButton rdbApartados= (RadioButton) mView.findViewById(R.id.rdbApartar_pagar);
-                                    final LinearLayout linearCredito= (LinearLayout) mView.findViewById(R.id.linearUsarCredito_DialogoPago);
-                                    final EditText txtValorCredito= (EditText) mView.findViewById(R.id.txtValorCredito_DialogoPago);
-                                    final CheckBox checkBoxCredito= (CheckBox) mView.findViewById(R.id.checkbox_usarCredito_diaPago);
-                                    final TextView txtTotal= (TextView) mView.findViewById(R.id.txtTotalVenta_dialogo);
-                                    Button btnPago= (Button) mView.findViewById(R.id.btnPagar_dialogo);
-
-                                    rdbGroup.setVisibility(View.VISIBLE);
-                                    txtTotal.setText(""+TOTAL);
-
-                                    if(bdCredito.buscarCliente(clientes.get(position).getCedula())){
-                                        linearCredito.setVisibility(View.VISIBLE);
-                                    }
-
-
-                                    isActivatedRadioButton=checkBoxCredito.isChecked();
-
-
-                                    checkBoxCredito.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-
-                                            if(isActivatedRadioButton){
-                                                checkBoxCredito.setChecked(false);
-                                                txtValorCredito.setVisibility(View.INVISIBLE);
-                                            }
-
-                                            isActivatedRadioButton= checkBoxCredito.isChecked();
-
-                                            if(isActivatedRadioButton){
-                                                txtValorCredito.setVisibility(View.VISIBLE);
-                                            }
-
-                                        }
-                                    });
-
-                                    final int credito= bdCredito.buscarValor(clientes.get(position).getCedula());
-
-                                    txtValorCredito.setText(""+credito);
-
-                                btnPago.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            int pagar=0;
-
-                                            if(logica.soloNumeros(txtPago.getText().toString())){
-                                                pagar= Integer.parseInt(txtPago.getText().toString());
-                                            }else if(!logica.soloNumeros(txtPago.getText().toString())){
-                                                txtPago.setError("Solo se admiten numeros");
-                                                return;
-                                            }
-
-                                            if (txtPago.getText().toString().length() <= 0) {
-                                                txtPago.setError("Digite el pago !");
-                                            } else if(pagar>TOTAL){
-                                                txtPago.setError("Excede el precio total de la venta!");
-                                            }else if(pagar<0){
-                                                txtPago.setError("Valor negativo");
-                                            }else if(Integer.parseInt(txtValorCredito.getText().toString())>credito){
-                                                txtValorCredito.setError("No se puede pasar de: " + credito);
-                                            }else if(checkBoxCredito.isChecked() && txtValorCredito.getText().toString().length()<=0){
-                                                txtValorCredito.setError("Digite algun valor");
-                                            }else if(Integer.parseInt(txtValorCredito.getText().toString())<0){
-                                                txtValorCredito.setError("Valor negativo");
-                                            }else if(checkBoxCredito.isChecked() &&
-                                                    ((Integer.parseInt(txtPago.getText().toString()) +
-                                                            Integer.parseInt(txtValorCredito.getText().toString()))>
-                                                            Integer.parseInt(txtTotal.getText().toString()))){
-                                                txtPago.setError("El valor se excede del total a pagar");
-                                            }
-                                            else {
-                                                String tipo="";
-
-                                                if(rdbContado.isChecked()){
-                                                    tipo= "Contado";
-                                                }else if(rdbCredito.isChecked()){
-                                                    tipo= "Credito";
-                                                }else if(rdbApartados.isChecked()){
-                                                    tipo="Apartado";
-                                                }
-
-                                                if("Apartado".equals(tipo)){
-                                                    Intent intent= new Intent(context,ApartadosActivity.class);
-
-                                                    int credito=0;
-
-                                                    int pago= Integer.parseInt(txtPago.getText().toString()) + credito;
-
-                                                    String cedula= clientes.get(position).getCedula();
-                                                    intent.putExtra("key_nombreCliente",clientes.get(position).getName());
-                                                    intent.putExtra("key_pago",""+pago);
-                                                    intent.putExtra("key_cedula",cedula);
-                                                    intent.putExtra("key_tipoPago", tipo);
-                                                    context.startActivity(intent);
-                                                }else{
-                                                    Intent intent= new Intent(context,FacturaVentaActivity.class);
-
-                                                    int credito=0;
-
-                                                    if(checkBoxCredito.isChecked()){
-                                                        credito=Integer.parseInt(txtValorCredito.getText().toString());
-                                                    }
-
-                                                    int pago= Integer.parseInt(txtPago.getText().toString()) + credito;
-
-                                                    String cedula= clientes.get(position).getCedula();
-                                                    intent.putExtra("key_nombreCliente",clientes.get(position).getName());
-                                                    intent.putExtra("key_pago",""+pago);
-                                                    intent.putExtra("key_cedula",cedula);
-                                                    intent.putExtra("key_credito",credito);
-                                                    intent.putExtra("key_tipoPago", tipo);
-                                                    context.startActivity(intent);
-                                                }
-                                                alertDialog.dismiss();
-
-
-
-                                            }
-                                        }
-                                    });
-
-
-                                    alertDialog.show();
-
-
 
                                 break;
                             case R.id.accion_deudas:
@@ -382,6 +263,17 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                                 intentEdicion.putExtra("key_grupo_id",clientes.get(position).getGroupId());
                                 intentEdicion.putExtra("key_tipo","edicion");
                                 context.startActivity(intentEdicion);
+
+                                break;
+
+                            case R.id.accion_vender:
+                                Intent intentVender= new Intent(context,VentasActivity.class);
+                                intentVender.putExtra("key_id",IDVENDEDOR);
+                                intentVender.putExtra("key_tipo","venta");
+                                intentVender.putExtra("key_grupo",clientes.get(position).getGroupId());
+                                intentVender.putExtra("key_nombre",clientes.get(position).getName());
+                                intentVender.putExtra("key_cedula",clientes.get(position).getCedula());
+                                context.startActivity(intentVender);
 
                                 break;
                             default:

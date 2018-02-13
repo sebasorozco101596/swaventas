@@ -21,6 +21,7 @@ import java.util.List;
 import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.base_de_datos.CarritoBD;
 import swasolutions.com.wdpos.base_de_datos.DevolucionesBD;
+import swasolutions.com.wdpos.base_de_datos.PreciosGrupoBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 
 /*
@@ -33,18 +34,19 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
     private Context context;
     private String tipo;
     private String CEDULA;
+    private int ID_GRUPO;
 
     /**
      * Builder class
      * @param productos productos que se mostraran
      */
-    public ProductosAdapter(List<Producto> productos,Context context,String tipo,String CEDULA){
+    public ProductosAdapter(List<Producto> productos,Context context,String tipo,String CEDULA,int ID_GRUPO){
 
         this.productos=productos;
         this.context=context;
         this.tipo=tipo;
         this.CEDULA=CEDULA;
-
+        this.ID_GRUPO=ID_GRUPO;
     }
 
 
@@ -59,12 +61,31 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
     public void onBindViewHolder(final ProductosAdapter.ProductosViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
             holder.nombre.setText(productos.get(position).getNombre().toLowerCase());
-            holder.precio.setText(productos.get(position).getPrecio());
+
+            PreciosGrupoBD bdPrecios= new PreciosGrupoBD(context,null,1);
+
+            ArrayList<Integer> preciosFijos= new ArrayList<>();
+            preciosFijos.add(Integer.parseInt(productos.get(position).getPrecio1()));
+            preciosFijos.add(productos.get(position).getPrecio2());
+            preciosFijos.add(productos.get(position).getPrecio3());
+            preciosFijos.add(productos.get(position).getPrecio4());
+            preciosFijos.add(productos.get(position).getPrecio5());
+            preciosFijos.add(productos.get(position).getPrecio6());
+
+            ArrayList<Integer> precios= bdPrecios.precios(ID_GRUPO);
+
+            if(bdPrecios.existeGrupo(ID_GRUPO)){
+                holder.precio.setText(""+preciosFijos.get(precios.get(0)-1));
+                holder.precio2.setText(""+preciosFijos.get(precios.get(1)-1));
+            }else if(!bdPrecios.existeGrupo(ID_GRUPO)){
+                holder.precio.setText(productos.get(position).getPrecio1());
+                holder.precio2.setText(""+productos.get(position).getPrecio2());
+            }
             holder.id.setText(""+productos.get(position).getId());
             holder.cantidad.setText(""+productos.get(position).getCantidad());
             holder.cardView.getBackground().setAlpha(0);
 
-
+            preciosFijos.clear();
 
 
         holder.optionMenu.setOnClickListener(new View.OnClickListener() {
@@ -96,9 +117,10 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                                 int id= Integer.parseInt(holder.id.getText().toString());
                                 String nombre= holder.nombre.getText().toString();
                                 int precio= Integer.parseInt(holder.precio.getText().toString());
+                                int precio2= Integer.parseInt(holder.precio2.getText().toString());
                                 String codigoProducto= productos.get(position).getCodigoProducto();
 
-                                carritoBD.agregarProductoCarrito(id,nombre,precio,context,codigoProducto);
+                                carritoBD.agregarProductoCarrito(id,nombre,precio,precio2,context,codigoProducto);
 
                                 carritoBD.close();
 
@@ -155,13 +177,8 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                     }
                 });
                 popupMenu.show();
-
             }
         });
-
-
-
-
     }
 
     @Override
@@ -178,7 +195,8 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
 
         private TextView id;
         private TextView nombre;
-        private  TextView precio;
+        private TextView precio;
+        private TextView precio2;
         private TextView cantidad;
         private TextView optionMenu;
 
@@ -189,6 +207,7 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
             id= (TextView) itemView.findViewById(R.id.txtId_CardViewProductos);
             nombre= (TextView) itemView.findViewById(R.id.txtNombre_CardViewProductos);
             precio= (TextView) itemView.findViewById(R.id.txtPrecio_CardViewProductos);
+            precio2= (TextView) itemView.findViewById(R.id.txtPrecio2_CardViewProductos);
             optionMenu= (TextView) itemView.findViewById(R.id.txtOptionMenu);
             cantidad= (TextView) itemView.findViewById(R.id.txtCantidad_CardViewProductos);
 

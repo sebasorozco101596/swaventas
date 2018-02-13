@@ -141,6 +141,36 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Precio2: "
+                        android:textStyle="bold|italic"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/negro"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="$1500000"
+                        android:paddingRight="30dp"
+                        android:maxWidth="280dp"
+                        android:gravity="center"
+                        android:textColor="@color/negro"
+                        android:textStyle="bold"
+                        android:id="@+id/txtPrecio2_CardViewProductos"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="Cantidad: "
                         android:textStyle="bold|italic"

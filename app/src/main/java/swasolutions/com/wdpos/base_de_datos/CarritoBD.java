@@ -19,7 +19,7 @@ public class CarritoBD extends SQLiteOpenHelper{
 
 
     private  String creacionCarrito= "CREATE TABLE IF NOT EXISTS `Carrito` ( `idProducto` INTEGER NOT NULL," +
-            " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL," +
+            " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL,`precioProducto2` INTEGER NOT NULL," +
             " `cantidad` INTEGER,`codigoProducto` TEXT NOT NULL, PRIMARY KEY(`idProducto`) )";
 
     public CarritoBD(Context context, SQLiteDatabase.CursorFactory factory, int version) {
@@ -38,15 +38,15 @@ public class CarritoBD extends SQLiteOpenHelper{
         Log.d("entre on upgrade", "onUpgrade: entre");
     }
 
-    public void agregarProductoCarrito(int id,String nombre,int precio,Context context,String codigoProducto){
+    public void agregarProductoCarrito(int id,String nombre,int precio,int precio2,Context context,
+                                       String codigoProducto){
 
         SQLiteDatabase database= this.getWritableDatabase();
 
         String creacionCarrito= "CREATE TABLE IF NOT EXISTS `Carrito` ( `idProducto` INTEGER NOT NULL," +
-                " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL," +
+                " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL,`precioProducto2` INTEGER NOT NULL," +
                 " `cantidad` INTEGER,`codigoProducto` TEXT NOT NULL, PRIMARY KEY(`idProducto`) )";
         database.execSQL(creacionCarrito);
-
 
         String queryId= "Select c.idProducto,c.cantidad FROM Carrito c";
         Cursor register=database.rawQuery(queryId,null);
@@ -76,26 +76,27 @@ public class CarritoBD extends SQLiteOpenHelper{
 
                 Toast.makeText(context,"Producto agregado",Toast.LENGTH_SHORT).show();
                 String queryAgregar= "INSERT INTO Carrito (idProducto,nombreProducto,precioProducto," +
-                        "cantidad,codigoProducto) VALUES ("+ id +",'"+nombre+"',"+precio+","+1+",'"+
-                        codigoProducto+"');";
+                        "precioProducto2,cantidad,codigoProducto) VALUES ("+ id +",'"+nombre+"',"+
+                        precio+","+precio2+","+1+",'"+ codigoProducto+"');";
                 database.execSQL(queryAgregar);
             }
 
         }else if(!register.moveToNext()){
             Toast.makeText(context,"Producto agregado",Toast.LENGTH_SHORT).show();
             String queryAgregar= "INSERT INTO Carrito (idProducto,nombreProducto,precioProducto," +
-                    "cantidad,codigoProducto) VALUES ("+ id +",'"+nombre+"',"+precio+","+1+",'"
-                    +codigoProducto+"');";
+                    "precioProducto2,cantidad,codigoProducto) VALUES ("+ id +",'"+nombre+"',"+
+                    precio+","+precio2+","+1+",'"+ codigoProducto+"');";
             database.execSQL(queryAgregar);
         }
     }
 
-    public void actualizarProductoCarrito(int id,String nombre,int precio,Context context,String codigoProducto){
+    public void actualizarProductoCarrito(int id,String nombre,int precio,int precio2,
+                                          Context context,String codigoProducto){
 
         SQLiteDatabase database= this.getWritableDatabase();
 
         String creacionCarrito= "CREATE TABLE IF NOT EXISTS `Carrito` ( `idProducto` INTEGER NOT NULL," +
-                " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL," +
+                " `nombreProducto` TEXT NOT NULL, `precioProducto` INTEGER NOT NULL,`precioProducto2` INTEGER NOT NULL," +
                 " `cantidad` INTEGER,`codigoProducto` TEXT NOT NULL, PRIMARY KEY(`idProducto`) )";
         database.execSQL(creacionCarrito);
 
@@ -113,7 +114,7 @@ public class CarritoBD extends SQLiteOpenHelper{
                 if(id==idProducto){
                     Toast.makeText(context,"Producto alterado",Toast.LENGTH_SHORT).show();
                     String queryUpdate = "UPDATE Carrito " +
-                            "SET precioProducto="+precio+" where idProducto="+id;
+                            "SET precioProducto="+precio+",precioProducto2="+precio2+" where idProducto="+id;
                     database.execSQL(queryUpdate);
                 }
 
@@ -131,8 +132,8 @@ public class CarritoBD extends SQLiteOpenHelper{
 
 
         //Query that gets messages by group
-        String query= "SELECT c.idProducto,c.nombreProducto,c.precioProducto,c.cantidad,c.codigoProducto" +
-                " FROM Carrito c";
+        String query= "SELECT c.idProducto,c.nombreProducto,c.precioProducto,c.precioProducto2," +
+                "c.cantidad,c.codigoProducto FROM Carrito c";
 
         Cursor register= database.rawQuery(query,null);
 
@@ -144,10 +145,11 @@ public class CarritoBD extends SQLiteOpenHelper{
                 int id=register.getInt(0);
                 String nombre=register.getString(1);
                 int precio= register.getInt(2);
-                int cantidad= register.getInt(3);
-                String codigoProducto= register.getString(4);
+                int precio2=register.getInt(3);
+                int cantidad= register.getInt(4);
+                String codigoProducto= register.getString(5);
 
-                lista.add(new ProductoCarrito(id,nombre,precio,cantidad,codigoProducto));
+                lista.add(new ProductoCarrito(id,nombre,precio,precio2,cantidad,codigoProducto));
             }while (register.moveToNext());
         }
 

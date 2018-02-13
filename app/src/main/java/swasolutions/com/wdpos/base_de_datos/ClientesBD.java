@@ -181,4 +181,25 @@ public class ClientesBD extends SQLiteOpenHelper {
         database.execSQL(queryActualizar);
 
     }
+
+    public String buscarNombre(String cedula) {
+
+        String nombre="";
+
+        String sql= "SELECT nombre FROM Clientes where cedula='"+cedula+"';";
+
+        SQLiteDatabase database= this.getWritableDatabase();
+
+        Cursor register= database.rawQuery(sql,null);
+
+        if (register.moveToFirst()) {
+
+            nombre = register.getString(0);
+        }
+
+        register.close();
+
+        return nombre;
+
+    }
 }

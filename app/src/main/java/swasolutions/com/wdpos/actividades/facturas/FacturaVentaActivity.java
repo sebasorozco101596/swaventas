@@ -58,8 +58,6 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
     private static TextView txtTotalFactura;
 
-
-
     private TextView txtNombreCliente,txtFecha,txtIdVenta,txtPagado,txtDeuda,txtEstado;
     private Button btnVolver;
 
@@ -247,7 +245,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
         productos= bdFactura.cargarProductosCarrito();
 
-        int total=calcularTotal(productos);
+        int total=calcularTotal(productos,TIPOPAGO);
 
         txtPagado.setText(""+PAGO);
         txtDeuda.setText(""+(total-PAGO));
@@ -274,7 +272,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(linearLayoutManager);
 
         //The adapter is instantiated to add a cardview for each object
-        FacturaAdapter adapter = new FacturaAdapter(productos);
+        FacturaAdapter adapter = new FacturaAdapter(productos,TIPOPAGO);
         recyclerView.setAdapter(adapter);
     }
 
@@ -306,13 +304,26 @@ public class FacturaVentaActivity extends AppCompatActivity{
     }
 
 
-    public static int calcularTotal(List<ProductoCarrito> productos){
+    public static int calcularTotal(List<ProductoCarrito> productos,String tipo){
 
         int total=0;
 
         for(int i =0;i<productos.size();i++){
 
-            total+= (productos.get(i).getPrecio())*(productos.get(i).getCantidad());
+            if("Credito".equals(tipo)){
+                if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                    total+= (productos.get(i).getPrecio())*(productos.get(i).getCantidad());
+                }else if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                    total+= (productos.get(i).getPrecio2())*(productos.get(i).getCantidad());
+                }
+            }else if("Contado".equals(tipo)){
+                if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                    total+= (productos.get(i).getPrecio2())*(productos.get(i).getCantidad());
+                }else if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                    total+= (productos.get(i).getPrecio())*(productos.get(i).getCantidad());
+                }
+            }
+
 
         }
 
@@ -447,7 +458,22 @@ public class FacturaVentaActivity extends AppCompatActivity{
                             int idProducto= productos.get(j).getId();
                             String codigoProducto= productos.get(j).getCodigoProducto();
                             String nombreProducto= productos.get(j).getNombre();
-                            int precioUnitario= productos.get(j).getPrecio();
+
+                            int precioUnitario= 0;
+                            if("Credito".equals(TIPOPAGO)){
+                                if(productos.get(j).getPrecio()>=productos.get(j).getPrecio2()){
+                                    precioUnitario=productos.get(j).getPrecio();
+                                }else if(productos.get(j).getPrecio2()>=productos.get(j).getPrecio()){
+                                    precioUnitario=productos.get(j).getPrecio2();
+                                }
+                            }else if("Contado".equals(TIPOPAGO)){
+                                if(productos.get(j).getPrecio()>=productos.get(j).getPrecio2()){
+                                    precioUnitario=productos.get(j).getPrecio2();
+                                }else if(productos.get(j).getPrecio2()>=productos.get(j).getPrecio()){
+                                    precioUnitario=productos.get(j).getPrecio();
+                                }
+                            }
+
                             int cantidad= productos.get(j).getCantidad();
                             bdProductosVenta.crearProductoVenta(id+1,idProducto,codigoProducto,nombreProducto,precioUnitario,
                                     cantidad,idVendedor);
