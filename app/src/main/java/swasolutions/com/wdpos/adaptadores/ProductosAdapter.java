@@ -2,6 +2,7 @@ package swasolutions.com.wdpos.adaptadores;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import swasolutions.com.wdpos.R;
+import swasolutions.com.wdpos.actividades.productos.EditarProductosActivity;
 import swasolutions.com.wdpos.base_de_datos.CarritoBD;
 import swasolutions.com.wdpos.base_de_datos.DevolucionesBD;
 import swasolutions.com.wdpos.base_de_datos.PreciosGrupoBD;
@@ -99,7 +101,16 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                 if("venta".equals(tipo)){
                     MenuItem menuVenta= menu.findItem(R.id.accion_agregarDevolucion);
                     menuVenta.setVisible(false);
+                    MenuItem menuEditarProducto= menu.findItem(R.id.accion_editarProducto);
+                    menuEditarProducto.setVisible(false);
                 }else if("devolucion".equals(tipo)){
+                    MenuItem menuPagar= menu.findItem(R.id.accion_agregarCarrito);
+                    menuPagar.setVisible(false);
+                    MenuItem menuEditarProducto= menu.findItem(R.id.accion_editarProducto);
+                    menuEditarProducto.setVisible(false);
+                }else if("editar".equals(tipo)){
+                    MenuItem menuVenta= menu.findItem(R.id.accion_agregarDevolucion);
+                    menuVenta.setVisible(false);
                     MenuItem menuPagar= menu.findItem(R.id.accion_agregarCarrito);
                     menuPagar.setVisible(false);
                 }
@@ -109,6 +120,26 @@ public class ProductosAdapter extends  RecyclerView.Adapter<ProductosAdapter.Pro
                     public boolean onMenuItemClick(MenuItem item) {
 
                         switch (item.getItemId()){
+
+                            case R.id.accion_editarProducto:
+
+                                Intent intentEditar= new Intent(context, EditarProductosActivity.class);
+                                intentEditar.putExtra("key_idProducto",productos.get(position).getId());
+                                intentEditar.putExtra("key_nombre",productos.get(position).getNombre());
+                                intentEditar.putExtra("key_unit",productos.get(position).getUnit());
+                                intentEditar.putExtra("key_cost",productos.get(position).getCost());
+                                intentEditar.putExtra("key_price",productos.get(position).getPrecio());
+                                intentEditar.putExtra("key_price2",productos.get(position).getPrecio2());
+                                intentEditar.putExtra("key_price3",productos.get(position).getPrecio3());
+                                intentEditar.putExtra("key_price4",productos.get(position).getPrecio4());
+                                intentEditar.putExtra("key_price5",productos.get(position).getPrecio5());
+                                intentEditar.putExtra("key_price6",productos.get(position).getPrecio6());
+                                intentEditar.putExtra("key_categoryId",productos.get(position).getCategoryId());
+                                intentEditar.putExtra("key_code",productos.get(position).getCodigoProducto());
+                                intentEditar.putExtra("key_type",productos.get(position).getType());
+                                context.startActivity(intentEditar);
+
+                                break;
 
                             case R.id.accion_agregarCarrito:
 

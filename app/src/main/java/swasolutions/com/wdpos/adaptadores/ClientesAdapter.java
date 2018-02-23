@@ -200,7 +200,6 @@ public class ClientesAdapter extends  RecyclerView.Adapter<ClientesAdapter.Clien
                                 intent.putExtra("key_vendedor",NICKNAME);
                                 intent.putExtra("key_idVendedor", IDVENDEDOR);
                                 context.startActivity(intent);
-
                                 break;
 
                             case R.id.accion_pedidos:

@@ -32,6 +32,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtTotalCredito_DialogPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
@@ -50,6 +51,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/LinearTotalContado_DialogoPago"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="4dp"

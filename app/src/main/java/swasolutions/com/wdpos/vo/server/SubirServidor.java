@@ -204,7 +204,7 @@ public class SubirServidor implements Runnable {
                     HashMap<String, String> hashMapVenta = new HashMap<>();
                     hashMapVenta.put("id", ""+ ventas.get(i).getIdVendedor()*10000+ventas.get(i).getId());
                     hashMapVenta.put("fecha",""+ ventas.get(i).getFecha());
-                    hashMapVenta.put("referencia",ventas.get(i).getReferencia()+"v99");
+                    hashMapVenta.put("referencia",ventas.get(i).getReferencia()+"v2.1.3");
                     hashMapVenta.put("cedulaCliente", ""+ventas.get(i).getCedulaCliente());
                     hashMapVenta.put("nombreCliente", ventas.get(i).getCliente());
                     hashMapVenta.put("total", ""+ventas.get(i).getTotal());

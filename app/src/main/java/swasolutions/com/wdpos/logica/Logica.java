@@ -265,8 +265,12 @@ public class Logica {
                         context.startActivity(intent);
                     }else if("eliminarClientesNuevos".equals(tipo)){
                         ClientesCompletoBD bdClientesCompleto= new ClientesCompletoBD(context,null,1);
+                        ClientesBD bdClientes= new ClientesBD(context,null,1);
                         bdClientesCompleto.eliminarClientes();
                         bdClientesCompleto.close();
+
+                        bdClientes.eliminarTodosClientes();
+                        bdClientes.close();
 
                         Toast.makeText(context,"Clientes eliminados correctamente",
                                 Toast.LENGTH_SHORT).show();

@@ -9,5 +9,9 @@
         android:id="@+id/accion_agregarDevolucion"
         android:title="Agregar devolucion" />
 
+    <item
+        android:id="@+id/accion_editarProducto"
+        android:title="Editar" />
+
 
 </menu>

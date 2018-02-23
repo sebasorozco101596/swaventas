@@ -335,4 +335,13 @@ public class VentasBD extends SQLiteOpenHelper{
         return cedula;
 
     }
+
+    public void actualizarIdCliente(String idAntiguo,String idNuevo,String nuevoNombre) {
+
+        SQLiteDatabase database= this.getWritableDatabase();
+        String queryUpdate= "UPDATE Ventas SET idCliente='"+idNuevo+"', cliente='"+nuevoNombre+"' " +
+                "where idCliente='"+idAntiguo+"'";
+        database.execSQL(queryUpdate);
+
+    }
 }

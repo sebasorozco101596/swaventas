@@ -92,6 +92,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
     private Spinner spinnerCategoria;
     private EditText txtCosto;
     private EditText txtPrecio;
+    private EditText txtPrecio2;
+    private EditText txtPrecio3;
+    private EditText txtPrecio4;
+    private EditText txtPrecio5;
+    private EditText txtPrecio6;
 
     private Context context;
 
@@ -127,6 +132,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
         spinnerCategoria= (Spinner) findViewById(R.id.spinnerCategoria_crearProducto);
         txtCosto= (EditText) findViewById(R.id.txtCosto_crearProducto);
         txtPrecio= (EditText) findViewById(R.id.txtPrecio_crearProducto);
+        txtPrecio2= (EditText) findViewById(R.id.txtPrecio2_crearProducto);
+        txtPrecio3= (EditText) findViewById(R.id.txtPrecio3_crearProducto);
+        txtPrecio4= (EditText) findViewById(R.id.txtPrecio4_crearProducto);
+        txtPrecio5= (EditText) findViewById(R.id.txtPrecio5_crearProducto);
+        txtPrecio6= (EditText) findViewById(R.id.txtPrecio6_crearProducto);
         imgPerfil= (ImageView) findViewById(R.id.imageProducto_crearProducto);
         Button btnCrearProducto= (Button) findViewById(R.id.btnCrearProducto_crearProducto);
         imgPerfil.setOnClickListener(this);
@@ -356,6 +366,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                                         txtCosto.setText("");
                                         txtNombre.setText("");
                                         txtPrecio.setText("");
+                                        txtPrecio2.setText("");
+                                        txtPrecio3.setText("");
+                                        txtPrecio4.setText("");
+                                        txtPrecio5.setText("");
+                                        txtPrecio6.setText("");
                                         txtCodigo.setText("");
                                         spinnerCategoria.setSelection(0);
                                         spinnerTipo.setSelection(0);
@@ -418,6 +433,11 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
                                 hashMap.put("categoria",""+ bdCategorias.obtenerId(spinnerCategoria.getSelectedItem().toString()));
                                 hashMap.put("costo", ""+txtCosto.getText().toString());
                                 hashMap.put("precio", ""+txtPrecio.getText().toString());
+                                hashMap.put("precio2", ""+txtPrecio2.getText().toString());
+                                hashMap.put("precio3", ""+txtPrecio3.getText().toString());
+                                hashMap.put("precio4", ""+txtPrecio4.getText().toString());
+                                hashMap.put("precio5", ""+txtPrecio5.getText().toString());
+                                hashMap.put("precio6", ""+txtPrecio6.getText().toString());
                                 hashMap.put("image", image);
 
                                 Log.d("Subida",hashMap.toString());
@@ -468,6 +488,16 @@ public class CrearProductoActivity extends AppCompatActivity implements View.OnC
             txtCosto.setError("Diligencie el costo");
         }else if(txtPrecio.getText().length()==0){
             txtPrecio.setError("Diligencie el precio");
+        }else if(txtPrecio2.getText().length()==0){
+            txtPrecio2.setError("Diligencie el precio");
+        }else if(txtPrecio3.getText().length()==0){
+            txtPrecio3.setError("Diligencie el precio");
+        }else if(txtPrecio4.getText().length()==0){
+            txtPrecio4.setError("Diligencie el precio");
+        }else if(txtPrecio5.getText().length()==0){
+            txtPrecio5.setError("Diligencie el precio");
+        }else if(txtPrecio6.getText().length()==0){
+            txtPrecio6.setError("Diligencie el precio");
         }else{
             bandera= true;
         }

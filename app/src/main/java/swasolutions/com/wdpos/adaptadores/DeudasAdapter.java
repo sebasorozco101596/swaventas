@@ -103,13 +103,18 @@ public class DeudasAdapter extends  RecyclerView.Adapter<DeudasAdapter.DeudasVie
                                 View mView =  LayoutInflater.from(context).inflate(R.layout.dialog_pago,null);
 
                                 final EditText txtPago= (EditText) mView.findViewById(R.id.txtPago_DialogoPago);
-                                final TextView txtTotal= (TextView) mView.findViewById(R.id.txtTotalVenta_dialogo);
+                                final TextView txtTotal= (TextView) mView.findViewById(R.id.txtTotalVentaCredito_dialogo);
+                                final TextView txtTotalCredito= (TextView) mView.findViewById(R.id.txtTotalCredito_DialogPago);
                                 Button btnPago= (Button) mView.findViewById(R.id.btnPagar_dialogo);
                                 final LinearLayout linearCredito= (LinearLayout) mView.findViewById(R.id.linearUsarCredito_DialogoPago);
                                 final EditText txtValorCredito= (EditText) mView.findViewById(R.id.txtValorCredito_DialogoPago);
                                 final CheckBox checkBoxCredito= (CheckBox) mView.findViewById(R.id.checkbox_usarCredito_diaPago);
+                                LinearLayout linearPagoContado= (LinearLayout) mView.findViewById(R.id.LinearTotalContado_DialogoPago);
+                                linearPagoContado.setVisibility(View.INVISIBLE);
                                 int totalD= Integer.parseInt(holder.total.getText().toString());
                                 final int pagadoD= Integer.parseInt(holder.pagado.getText().toString());
+
+                                txtTotalCredito.setText("Total a pagar");
 
                                 builder.setView(mView);
                                 final AlertDialog alertDialog= builder.create();

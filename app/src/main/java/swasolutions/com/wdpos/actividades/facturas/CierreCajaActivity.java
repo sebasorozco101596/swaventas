@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,7 @@ import swasolutions.com.wdpos.base_de_datos.ClientesCompletoBD;
 import swasolutions.com.wdpos.base_de_datos.DevolucionesBD;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
 import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
+import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.impresion.DeviceListActivity;
@@ -70,6 +72,7 @@ import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
 import swasolutions.com.wdpos.vo.clases_objeto.ClienteCompleto;
 import swasolutions.com.wdpos.vo.clases_objeto.Devolucion;
 import swasolutions.com.wdpos.vo.clases_objeto.Gasto;
+import swasolutions.com.wdpos.vo.clases_objeto.Producto;
 import swasolutions.com.wdpos.vo.clases_objeto.ProductoVenta;
 import swasolutions.com.wdpos.vo.clases_objeto.Venta;
 import swasolutions.com.wdpos.vo.clases_objeto.VentaCompleta;
@@ -91,6 +94,7 @@ public class CierreCajaActivity extends AppCompatActivity {
     private TextView txtFecha,txtVendedor;
 
     private TextView txtTitulo,txtDireccion,txtTelefono;
+    private Logica logica;
 
     /**
      * Datos necesarios para la impresion
@@ -107,6 +111,7 @@ public class CierreCajaActivity extends AppCompatActivity {
     private Button btnImprimirDetallado;
     private Button btnSubirClientes;
     private Button btnEliminarCliRepetidos;
+    private Button btnEditarProductos;
     private BluetoothService mService = null;
     private Context context;
 
@@ -158,6 +163,7 @@ public class CierreCajaActivity extends AppCompatActivity {
     public static VentasBD bdVentas;
     public static ClientesCompletoBD bdClientesCompleto;
     public static GruposVendedorBD bdGruposVendedor;
+    public static ProductosBD bdProductos;
 
     public static DevolucionesBD bdDevoluciones;
     public static ClientesBD bdClientes;
@@ -214,6 +220,8 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         context = this;
         contador=0;
+
+        logica= new Logica();
 
         clientesRepetidos= new ArrayList<>();
         devoluciones= new ArrayList<>();
@@ -385,6 +393,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         btnSubirClientes= (Button) findViewById(R.id.btnSubirClientes_cierreCaja);
         btnImprimirDetallado= (Button) findViewById(R.id.btnImprimirDetallado_cierreCaja);
         btnEliminarCliRepetidos= (Button) findViewById(R.id.btnEliminarCliRepetidos_cierreCaja);
+        btnEditarProductos= (Button) findViewById(R.id.btnEditarProductos_cierreCaja);
 
         txtTitulo= (TextView) findViewById(R.id.txtNombreTienda_cierreCaja);
         txtDireccion= (TextView) findViewById(R.id.txtDireccion_cierreCaja);
@@ -400,8 +409,10 @@ public class CierreCajaActivity extends AppCompatActivity {
         txtTotalGastos= (TextView) findViewById(R.id.txtTotalGastos_cierreCaja);
         txtDineroEntregar= (TextView) findViewById(R.id.txtEfectivoEntregar_cierreCaja);
 
+
         TextView txtNumeroClientesNuevos= (TextView) findViewById(R.id.txtClientesNuevos_cierreCaja);
         TextView txtProductosDevolver= (TextView) findViewById(R.id.txtProductosDevolver_cierreCaja);
+        TextView txtProductosEditados= (TextView) findViewById(R.id.txtProductosEditados_cierreCaja);
 
 
 
@@ -413,6 +424,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         bdAbonos= new AbonosBD(getApplicationContext(),null,1);
         bdVentas= new VentasBD(getApplicationContext(),null,1);
         bdProductosVenta= new ProductosVentaBD(getApplicationContext(),null,1);
+        bdProductos= new ProductosBD(getApplicationContext(),null,1);
         bdGruposVendedor = new GruposVendedorBD(getApplicationContext(),null,1);
         bdClientesCompleto= new ClientesCompletoBD(getApplicationContext(),null,1);
         bdDevoluciones= new DevolucionesBD(getApplicationContext(),null,1);
@@ -425,6 +437,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             btnSubirClientes.setEnabled(false);
         }
 
+        txtProductosEditados.setText(""+bdProductos.productosEditados());
 
         devoluciones=bdDevoluciones.devolucionesCierre();
 
@@ -442,7 +455,9 @@ public class CierreCajaActivity extends AppCompatActivity {
         btnImprimirDetallado.setOnClickListener(new ClickEvent());
         btnSubirClientes.setOnClickListener(new ClickEvent());
         btnEliminarCliRepetidos.setOnClickListener(new ClickEvent());
+        btnEditarProductos.setOnClickListener(new ClickEvent());
         btnSend.setEnabled(false);
+        btnEditarProductos.setEnabled(false);
         btnImprimirDetallado.setEnabled(false);
         btnEliminarCliRepetidos.setEnabled(false);
 
@@ -457,6 +472,11 @@ public class CierreCajaActivity extends AppCompatActivity {
         }
         */
 
+        int productosEditados= Integer.parseInt(txtProductosEditados.getText().toString());
+
+        if(productosEditados>0){
+            btnEditarProductos.setEnabled(true);
+        }
 
 
         txtTitulo.setText(ConfiguracionActivity.getNombreTienda(CierreCajaActivity.this));
@@ -492,9 +512,9 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         for(int i=0;i<clientesNuevos.size();i++){
             for(int j=0;j<clientes.size();j++){
-                if(clientesNuevos.get(i).getCedula().equals(clientes.get(j).getCedula())
-                        && !clientesNuevos.get(i).getNombre().equals(clientes.get(j).getName())){
+                if(clientesNuevos.get(i).getCedula().equals(clientes.get(j).getCedula())){
                     clientesRepetidos.add(clientesNuevos.get(i).getId());
+                    Log.d("ClientesRepetidos", "validarClientesRepetidos: "+clientesNuevos.get(i).getId());
                 }
             }
         }
@@ -603,8 +623,12 @@ public class CierreCajaActivity extends AppCompatActivity {
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     }else if(response.names().get(0).equals("error")){
-                                        Toast.makeText(getApplicationContext(),response.getString("error"),
-                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),response.getString("error")+
+                                                        " Espera un momento.....", Toast.LENGTH_SHORT).show();
+
+                                        bdClientes.eliminarTodosClientes();
+                                        Clientes clientes = new Clientes(getApplicationContext(), link);
+                                        clientes.obtenerClientes();
 
                                         ejAsincTask2.cancel(true);
                                         alertDialog.dismiss();
@@ -619,7 +643,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
                                 Log.d("errorVenta",error.toString());
                             }
                         });
@@ -631,7 +654,96 @@ public class CierreCajaActivity extends AppCompatActivity {
                 }
 
 
+            }else if(v.equals(btnEditarProductos)){
+
+                if(logica.verificarConexion(CierreCajaActivity.this)){
+
+                    String URL_SUBIR= link+"/app_movil/vendedor/editarProductos.php";
+
+                    AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
+                    @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
+
+                    final EjAsincTask2 ejAsincTask2= new EjAsincTask2();
+                    ejAsincTask2.execute();
+
+                    builder.setView(mView);
+                    final AlertDialog alertDialog= builder.create();
+                    alertDialog.setCanceledOnTouchOutside(false);
+                    alertDialog.show();
+
+                    JSONObject jsonObjectProductos;
+                    final JSONArray jsonArray= new JSONArray();
+
+                    ArrayList<Producto> productos= bdProductos.listaProductosEditados();
+                    for(int j = 0; j<productos.size(); j++) {
+
+                        HashMap<String, String> hashMapCliente = new HashMap<>();
+                        hashMapCliente.put("id", ""+productos.get(j).getId());
+                        hashMapCliente.put("code", ""+ productos.get(j).getCodigoProducto());
+                        hashMapCliente.put("nombre",""+  productos.get(j).getNombre());
+                        hashMapCliente.put("unit", "" + productos.get(j).getUnit());
+                        hashMapCliente.put("cost",""+  productos.get(j).getCost());
+                        hashMapCliente.put("price", ""+ productos.get(j).getPrecio1());
+                        hashMapCliente.put("price2", "" + productos.get(j).getPrecio2());
+                        hashMapCliente.put("price3", "" + productos.get(j).getPrecio3());
+                        hashMapCliente.put("price4", "" + productos.get(j).getPrecio4());
+                        hashMapCliente.put("price5", "" + productos.get(j).getPrecio5());
+                        hashMapCliente.put("price6", "" + productos.get(j).getPrecio6());
+                        hashMapCliente.put("categoryId",""+ productos.get(j).getCategoryId());
+                        hashMapCliente.put("type", ""+ productos.get(j).getType());
+
+                        JSONObject jsonObjectProducto= new JSONObject(hashMapCliente);
+
+                        jsonArray.put(jsonObjectProducto);
+                    }
+
+                    jsonObjectProductos= new JSONObject();
+                    try {
+                        jsonObjectProductos.put("productos",jsonArray);
+                        Log.d("ClientesSubir",jsonObjectProductos.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Ventasssssssss",jsonObjectProductos.toString());
+
+                    JsonObjectRequest requestProductos = new JsonObjectRequest(Request.Method.POST,URL_SUBIR,jsonObjectProductos, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.names().get(0).equals("success")) {
+
+                                    Toast.makeText(getApplicationContext(), "Productos editados correctamente..",
+                                            Toast.LENGTH_LONG).show();
+
+                                    bdProductos.actualizarProductosEditados();
+
+                                } else {
+                                    Toast.makeText(context, "Error" + response.getString("error"), Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            Log.d("errorVenta",error.toString());
+
+
+                            Toast.makeText(getApplicationContext(), "Error productos no fueron editados..",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    MySingleton.getInstance(context).addToRequestQue(requestProductos);
+
+                }
+
             }else if(v.equals(btnEliminarCliRepetidos)){
+
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
                 @SuppressLint("InflateParams") View mView = getLayoutInflater().inflate(R.layout.dialog_carga,null);
@@ -647,8 +759,17 @@ public class CierreCajaActivity extends AppCompatActivity {
                 alertDialog.show();
 
                 for(int i=0;i<clientesRepetidos.size();i++){
+
+                    String cedula=bdClientesCompleto.buscarCedula(clientesRepetidos.get(i));
+
+                    bdVentas.actualizarIdCliente(clientesRepetidos.get(i),bdClientes.buscarCliente(cedula),
+                            bdClientes.buscarNombre(cedula));
                     bdClientesCompleto.eliminarAbono(clientesRepetidos.get(i));
                 }
+
+                ventas= bdVentas.ventas();
+
+
 
 
 
@@ -710,126 +831,153 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                     int numeroclientes= bdClientesCompleto.clientes().size();
 
+
                     if(numeroclientes==0){
 
                         if(isNetDisponible() && isOnlineNet()){
 
-                            if(TOTAL_GASTOS > 0 || TOTAL_VENTAS > 0 || DINERO_ABONOS > 0 || devoluciones.size() > 0){
+                            if(bdClientes.cargarClientes().size()==0){
 
-                                ventas=organizarVentas(ventas);
+                                alertDialog.dismiss();
 
-                                //cantidad productos,total ventas, dinero recibido, dinero abonos, gastos
+                                Clientes clientes= new Clientes(context,link);
+                                clientes.obtenerClientes();
 
-                                if(TOTAL_GASTOS>0 || TOTAL_VENTAS>0 || DINERO_ABONOS >0 || devoluciones.size()>0){
+
+                                Snackbar.make(findViewById(android.R.id.content), "actualizando clientes," +
+                                        " espere un momento", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+
+                                btnSearch.setEnabled(true);
+                                btnSend.setEnabled(true);
+                                btnImprimirDetallado.setEnabled(true);
+                                btnVolver.setEnabled(true);
+
+                            }else{
+                                if(TOTAL_GASTOS > 0 || TOTAL_VENTAS > 0 || DINERO_ABONOS > 0 || devoluciones.size() > 0){
+
+                                    ventas=organizarVentas(ventas);
+
+                                    //cantidad productos,total ventas, dinero recibido, dinero abonos, gastos
+
+                                    if(TOTAL_GASTOS>0 || TOTAL_VENTAS>0 || DINERO_ABONOS >0 || devoluciones.size()>0){
 
 
-                                    String URLVerificar = "http://wds.grupowebdo.com/app_movil/macaddress/verificarMacAddress.php";
-                                    StringRequest requestLogin = new StringRequest(Request.Method.POST, URLVerificar, new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String response) {
-                                            try {
+                                        String URLVerificar = "http://wds.grupowebdo.com/app_movil/macaddress/verificarMacAddress.php";
+                                        StringRequest requestLogin = new StringRequest(Request.Method.POST, URLVerificar, new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                try {
 
-                                                JSONObject jsonObject = new JSONObject(response);
+                                                    JSONObject jsonObject = new JSONObject(response);
 
-                                                if (jsonObject.names().get(0).equals("success")) {
+                                                    if (jsonObject.names().get(0).equals("success")) {
 
-                                                    /*
-                                                     * Logica que sube todos los datos al servidor
-                                                     */
-                                                    ExecutorService executor = Executors.newFixedThreadPool(4);
+                                                /*
+                                                 * Logica que sube todos los datos al servidor
+                                                 */
+                                                        ExecutorService executor = Executors.newFixedThreadPool(4);
 
-                                                    int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(CierreCajaActivity.this);
-                                                    //Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+                                                        int warehouseId= ConfiguracionActivity.getPreferenciaWarehouseID(CierreCajaActivity.this);
+                                                        //Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
 
-                                                    for(int i=1;i<=4;i++){
+                                                        for(int i=1;i<=4;i++){
 
-                                                        // Log.d("ERROR",""+i);
-                                                        Runnable workerVentas = new SubirServidor(abonos,ventas,gastos,
-                                                                devoluciones, getApplicationContext(),i,link,ID,
-                                                                warehouseId);
-                                                        //The thread in the thread pool runs.
-                                                        executor.execute(workerVentas);
+                                                            // Log.d("ERROR",""+i);
+                                                            Runnable workerVentas = new SubirServidor(abonos,ventas,gastos,
+                                                                    devoluciones, getApplicationContext(),i,link,ID,
+                                                                    warehouseId);
+                                                            //The thread in the thread pool runs.
+                                                            executor.execute(workerVentas);
+                                                        }
+
+                                                        executor.shutdown();
+
+                                                        while (true) {
+                                                            if (executor.isTerminated()) break;
+                                                        }
+
+                                                        header += centrarCadena(txtTitulo.getText().toString().toUpperCase())+ BREAK;
+                                                        header += alinearLineas(txtDireccion.getText().toString()) + BREAK;
+                                                        header += centrarCadena("Republica dominicana")+ BREAK;
+                                                        header += centrarCadena("Tel: "+txtTelefono.getText().toString())+BREAK ;
+
+                                                        header += DIVIDER_DOUBLE + BREAK;
+
+
+                                                        msg += "Fecha:"+ txtFecha.getText().toString()+ BREAK;
+                                                        msg += "Vendedor:" + txtVendedor.getText().toString() + BREAK;
+                                                        msg += "Cantidad productos:" +txtCantidadProductos.getText().toString() +BREAK;
+                                                        msg += "Total por ventas:" +txtTotalVentas.getText().toString()+BREAK;
+
+                                                        msg += "Dinero recibido ventas:" + txtDineroRecibidoVentas.getText().toString() + BREAK;
+                                                        msg += "Dinero recibido abonos: "+ txtDineroRecibidoAbonos.getText().toString() + BREAK;
+                                                        msg += "Total gastos:" + txtTotalGastos.getText().toString() + BREAK+BREAK;
+                                                        msg += "Efectivo a entregar:" + txtDineroEntregar.getText().toString() + BREAK;
+
+                                                        byte[] cmd = new byte[3];
+                                                        cmd[0] = 0x1b;
+                                                        cmd[1] = 0x21;
+                                                        cmd[2] |= 0x10;
+                                                        mService.write(cmd);
+                                                        mService.sendMessage(header, "UTF-8");
+
+
+                                                        cmd[2] &= 0xEF;
+                                                        mService.write(cmd);
+                                                        mService.sendMessage(msg, "UTF-8");
+
+                                                        header="";
+                                                        msg="";
+
+                                                        EjAsincTask ejAsincTask= new EjAsincTask();
+                                                        ejAsincTask.execute();
+
+                                                        takeScreenshot();
+
+                                                        contador=1;
+
+                                                    } else {
+                                                        Toast.makeText(getApplicationContext(), "Error: " + "Dispositivo no registrado", Toast.LENGTH_SHORT).show();
                                                     }
 
-                                                    executor.shutdown();
-
-                                                    while (true) {
-                                                        if (executor.isTerminated()) break;
-                                                    }
-
-                                                    header += centrarCadena(txtTitulo.getText().toString().toUpperCase())+ BREAK;
-                                                    header += alinearLineas(txtDireccion.getText().toString()) + BREAK;
-                                                    header += centrarCadena("Republica dominicana")+ BREAK;
-                                                    header += centrarCadena("Tel: "+txtTelefono.getText().toString())+BREAK ;
-
-                                                    header += DIVIDER_DOUBLE + BREAK;
-
-
-                                                    msg += "Fecha:"+ txtFecha.getText().toString()+ BREAK;
-                                                    msg += "Vendedor:" + txtVendedor.getText().toString() + BREAK;
-                                                    msg += "Cantidad productos:" +txtCantidadProductos.getText().toString() +BREAK;
-                                                    msg += "Total por ventas:" +txtTotalVentas.getText().toString()+BREAK;
-
-                                                    msg += "Dinero recibido ventas:" + txtDineroRecibidoVentas.getText().toString() + BREAK;
-                                                    msg += "Dinero recibido abonos: "+ txtDineroRecibidoAbonos.getText().toString() + BREAK;
-                                                    msg += "Total gastos:" + txtTotalGastos.getText().toString() + BREAK+BREAK;
-                                                    msg += "Efectivo a entregar:" + txtDineroEntregar.getText().toString() + BREAK;
-
-                                                    byte[] cmd = new byte[3];
-                                                    cmd[0] = 0x1b;
-                                                    cmd[1] = 0x21;
-                                                    cmd[2] |= 0x10;
-                                                    mService.write(cmd);
-                                                    mService.sendMessage(header, "UTF-8");
-
-
-                                                    cmd[2] &= 0xEF;
-                                                    mService.write(cmd);
-                                                    mService.sendMessage(msg, "UTF-8");
-
-                                                    header="";
-                                                    msg="";
-
-                                                    EjAsincTask ejAsincTask= new EjAsincTask();
-                                                    ejAsincTask.execute();
-
-                                                    takeScreenshot();
-
-                                                    contador=1;
-
-                                                } else {
-                                                    Toast.makeText(getApplicationContext(), "Error: " + "Dispositivo no registrado", Toast.LENGTH_SHORT).show();
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
                                                 }
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
+
                                             }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
 
+                                                Toast.makeText(getApplicationContext(), "Verifique su conexión a internet", Toast.LENGTH_SHORT).show();
+                                                Log.d("error", "" + error);
+                                                alertDialog.dismiss();
 
-                                        }
-                                    }, new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
+                                            }
+                                        }) {
+                                            @Override
+                                            protected Map<String, String> getParams() throws AuthFailureError {
+                                                HashMap<String, String> hashMap = new HashMap<String, String>();
 
-                                            Toast.makeText(getApplicationContext(), "Verifique su conexión a internet", Toast.LENGTH_SHORT).show();
-                                            Log.d("error", "" + error);
+                                                Logica logica= new Logica();
 
-                                        }
-                                    }) {
-                                        @Override
-                                        protected Map<String, String> getParams() throws AuthFailureError {
-                                            HashMap<String, String> hashMap = new HashMap<String, String>();
+                                                hashMap.put("link", link);
+                                                hashMap.put("mac_address",logica.getMacAddr());
+                                                return hashMap;
+                                            }
+                                        };
 
-                                            Logica logica= new Logica();
+                                        MySingleton.getInstance(getApplicationContext()).addToRequestQue(requestLogin);
 
-                                            hashMap.put("link", link);
-                                            hashMap.put("mac_address",logica.getMacAddr());
-                                            return hashMap;
-                                        }
-                                    };
-
-                                    MySingleton.getInstance(getApplicationContext()).addToRequestQue(requestLogin);
-
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),"No tiene datos para cerrar caja."
+                                                ,Toast.LENGTH_SHORT).show();
+                                        alertDialog.dismiss();
+                                        btnSearch.setEnabled(true);
+                                        btnVolver.setEnabled(true);
+                                    }
                                 }else{
                                     Toast.makeText(getApplicationContext(),"No tiene datos para cerrar caja."
                                             ,Toast.LENGTH_SHORT).show();
@@ -837,13 +985,8 @@ public class CierreCajaActivity extends AppCompatActivity {
                                     btnSearch.setEnabled(true);
                                     btnVolver.setEnabled(true);
                                 }
-                            }else{
-                                Toast.makeText(getApplicationContext(),"No tiene datos para cerrar caja."
-                                        ,Toast.LENGTH_SHORT).show();
-                                alertDialog.dismiss();
-                                btnSearch.setEnabled(true);
-                                btnVolver.setEnabled(true);
                             }
+
                         }else{
                             Toast.makeText(getApplicationContext(),"Verifique su conexion a internet",
                                     Toast.LENGTH_LONG).show();
@@ -861,7 +1004,6 @@ public class CierreCajaActivity extends AppCompatActivity {
                         btnSearch.setEnabled(true);
                         btnVolver.setEnabled(true);
                     }
-
 
                 }
                 else if(contador >0){

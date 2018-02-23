@@ -65,11 +65,11 @@
         android:textColor="@color/negro"
         android:gravity="center"
         android:textStyle="bold|italic"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/bluebackground"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="3dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,6 +88,7 @@
             android:orientation="horizontal"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="3dp"
             android:layout_gravity="center"
             android:layout_weight="1">
 
@@ -98,16 +99,11 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="8dp"
-                android:layout_marginTop="4dp"
+                android:padding="5dp"
                 android:drawableTop="@drawable/dinero"
                 android:background="@drawable/buttonpanel"
                 android:text="vender"
                 android:textStyle="bold|italic"
-                android:layout_marginEnd="5dp"
                 android:textSize="11dp"/>
 
             <Button
@@ -117,15 +113,14 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/buttonpanel"
-                android:drawableTop="@drawable/find"
+                android:padding="5dp"
                 android:textStyle="bold|italic"
-                android:text="Abonar deuda"
-                android:layout_marginBottom="15dp"
-                android:textSize="11dp"/>
+                android:layout_gravity="center"
+                android:background="@drawable/buttonpanel"
+                android:drawableTop="@drawable/dinero"
+                android:text="Deudas"
+                android:textSize="11dp"
+                />
 
             <Button
                 android:id="@+id/btnGastos_panel"
@@ -134,10 +129,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
+                android:padding="5dp"
                 android:textStyle="bold|italic"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonpanel"
@@ -152,10 +144,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
+                android:padding="5dp"
                 android:textStyle="bold|italic"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonpanel"
@@ -251,7 +240,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:layout_gravity="center"
             android:paddingRight="5dp">
 
@@ -285,23 +274,6 @@
                 android:textStyle="bold|italic"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonpanel"
-                android:text="Subir \nproducto"
-                android:drawableTop="@drawable/productos"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="5dp"
-                android:id="@+id/btnSubirProducto_Panel"
-                android:textSize="11dp"
-                />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                android:paddingTop="5dp"
-                android:paddingBottom="8dp"
-                android:textStyle="bold|italic"
-                android:layout_gravity="center"
-                android:background="@drawable/buttonpanel"
                 android:text="Agregar \ncredito"
                 android:drawableTop="@drawable/dinero"
                 android:layout_marginLeft="4dp"
@@ -319,13 +291,63 @@
                 android:textStyle="bold|italic"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonpanel"
-                android:text="edicion cliente"
+                android:text="  edicion cliente  "
                 android:drawableTop="@drawable/addfriend"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="5dp"
                 android:id="@+id/btnEditarCliente_panel"
                 android:textSize="11dp"
                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center"
+            android:paddingRight="5dp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:paddingLeft="2dp"
+                android:paddingBottom="8dp"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonpanel"
+                android:text="Editar producto"
+                android:textSize="11dp"
+                android:drawableTop="@drawable/productos"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/btnEditarProducto_panel"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="8dp"
+                android:textStyle="bold|italic"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonpanel"
+                android:text="Subir \nproducto"
+                android:drawableTop="@drawable/productos"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/btnSubirProducto_Panel"
+                android:textSize="11dp"
+                />
+
 
         </LinearLayout>
 
@@ -340,11 +362,11 @@
         android:textColor="@color/negro"
         android:gravity="center"
         android:textStyle="bold|italic"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/bluebackground"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="3dp"/>
 
 
 
@@ -355,8 +377,8 @@
         android:background="@drawable/bluebackground"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
 
 
         <LinearLayout

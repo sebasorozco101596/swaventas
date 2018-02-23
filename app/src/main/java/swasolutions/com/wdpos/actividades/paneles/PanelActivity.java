@@ -33,6 +33,7 @@ import swasolutions.com.wdpos.R;
 import swasolutions.com.wdpos.actividades.clientes.ClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.ImprimirClientesActivity;
 import swasolutions.com.wdpos.actividades.clientes.RegistroClienteActivity;
+import swasolutions.com.wdpos.actividades.productos.ProductosActivity;
 import swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity;
 import swasolutions.com.wdpos.actividades.vendedores.LoginActivity;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
@@ -68,7 +69,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("98");
+        txtVersion.setText("2.1.3");
 
         logica= new Logica();
 
@@ -93,6 +94,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         Button btnVistaAbonos= (Button) findViewById(R.id.btnVistaAbonos_panel);
         Button btnVistaGastos= (Button) findViewById(R.id.btnVistaGastos_panel);
         Button btnImprimirClientes= (Button) findViewById(R.id.btnImprimirClientes_panel);
+        Button btnEditarProducto= (Button) findViewById(R.id.btnEditarProducto_panel);
 
         btnVender.setOnClickListener(this);
         btnBuscarCLiente.setOnClickListener(this);
@@ -110,6 +112,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         btnVistaVentas.setOnClickListener(this);
         btnVistaGastos.setOnClickListener(this);
         btnImprimirClientes.setOnClickListener(this);
+        btnEditarProducto.setOnClickListener(this);
 
 
         link= ConfiguracionActivity.getLinkHosting(PanelActivity.this);
@@ -172,12 +175,12 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
             case R.id.accion_actualizarProductos:
 
 
-                if(logica.verificarConexion(PanelActivity.this)) {
+                if (logica.verificarConexion(PanelActivity.this)) {
 
-                    verificarExistencia(link,logica.getMacAddr(),"productos");
+                    verificarExistencia(link, logica.getMacAddr(), "productos");
 
-                }else{
-                    Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifique la conexión a internet",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -185,12 +188,12 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.accion_actualizarClientes:
 
-                if(logica.verificarConexion(PanelActivity.this)) {
+                if (logica.verificarConexion(PanelActivity.this)) {
 
-                    verificarExistencia(link,logica.getMacAddr(),"clientes");
+                    verificarExistencia(link, logica.getMacAddr(), "clientes");
 
-                }else{
-                    Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifique la conexión a internet",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -198,12 +201,12 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.accion_actualizarDeudasCliente:
 
-                if(logica.verificarConexion(PanelActivity.this)) {
+                if (logica.verificarConexion(PanelActivity.this)) {
 
-                    verificarExistencia(link,logica.getMacAddr(),"deudas");
+                    verificarExistencia(link, logica.getMacAddr(), "deudas");
 
-                }else{
-                    Toast.makeText(getApplicationContext(),"Verifique la conexión a internet",
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifique la conexión a internet",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -212,7 +215,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.accion_configuracion:
 
-                Intent intent= new Intent(getApplicationContext(),ConfiguracionActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ConfiguracionActivity.class);
                 startActivity(intent);
 
                 return true;
@@ -258,15 +261,18 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
                         }else if("clientes".equals(tipo)){
 
+
                             bdClientes = new ClientesBD(getApplicationContext(), null, 1);
                             bdClientes.eliminarTodosClientes();
 
-                            Clientes clientes = new Clientes(getApplicationContext(), link);
+
+                            Clientes clientes= new Clientes(getApplicationContext(),link);
                             clientes.obtenerClientes();
 
                             Snackbar.make(findViewById(android.R.id.content), "actualizando clientes," +
                                     " espere un momento", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
+
 
                         }else if("deudas".equals(tipo)){
                             bdDeudas = new DeudasBD(getApplicationContext(), null, 1);
@@ -317,6 +323,11 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         switch (v.getId()){
+            case R.id.btnEditarProducto_panel:
+
+                Intent intentProductos= new Intent(getApplicationContext(), ProductosActivity.class);
+                startActivity(intentProductos);
+                break;
             case R.id.btnVender_panel:
 
                 Intent intent= new Intent(getApplicationContext(),ClientesActivity.class);

@@ -202,4 +202,74 @@ public class ClientesCompletoBD extends SQLiteOpenHelper {
 
 
     }
+
+    public String buscarCedula(String idd) {
+
+        String id="";
+
+        String sql= "SELECT cedula FROM ClientesCompleto where id='"+idd+"';";
+
+        SQLiteDatabase database= this.getWritableDatabase();
+
+        Cursor register= database.rawQuery(sql,null);
+
+        if (register.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                id = register.getString(0);
+            } while(register.moveToNext());
+        }
+
+        register.close();
+
+
+        return id;
+
+    }
+
+    public String buscarCliente(String cedulacliente) {
+
+        String id="";
+
+        String sql= "SELECT id FROM ClientesCompleto where cedula='"+cedulacliente+"';";
+
+        SQLiteDatabase database= this.getWritableDatabase();
+
+        Cursor register= database.rawQuery(sql,null);
+
+        if (register.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                id = register.getString(0);
+            } while(register.moveToNext());
+        }
+
+        register.close();
+
+
+        return id;
+    }
+
+    public String buscarNombreCliente(String id) {
+
+        String nombre="";
+
+        String sql= "SELECT nombre FROM ClientesCompleto where id='"+id+"';";
+
+        SQLiteDatabase database= this.getWritableDatabase();
+
+        Cursor register= database.rawQuery(sql,null);
+
+        if (register.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                nombre = register.getString(0);
+            } while(register.moveToNext());
+        }
+
+        register.close();
+
+
+        return nombre;
+    }
 }

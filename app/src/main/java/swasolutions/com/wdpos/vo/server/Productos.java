@@ -70,13 +70,17 @@ public class Productos {
                                 JSONObject jsonObject= response.getJSONObject(count);
                                 String idString = jsonObject.getString("id");
                                 String name= jsonObject.getString("name");
+                                int unit= jsonObject.getInt("unit");
+                                String costString= jsonObject.getString("cost");
                                 String price1String= jsonObject.getString("price");
                                 int price2= jsonObject.getInt("price2");
                                 int price3= jsonObject.getInt("price3");
                                 int price4= jsonObject.getInt("price4");
                                 int price5= jsonObject.getInt("price5");
                                 int price6= jsonObject.getInt("price6");
+                                int categoryId= jsonObject.getInt("category_id");
                                 String codigo= jsonObject.getString("code");
+                                String type= jsonObject.getString("type");
                                 String cantidad = jsonObject.getString("quantity");
 
                                 Log.d("quantityyyyyyy",cantidad);
@@ -84,15 +88,16 @@ public class Productos {
                                 int id= Integer.parseInt(idString);
 
                                 price1String.replaceAll(".",",");
+                                costString.replaceAll(".",",");
                                 cantidad.replaceAll(".",",");
 
                                 //int price= Integer.parseInt(priceString);
 
-                                Producto producto= new Producto(id,name,price1String,price2,price3,
-                                        price4,price5,price6,codigo,cantidad);
+                                Producto producto= new Producto(id,name,unit,costString,price1String,price2,price3,
+                                        price4,price5,price6,categoryId,type,codigo,cantidad,1);
 
-                                bdProductos.agregarProducto(id,name,price1String,price2,price3,
-                                        price4,price5,price6,codigo,cantidad);
+                                bdProductos.agregarProducto(id,name,unit,costString,price1String,price2,price3,
+                                        price4,price5,price6,categoryId,type,codigo,cantidad);
 
                                 Log.d("locc","entre"+name+"id: "+id);
                                 list.add(producto);

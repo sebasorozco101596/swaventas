@@ -358,6 +358,35 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="Productos editados: "
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textNormalTablet"
+                android:textColor="@color/negro"/>
+
+            <TextView
+                android:id="@+id/txtProductosEditados_cierreCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:textSize="@dimen/textNormalTablet"
+                android:textColor="@color/negro"/>
+
+        </LinearLayout>
+
 
 
 
@@ -423,17 +452,36 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnImprimirDetallado_cierreCaja"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/red_button_background"
-        android:text="Cierre de caja detallado"
-        android:textColor="@color/blanco"
-        android:textSize="@dimen/textNormalTablet"
-        android:drawableTop="@drawable/imprimir"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnEditarProductos_cierreCaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/red_button_background"
+            android:drawableTop="@drawable/productos"
+            android:text="Editar productos"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/textNormalTablet" />
+
+        <Button
+            android:id="@+id/btnImprimirDetallado_cierreCaja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/red_button_background"
+            android:drawableTop="@drawable/imprimir"
+            android:text="Cierre detallado"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/textNormalTablet"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnEliminarCliRepetidos_cierreCaja"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/degradade"
+    tools:context="swasolutions.com.wdpos.actividades.ventas.CarritoActivity">
+
+
+    <TextView
+        android:id="@+id/txtCarroVentas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Productos"
+        android:textColor="@color/verdeclaro"
+        android:fontFamily="serif"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCarroVentas"
+        android:layout_above="@+id/linearCarrito"
+        android:layout_alignParentStart="true"
+        android:id="@+id/recyclerViewProductos"
+        tools:listitem="@layout/cardview_producto"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

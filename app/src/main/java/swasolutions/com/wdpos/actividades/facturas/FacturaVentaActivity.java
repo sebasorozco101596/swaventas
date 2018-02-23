@@ -402,14 +402,31 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
                 if(!bdVentas.existeRegistro(txtIdVenta.getText().toString())){
 
+
+
                     //for(int j=1;j<clientes.size();j++){
 
                     int id=bdVentas.contarFilas();
                     String cedulaCliente= CEDULACLIENTE;
                     String fecha= txtFecha.getText().toString();
                     String referencia= txtIdVenta.getText().toString();
+
+                    /**
+                     * Trozo de codigo que asegura si un cliente es nuevo o ya estaba
+                     * si es 1 ya estaba agregado si es 2 fue agregado recientemente
+                     */
+                    int existe=1;
+                    if(bdClientesCompletos.existeClienteCedula(cedulaCliente)){
+                        existe=2;
+                    }
+
+                    String idCliente="";
                     String cliente= txtNombreCliente.getText().toString();
-                    String idCliente=bdClientes.buscarCliente(CEDULACLIENTE);
+                    if(existe==1){
+                        idCliente=bdClientes.buscarCliente(cedulaCliente);
+                    }else{
+                        idCliente=bdClientesCompletos.buscarCliente(cedulaCliente);
+                    }
 
                     /*
                     String idCliente= clientes.get(j).getId();
@@ -426,14 +443,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
                     if(txtDeuda.getText().equals("0")){
                         estadoVenta="paid";
                     }
-                    /**
-                     * Trozo de codigo que asegura si un cliente es nuevo o ya estaba
-                     * si es 1 ya estaba agregado si es 2 fue agregado recientemente
-                     */
-                    int existe=1;
-                    if(bdClientesCompletos.existeClienteCedula(cedulaCliente)){
-                        existe=2;
-                    }
+
                     if(Integer.parseInt(txtDeuda.getText().toString())>0){
                         String totalString = ""+total;
                         String pagadoString = ""+pagado;

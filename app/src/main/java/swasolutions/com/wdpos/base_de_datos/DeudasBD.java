@@ -171,4 +171,24 @@ public class DeudasBD extends SQLiteOpenHelper{
 
 
     }
+
+    public int buscarId(String referencia) {
+        int id=0;
+
+        String sql= "SELECT id FROM Deudas where referencia='"+referencia+"'";
+
+        Cursor cursor= getReadableDatabase().rawQuery(sql,null);
+
+        if(cursor.getCount() >0){
+
+            cursor.moveToFirst();
+            id= cursor.getInt(0);
+
+        }
+
+        cursor.close();
+        return id;
+
+
+    }
 }

@@ -312,6 +312,7 @@ public class CarritoActivity extends AppCompatActivity {
                                             intent.putExtra("key_cedula",cedula);
                                             intent.putExtra("key_tipoPago", tipo);
                                             startActivity(intent);
+                                            finish();
                                         }else{
                                             Intent intent= new Intent(getApplicationContext(),FacturaVentaActivity.class);
 
@@ -331,6 +332,7 @@ public class CarritoActivity extends AppCompatActivity {
                                             intent.putExtra("key_credito",credito);
                                             intent.putExtra("key_tipoPago", tipo);
                                             startActivity(intent);
+                                            finish();
                                         }
                                         alertDialog.dismiss();
 
