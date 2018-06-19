@@ -2,6 +2,7 @@ package swasolutions.com.wdpos.vo.server;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -30,6 +31,7 @@ public class Clientes {
     private Context context;
     private ArrayList<Cliente> list= new ArrayList<>();
     private String URLClientes;
+    private int cantidadClientes;
 
     private ClientesBD bdClientes;
 
@@ -51,6 +53,8 @@ public class Clientes {
      */
     public void obtenerClientes(){
 
+        cantidadClientes=0;
+
         //Request to the server of the user's friends.
         final JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET,URLClientes, (String) null,
                 new Response.Listener<JSONArray>() {
@@ -68,6 +72,10 @@ public class Clientes {
                                 String cedula = jsonObject.getString("cedula");
 
                                 //cedula = cedula.replaceFirst ("^0*", "");
+
+                                if(count== (response.length() -1)){
+                                    cantidadClientes= jsonObject.getInt("cantidad");
+                                }
 
                                 String name= jsonObject.getString("name");
                                 String compania= jsonObject.getString("company");
@@ -88,6 +96,12 @@ public class Clientes {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                        }
+
+                        if(cantidadClientes!=response.length()){
+                            bdClientes.eliminarTodosClientes();
+                            Toast.makeText(context,"Debido a que no se cargaron todos los clientes," +
+                                    " se deberan cargar nuevamente los clientes manualmente",Toast.LENGTH_SHORT).show();
                         }
                         PanelActivity.mostrarSnockBar("proceso terminado",2);
                         bdClientes.close();

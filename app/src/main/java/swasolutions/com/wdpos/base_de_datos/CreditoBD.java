@@ -115,5 +115,11 @@ public class CreditoBD extends SQLiteOpenHelper {
     }
 
 
+    public void eliminarCreditos() {
 
+        SQLiteDatabase database= this.getWritableDatabase();
+        String queryDelete= "DELETE FROM Creditos;";
+        database.execSQL(queryDelete);
+
+    }
 }

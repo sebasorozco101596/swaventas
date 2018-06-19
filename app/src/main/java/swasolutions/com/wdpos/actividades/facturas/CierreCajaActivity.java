@@ -11,8 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -554,7 +552,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                 int numeroClientes= bdClientesCompleto.clientes().size();
 
-                if(isOnlineNet() && isNetDisponible()){
+                if(logica.verificarConexion(CierreCajaActivity.this)){
                     if(numeroClientes>0){
 
                         AlertDialog.Builder builder= new AlertDialog.Builder(CierreCajaActivity.this);
@@ -614,7 +612,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                                         bdClientesCompleto.eliminarClientes();
                                         contador++;
 
-                                        if(isNetDisponible() && isOnlineNet()) {
+                                        if(logica.verificarConexion(CierreCajaActivity.this)){
                                             bdClientes.eliminarTodosClientes();
                                             Clientes clientes = new Clientes(getApplicationContext(), link);
                                             clientes.obtenerClientes();
@@ -834,7 +832,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                     if(numeroclientes==0){
 
-                        if(isNetDisponible() && isOnlineNet()){
+                        if(logica.verificarConexion(CierreCajaActivity.this)){
 
                             if(bdClientes.cargarClientes().size()==0){
 
@@ -1275,29 +1273,6 @@ public class CierreCajaActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isNetDisponible() {
-
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
-
-        return (actNetInfo != null && actNetInfo.isConnected());
-    }
-
-    public Boolean isOnlineNet() {
-
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-
-            int val           = p.waitFor();
-            return (val == 0);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     private void segundo(){
         try {

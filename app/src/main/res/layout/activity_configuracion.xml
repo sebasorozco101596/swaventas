@@ -8,18 +8,20 @@
     tools:context="swasolutions.com.wdpos.actividades.sharedpreferences.ConfiguracionActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -28,9 +30,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Configuracion hosting"
-                    android:textSize="@dimen/textFacturasTitulo"
                     android:textColor="@color/negro"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/textFacturasTitulo"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,18 +45,16 @@
                         android:layout_weight="1"
                         android:text="Mac address: "
                         android:textColor="@color/negro"
-                        android:textSize="17dp"
-                        />
+                        android:textSize="17dp" />
 
                     <EditText
                         android:id="@+id/txtMacAddress_configuracion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/negro"
-                        android:textSize="17dp"
                         android:enabled="false"
-                        />
+                        android:textColor="@color/negro"
+                        android:textSize="17dp" />
 
                 </LinearLayout>
 
@@ -67,26 +67,25 @@
                         android:id="@+id/txtLinkHosting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
                         android:hint="Direccion hosting"
-                        android:textColorHint="@color/negro"
-                        />
+                        android:textColorHint="@color/negro" />
 
                     <Button
                         android:id="@+id/btnGuardarDatosHosting"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/accept"/>
+                        android:background="@drawable/accept" />
 
 
                 </LinearLayout>
 
                 <Spinner
+                    android:id="@+id/warehousesSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/warehousesSpinner"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
@@ -96,27 +95,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="ping"
-                    android:textColorHint="@color/negro"
                     android:inputType="numberPassword"
-                    />
+                    android:textColorHint="@color/negro" />
 
                 <Button
                     android:id="@+id/btnGuardarPinYWare"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Guardar datos hosting"
-                    android:background="@drawable/buttonspanelbluedark"/>
-
+                    android:background="@drawable/buttonspanelbluedark"
+                    android:text="Guardar datos hosting" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Configuracion datos principales"
-                    android:textSize="@dimen/textFacturasTitulo"
                     android:textColor="@color/negro"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/textFacturasTitulo"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtNombreTienda"
@@ -124,55 +121,53 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="Nombre tienda"
-                    android:textColorHint="@color/negro"
-                    />
+                    android:textColorHint="@color/negro" />
+
                 <EditText
                     android:id="@+id/txtDireccionTienda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="Direccion tienda"
-                    android:textColorHint="@color/negro"
-                    />
+                    android:textColorHint="@color/negro" />
 
                 <EditText
                     android:id="@+id/txtTelefonoTienda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:inputType="number"
                     android:hint="Telefono tienda"
-                    android:textColorHint="@color/negro"
-                    />
+                    android:inputType="number"
+                    android:textColorHint="@color/negro" />
 
                 <Button
                     android:id="@+id/btnGuardarDatosTienda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Guardar datos principales"
-                    android:background="@drawable/buttonspanelbluedark"/>
-
-
+                    android:background="@drawable/buttonspanelbluedark"
+                    android:text="Guardar datos principales" />
 
             </LinearLayout>
 
-            <Button
+        </ScrollView>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnVolver_configuracion"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:drawableTop="@drawable/compartir"
-                android:textSize="@dimen/textFacturas"
-                android:background="@drawable/selector_btn"
-                android:textColor="@color/blanco"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:text="Volver al panel"/>
+        <Button
 
-        </RelativeLayout>
+            android:id="@+id/btnVolver_configuracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/selector_btn"
+            android:drawableTop="@drawable/compartir"
+            android:text="Volver al panel"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/textFacturas" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

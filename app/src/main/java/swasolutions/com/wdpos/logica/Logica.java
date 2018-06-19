@@ -44,14 +44,19 @@ import swasolutions.com.wdpos.actividades.vistas.GastosVistaActivity;
 import swasolutions.com.wdpos.actividades.vistas.VistaVentasActivity;
 import swasolutions.com.wdpos.base_de_datos.AbonosBD;
 import swasolutions.com.wdpos.base_de_datos.CarritoBD;
+import swasolutions.com.wdpos.base_de_datos.CategoriasBD;
 import swasolutions.com.wdpos.base_de_datos.ClientesBD;
 import swasolutions.com.wdpos.base_de_datos.ClientesCompletoBD;
+import swasolutions.com.wdpos.base_de_datos.CreditoBD;
 import swasolutions.com.wdpos.base_de_datos.DeudasBD;
+import swasolutions.com.wdpos.base_de_datos.DevolucionesBD;
 import swasolutions.com.wdpos.base_de_datos.GastosBD;
 import swasolutions.com.wdpos.base_de_datos.GruposVendedorBD;
 import swasolutions.com.wdpos.base_de_datos.PedidosBD;
+import swasolutions.com.wdpos.base_de_datos.PreciosGrupoBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosBD;
 import swasolutions.com.wdpos.base_de_datos.ProductosVentaBD;
+import swasolutions.com.wdpos.base_de_datos.UnidadesBD;
 import swasolutions.com.wdpos.base_de_datos.VentasBD;
 import swasolutions.com.wdpos.base_de_datos.WarehouseBD;
 import swasolutions.com.wdpos.vo.clases_objeto.Cliente;
@@ -219,29 +224,39 @@ public class Logica {
                     }else if("eliminarTodo".equals(tipo)){
                         AbonosBD bdAbonos= new AbonosBD(context,null,1);
                         CarritoBD bdCarrito= new CarritoBD(context,null,1);
+                        CategoriasBD bdCategorias= new CategoriasBD(context,null,1);
                         ClientesBD bdClientes= new ClientesBD(context,null,1);
                         ClientesCompletoBD bdClientesCompleto= new ClientesCompletoBD(context,null,1);
+                        CreditoBD bdCredito= new CreditoBD(context,null,1);
                         DeudasBD bdDeudas= new DeudasBD(context,null,1);
+                        DevolucionesBD bdDevoluciones= new DevolucionesBD(context,null,1);
                         GruposVendedorBD bdGruposVendedor = new GruposVendedorBD(context,null,1);
                         GastosBD bdGastos= new GastosBD(context,null,1);
                         PedidosBD bdPedidos= new PedidosBD(context,null,1);
                         ProductosBD bdProductos= new ProductosBD(context,null,1);
+                        PreciosGrupoBD bdPreciosGrupo= new PreciosGrupoBD(context,null,1);
                         VentasBD bdVentas= new VentasBD(context,null,1);
                         ProductosVentaBD bdProductosVenta= new ProductosVentaBD(context,null,1);
                         WarehouseBD bdWarehouses= new WarehouseBD(context,null,1);
+                        UnidadesBD bdUnidades= new UnidadesBD(context,null,1);
 
                         bdAbonos.eliminarAbonos();
                         bdCarrito.eliminarProductosCarrito();
                         bdClientes.eliminarTodosClientes();
                         bdClientesCompleto.eliminarClientes();
+                        bdCategorias.eliminarCategorias();
+                        bdCredito.eliminarCreditos();
                         bdDeudas.eliminarTodasLasDeudas();
+                        bdDevoluciones.eliminarDevoluciones();
                         bdGruposVendedor.eliminarGruposVendedor();
                         bdGastos.eliminarGastos();
                         bdPedidos.eliminarPedidos();
                         bdProductos.eliminarTodosProductos();
+                        bdPreciosGrupo.eliminarPreciosGrupo();
                         bdVentas.eliminarVentas();
                         bdProductosVenta.eliminarProductosVenta();
                         bdWarehouses.eliminarWarehouses();
+                        bdUnidades.eliminarUnidades();
 
                         bdAbonos.close();
                         bdCarrito.close();
@@ -383,33 +398,20 @@ public class Logica {
         return patron.matcher(name).matches() && name.length() < 25;
     }
 
-    private static boolean isNetDisponible(Context context) {
-
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
-
-        return (actNetInfo != null && actNetInfo.isConnected());
+    public static boolean isConnectedWifi(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
     }
 
-    private static Boolean isOnlineNet() {
-
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-
-            int val           = p.waitFor();
-            return (val == 0);
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+    public static boolean isConnectedMobile(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
     }
 
     public boolean verificarConexion(Context context) {
-        return isNetDisponible(context) && isOnlineNet();
+        return isConnectedWifi(context) || isConnectedMobile(context);
     }
 
     public ArrayList<Cliente> filtrarClientes(ArrayList<Cliente> clientes,Context context) {

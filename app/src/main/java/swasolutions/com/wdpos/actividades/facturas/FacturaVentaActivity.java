@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,6 +70,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
     private int CREDITO;
     private String CEDULACLIENTE;
     private String TIPOPAGO;
+
 
     /**
      * Atributos de la base de datos de ventas y productos de venta.
@@ -169,6 +172,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     @Override
     public void onStart() {
         super.onStart();
@@ -304,24 +308,27 @@ public class FacturaVentaActivity extends AppCompatActivity{
     }
 
 
-    public static int calcularTotal(List<ProductoCarrito> productos,String tipo){
+    public int calcularTotal(List<ProductoCarrito> productos, String tipo){
 
         int total=0;
 
         for(int i =0;i<productos.size();i++){
 
             if("Credito".equals(tipo)){
-                if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                if(productos.get(i).getPrecio()>=productos.get(i).getPrecio2()){
                     total+= (productos.get(i).getPrecio())*(productos.get(i).getCantidad());
-                }else if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                }else if(productos.get(i).getPrecio2()>=productos.get(i).getPrecio()){
                     total+= (productos.get(i).getPrecio2())*(productos.get(i).getCantidad());
                 }
             }else if("Contado".equals(tipo)){
-                if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+
+                Toast.makeText(getApplicationContext(),""+productos.size(),Toast.LENGTH_SHORT).show();
+                if(productos.get(i).getPrecio()>=productos.get(i).getPrecio2()){
                     total+= (productos.get(i).getPrecio2())*(productos.get(i).getCantidad());
-                }else if(productos.get(i).getPrecio()>productos.get(i).getPrecio2()){
+                }else if(productos.get(i).getPrecio2()>=productos.get(i).getPrecio()){
                     total+= (productos.get(i).getPrecio())*(productos.get(i).getCantidad());
                 }
+                Toast.makeText(getApplicationContext(),""+total,Toast.LENGTH_SHORT).show();
             }
 
 
@@ -347,6 +354,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
     }
 
     class ClickEvent implements View.OnClickListener {
+        @RequiresApi(api = Build.VERSION_CODES.FROYO)
         public void onClick(View v) {
             if (v.equals(btnSearch)) {
                 Intent serverIntent = new Intent(context, DeviceListActivity.class);
@@ -858,6 +866,7 @@ public class FacturaVentaActivity extends AppCompatActivity{
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private void takeScreenshot() {
         try {
             // image naming and path  to include sd card  appending name you choose for file

@@ -69,7 +69,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_panel);
 
         TextView txtVersion= (TextView) findViewById(R.id.txtVersion_panel);
-        txtVersion.setText("2.1.3");
+        txtVersion.setText("2.1.7");
 
         logica= new Logica();
 
@@ -257,7 +257,7 @@ public class PanelActivity extends AppCompatActivity implements View.OnClickList
 
 
                             String mensaje= "actualizando productos, espere un momento";
-                            mostrarSnockBar(mensaje,10);
+                            mostrarSnockBar(mensaje,Toast.LENGTH_LONG);
 
                         }else if("clientes".equals(tipo)){
 
